@@ -1,0 +1,235 @@
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span>     
+         <button mat-raised-button class="btn btn-lg m-1 p-2" style="color: rgb(250, 242, 242);" (click)="back()"><mat-icon>fast_rewind</mat-icon></button>          
+      </span>
+      Create Invoice Template
+
+    </div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+           <!-- <form>
+             <mat-form-field appearance="fill">
+                    <mat-label>Toppings</mat-label>
+                    <mat-select [formControl]="toppings" multiple>
+                      <mat-select-trigger>
+                        {{toppings.value?.[0] || ''}}
+                        <span *ngIf="(toppings.value?.length || 0) > 1" class="example-additional-selection">
+                          (+{{(toppings.value?.length || 0) - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+                        </span>
+                      </mat-select-trigger>
+                      <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                   <mat-form-field appearance="fill">
+                    <mat-label>Flat Number</mat-label>
+                    <mat-select>
+                      <mat-option *ngFor="let ct of readData2" [value]="ct.id">
+                        {{ct.flat_number}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field>
+
+                  </mat-form-field> 
+
+
+
+            </form>-->
+           
+
+          <div >
+            <mat-toolbar >
+              <h2 >Invoice Template Creation</h2>
+            </mat-toolbar>
+            <form >
+              
+            
+                  
+                    <div >
+                    <div>
+                      <mat-form-field   >
+                        <mat-label>Invoice Description </mat-label>
+        
+                        <input  matInput placeholder="Invoice Description">
+                        <mat-error>This field is mandatory.</mat-error>
+                      </mat-form-field>
+
+                      <mat-form-field >
+                        <mat-label>Choose Account Number</mat-label>
+                        <mat-select>
+                       
+                    <mat-option  [value]="0">34568789778900</mat-option>
+
+
+                    </mat-select>
+                      </mat-form-field>
+                      <mat-form-field style="width: 350px;" >
+                        <mat-label>Fine Setting</mat-label>
+                        <mat-select>
+                       
+                    <mat-option  [value]="0">34568789778900</mat-option>
+
+
+                    </mat-select>
+                      </mat-form-field>
+                    </div>
+                      <!-- <div>
+                      <mat-form-field appearance="fill" style="width: 500px;" formControlName="UserType"  >
+                        <mat-label>Flat Number</mat-label>
+                        <mat-select multiple>
+                       
+                          <mat-option #allSelected (click)="toggleAllSelection()" [value]="0">All</mat-option>
+
+                          <mat-option style="width: 500px;" *ngFor="let flat of readData2" [value]="flat.id" >{{flat.name}}</mat-option>
+
+                    </mat-select>
+                      </mat-form-field>
+                      </div>
+                     
+                      <mat-form-field appearance="fill"  class="full-width"  >
+                        <mat-label>Due Month</mat-label>
+
+                        <input  matInput placeholder="month">
+                        <mat-error>This field is mandatory.</mat-error>
+                      </mat-form-field>
+                      <mat-form-field appearance="fill" class="full-width" >
+                        <mat-label>Due End Date</mat-label>
+
+                        <input  matInput [matDatepicker]="picker" placeholder="End Date">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                     
+                      
+                      <mat-form-field appearance="fill"  class="full-width">
+                      
+                        <span matPrefix> ₹</span> <input  matInput placeholder=" Maintainance Fees">
+                        <mat-error></mat-error>
+                      </mat-form-field>
+                      <mat-form-field appearance="fill"  class="full-width">
+                        <span matPrefix> ₹</span> <input  matInput placeholder=" Additional Fees">
+                        <mat-error></mat-error>
+                      </mat-form-field> -->
+                      <!-- <span class="add-bottom-padding"> 
+                        <mat-checkbox>Email</mat-checkbox>
+                      </span>&nbsp;
+                      <span class="add-bottom-padding">
+                        <mat-checkbox>SMS</mat-checkbox>
+                      </span> &nbsp;
+                      <span class="add-bottom-padding">
+                        <mat-checkbox>Push notification</mat-checkbox>
+                      </span> -->
+                      <!-- <button (click)="showScreen = !showScreen">Toggle Screen</button>
+                      <div *ngIf="showScreen">Screen Content</div> -->
+                      <!-- <span class="add-bottom-padding"> 
+                        <mat-checkbox>enabled <mat-icon>help</mat-icon></mat-checkbox>
+                      </span> -->
+                      <span style="margin-left: 250px;" class="add-bottom-padding">
+                        <mat-checkbox (click)="showScreen3 = !showScreen3">Settle from advance</mat-checkbox>
+                      </span> &nbsp;&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;
+                      <!-- <span style="margin-left: 150px;"  class="add-bottom-padding">
+                        <mat-checkbox *ngIf="showScreen3" (click)="showScreen = !showScreen">Instance Settle <mat-icon>help</mat-icon></mat-checkbox>
+                      </span> -->
+                      
+                       <!-- <span class="add-bottom-padding"> 
+                          <mat-checkbox>Enabled Receipt Box </mat-checkbox>
+                        </span>&nbsp; -->
+                        <span style="margin-left: 200px;"  class="add-bottom-padding">
+                          <mat-checkbox (click)="showScreen2 = !showScreen2">Include Previous Arrears</mat-checkbox>
+                        </span> &nbsp;
+                        <!-- <span style="margin-left: 200px;"  class="add-bottom-padding">
+                          <mat-checkbox >Tax Split up</mat-checkbox><mat-icon>help</mat-icon>
+                        </span>
+                        <span style="margin-left: 150px;" class="add-bottom-padding"> 
+                          <mat-checkbox *ngIf="showScreen">Current Date </mat-checkbox>
+                        </span>&nbsp;
+                        <span style="margin-left: 150px;" class="add-bottom-padding">
+                          <mat-checkbox *ngIf="showScreen">Charge Date</mat-checkbox>
+                        </span> &nbsp; -->
+                      
+                      <!-- <div>
+                        <span  class="add-bottom-padding"> 
+                          <mat-checkbox *ngIf="showScreen2">Consolidated Arrears </mat-checkbox>
+                        </span>&nbsp;
+                        <span  style="margin-left: 150px;"class="add-bottom-padding">
+                          <mat-checkbox *ngIf="showScreen2">Bifurcated Arrears</mat-checkbox>
+                        </span> &nbsp;
+                       
+
+                      </div> -->
+
+
+                      <mat-toolbar style="margin-top: 50px;" >
+                        <h2 >Charge Item</h2>
+                      </mat-toolbar>
+
+                      <div>
+                        <mat-form-field   >
+                          <mat-label>Item Description </mat-label>
+          
+                          <input  matInput placeholder="Item Description">
+                          <mat-error>This field is mandatory.</mat-error>
+                        </mat-form-field>
+  
+                        <mat-form-field >
+                          <mat-label>Charge Amount</mat-label>
+                          <mat-select>
+                         
+                      <mat-option  [value]="0">3000</mat-option>
+  
+  
+                      </mat-select>
+                        </mat-form-field>
+                        <mat-form-field style="width: 300px;" >
+                          <mat-label>Charge Account</mat-label>
+                          <mat-select>
+                         
+                      <mat-option  [value]="0">General Charges</mat-option>
+  
+  
+                      </mat-select>
+                        </mat-form-field>
+                        <span class="add-bottom-padding"> 
+                          <mat-checkbox>GST </mat-checkbox>
+                        </span>&nbsp;
+
+                        <mat-form-field appearance="fill" style="width: 500px;" formControlName="UserType"  >
+                          <mat-label>Resident type</mat-label>
+                          <mat-select multiple>
+                         
+                            <mat-option #allSelected (click)="toggleAllSelection()" [value]="0">All</mat-option>
+  
+                            <mat-option style="width: 500px;" *ngFor="let flat of readData2" [value]="flat.id" >{{flat.name}}</mat-option>
+  
+                      </mat-select>
+                      </mat-form-field>
+                      <mat-form-field appearance="fill" style="width: 500px;" formControlName="UserType"  >
+                        <mat-label>Select Tower</mat-label>
+                        <mat-select multiple>
+                       
+                          <mat-option #allSelected (click)="toggleAllSelection()" [value]="0">All</mat-option>
+
+                          <mat-option style="width: 500px;" *ngFor="let flat of readData2" [value]="flat.id" >{{flat.name}}</mat-option>
+
+                    </mat-select>
+                    </mat-form-field>
+                      </div>
+
+                      <div class="button-row">
+                        <!-- <button mat-raised-button color="primary" type="submit" >Generate Invoice</button> &nbsp;
+                        <button mat-raised-button color="primary" type="submit" (click)="invoice()">View Invoice</button> &nbsp; -->
+                        <button mat-raised-button style="background-color: #1e293b; color: white;" type="submit" (click)="invoice()" >Save</button> &nbsp;
+                        <button mat-raised-button color="warn" >Clear</button>
+                      </div>
+                     
+                    </div>
+                 
+              </form>
+
+              
+
+              </div>
+            </div>
+            </div>

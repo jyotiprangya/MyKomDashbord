@@ -1,0 +1,28 @@
+.container-fluid{
+    height: 300px;
+}
+.page {
+    color: white;
+    padding: 0 1rem;
+    background: #f1f5f9;
+    width: 1050px;
+}
+.page_box{
+    min-height: 100px;
+    background: #1e293b;
+    margin: 0 -1rem;
+    font-size: 26px;
+}
+.page_box_content {
+    min-height: calc(100vh - 170px);
+    border-radius: 10px;
+    margin-top: -2rem;
+    background: white;
+    color: black;
+    font-size: 1.5rem;
+}
+.page_box_content_data{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

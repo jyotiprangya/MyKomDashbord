@@ -1,0 +1,46 @@
+<mat-toolbar>
+    <mat-toolbar-row class="justify-content-between">
+        <div style="display: flex; justify-content: flex-start;">
+            <button mat-icon-button (click)="toggleSidebar()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <button mat-icon-button (click)="backtoDash()"> 
+                <mat-icon class="ms=5">fast_rewind</mat-icon> Back to Home
+            </button>
+        </div>
+      
+        <div>
+            <ul>
+                <li >
+                    <button
+                    mat-button
+                    [matMenuTriggerFor]= "menu" 
+                    class="user mt-4 d-flex align-items-center">
+                    <!-- <ng-container *ngIf="societyImage; else alternateImage">
+                        <img [src]="societyImage" class="user-image mr-1 p-2" >
+                        </ng-container>
+                 (click)="open(content)"
+<ng-template #alternateImage>
+    <img src="../../../assets/onboardlogo.png" alt="" class="user-image mr-1 p-2"/>
+
+</ng-template> -->
+                <!-- <img src="../../../assets/onboardlogo.png" alt="" class="user-image mr-1 p-2"/> -->
+           Welcome {{firstName}} {{lastName}}
+
+                <mat-icon class="user-image-icon ml-1">keyboard_arrow_down</mat-icon>
+                </button>
+                <mat-menu #menu= "matMenu">
+
+                    <button mat-menu-item (click)="home()">
+                        <mat-icon>exit_to_app</mat-icon>
+                        Logout
+                    </button>
+                </mat-menu>
+
+                </li>
+            </ul>
+        </div>
+       
+    </mat-toolbar-row>
+    
+</mat-toolbar>

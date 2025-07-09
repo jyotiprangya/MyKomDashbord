@@ -1,0 +1,122 @@
+.container-fluid{
+    height: 500px;
+}
+.page {
+    color: white;
+    padding: 0 1rem;
+    background: #f1f5f9;
+    width: 1050px;
+}
+.page_box {
+    min-height: fit-content;
+    background: #0f172a;
+    margin: 0 -1rem;
+    font-size: 20px;
+    position: relative;
+}
+ul{
+    list-style: none;
+}
+
+.page_box_content {
+    min-height: calc(100vh - 170px);
+    border-radius: 10px;
+    margin-top: -2rem;
+    background: white;
+    color: #0f172a;
+    font-size: 1.5rem;
+}
+.page_box_content_data{
+    top: 100%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+}
+.icon-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Space between items */
+    padding: 0;
+    list-style: none;
+  }
+  
+  .icon-list li {
+    width: calc(20% - 20px); /* Four items per row, accounting for margins */
+    margin: 10px; /* Add some margin between items */
+  }
+  span{
+    font-weight: bold;
+  }
+  
+  .icon-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #0f172a;             /* Black text */
+    border: none;
+    margin: 1rem;
+    padding: 0px;
+    width: 150px;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 100px;
+  }
+  
+  .icon-circle {
+    width: 70px;  /* Increased width */
+    height: 70px; /* Increased height */
+    background-color: white; /* Grey circle background */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    overflow: hidden; /* Ensure nothing overflows */
+  }
+  
+  .icon-circle mat-icon {
+    font-size: 26px;  /* Adjust icon size */
+    color: #0f172a;     /* Set icon color to black */
+    line-height: 26px; /* Ensure icon doesn't get cut */
+  }
+  
+  .icon-button span {
+    font-size: 14px;   /* Adjusted label size */
+    text-align: center;
+    color: #0f172a;      /* Set label color to black */
+  }
+  
+
+ @media screen and (orientation: portrait){
+   
+    .container-fluid {
+        width: 100%;
+    }
+
+    .page {
+        width: 100%;
+    }
+
+    .page_box {
+        margin: 0;
+        font-size: 20px;
+        width: 100%;
+    }
+
+    .page_box_content {
+        min-height: calc(100vh - 170px);
+        margin-top: 0;
+        font-size: 1.2rem;
+        margin-left: 100px;
+    }
+
+    .page_box_content_data {
+        transform: translate(-50%, -50%);
+    }
+    .icon-list li {
+        width: calc(100% - 20px);  /* Two items per row for smaller screens */
+      }
+    .table-wrapper {
+        max-height: 400px;
+        overflow-y: auto;
+      }
+     
+  }

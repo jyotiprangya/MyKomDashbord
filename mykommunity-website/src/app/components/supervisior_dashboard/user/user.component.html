@@ -1,0 +1,446 @@
+<div class="container-fluid ">
+  <div class="page_box" style="color: aliceblue;">
+    <span mat-raised-button class="btn mt-1 p-1" style="color: white;" (click)="back()"><mat-icon>fast_rewind</mat-icon> </span>        
+
+    User List</div>
+  <div class="page_content shadow p-3 position-relative">
+    <div class="page_content-data position-absolute">
+    </div>
+    
+    <div class="top-content">
+      <div class="button-container">
+        <!-- Button: New Resident -->
+        <button *ngIf="role === 'SOCIETY_ADMIN'" 
+                mat-raised-button 
+                 
+                (click)="open2(content2)"
+                class="btn m-1 pe-2 button-responsive" 
+                style="background-color: #1e293b; color: white;">
+          <mat-icon>add_circle_outline</mat-icon> New Resident
+        </button>
+    
+        <!-- Button: Export CSV -->
+        <button mat-raised-button 
+                (click)="exportData()" 
+                class="btn m-1 pe-2 button-responsive" 
+                style="background-color: #1e293b; color: white;"
+                >
+          <mat-icon>file_download</mat-icon> Export CSV
+        </button>
+    
+        <!-- Button: Select Columns -->
+        <button mat-raised-button  (click)="toggleModal()" 
+        class="btn m-1 pe-2 button-responsive" 
+        style="background-color: #1e293b; color: white;">
+          <mat-icon>checklist</mat-icon> Visible Fields 
+        </button>
+      </div>
+    
+      <!-- Search bar -->
+      <div class="search-container">
+        <mat-icon class="search-icon">search</mat-icon>
+        <input type="text" 
+               placeholder="Search..." 
+               [(ngModel)]="searchTerm" 
+               (ngModelChange)="updateFilteredData()" 
+               class="search-bar-with-icon">
+      </div>
+    </div>
+    
+    
+    <div class="grp">
+    
+     
+   
+    <div class="modal" [ngClass]="{'show': isModalOpen}" (click)="toggleModal()">
+      <div class="modal-content" (click)="$event.stopPropagation()"style="width: 60%; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+        <div class="settings-container">
+          <div class="tab-container">
+            <div class="tabs" style="display: flex; justify-content: center; align-items: center; flex-direction: row; width: 100%; padding:10px">
+              <h1 style="margin: 0;">Column Selection</h1>
+            </div>
+            
+            <div class="tab-content">
+              <div class="list-container" style="display: flex; justify-content: space-between;">
+                <div class="list-box" style="width: 45%;">
+                  <h3 style="font-weight: bold;">Hidden Columns</h3>
+                  <ul id="hidden-columns" class="list">
+                    <li *ngFor="let column of hiddenColumns">
+                      <input type="checkbox" [(ngModel)]="column.selected"> {{ column.name }}
+                    </li>
+                  </ul> 
+                </div>
+                <div class="buttons-container" style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-left: 20px; gap: 15px; padding: 15px;">
+                  <button class="btn" (click)="addColumn()"  style="width: 100px; height: 40px; background-color: #1e293b; color: white; font-weight: bold; padding: 10px; display: flex; align-items: center; justify-content: space-between;">
+                    Add <span style="font-size: 14px; margin-left: 5px;">▶</span>
+                  </button>
+                  <button class="btn" (click)="removeColumn()" style="width: 100px; height: 40px; background-color: #1e293b; color: white; font-weight: bold; padding: 10px; display: flex; align-items: center; justify-content: space-between;">
+                    <span style="font-size: 14px; margin-right: 5px;">◀</span> Remove
+                  </button>
+                </div>
+                <div class="list-box" style="width: 45%; padding-top: 5px;">
+                  <h3 style="font-weight: bold;">Displayed Columns</h3>
+                  <ul id="displayed-columns" class="list">
+                    <li *ngFor="let column of displayedColumns">
+                      <input type="checkbox" [(ngModel)]="column.selected"> {{ column.name }}
+                    </li>
+                  </ul>
+                 
+                  <!-- <div class="reorder-buttons" style="text-align: center; margin-top: 15px;">
+                    <button (click)="moveColumnUp()" class="arrow-btn">
+                      <span class="material-icons">▲</span> 
+                    </button>
+                    <button (click)="moveColumnDown()" class="arrow-btn">
+                      <span class="material-icons">▼</span> 
+                    </button>
+                  </div> -->
+                </div>
+                
+              </div>
+            </div>  
+          </div>
+          <div class="footer" style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 15px; padding:10px">
+            <!-- <button class="btn btn-primary" (click)="applyColumnSelection()">OK</button> -->
+            <button class="btn" style="background-color: gray; color: white;" (click)="cancelChanges()" >Back</button>
+            <!-- <button class="btn btn-warning" (click)="resetChanges()" >Reset</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+   
+    
+    
+   
+    <div *ngIf="selectedIds.length > 0" class="bulk-edit-container m-2" >
+      <p>Edit Selected ({{ selectedIds.length }})</p>
+      <button *ngIf="role=='SOCIETY_ADMIN'" mat-raised-button color="primary" class="me-2" (click)="bulkEditforOwner()">Change To Owner</button>&nbsp;&nbsp;
+      <button *ngIf="role=='SOCIETY_ADMIN'" mat-raised-button color="primary" (click)="bulkEditforTenant()">Change To Tenant</button>
+
+    </div>
+
+    <!-- <div class="table-container">
+      <table border="1">
+        <thead>
+          <tr>
+            <th *ngFor="let column of displayedColumns" cdkDrag>{{ column }}</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let column of displayedColumns" cdkDrag>
+          <tr *ngFor="let row of data">
+            <td>{{ row.id }}</td>
+            <td>{{ row.name }}</td>
+            <td>{{ row.email }}</td>
+            <td>{{ row.role }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div> -->
+
+<!-- 
+    <div class="table-container">
+      <h2>Customizable Column Selection and Reordering</h2>
+      
+      
+      <button (click)="showColumnSelector = !showColumnSelector">Select Columns</button>
+      
+      
+      <div *ngIf="showColumnSelector" class="column-selector">
+        <h3>Select Columns to Display</h3>
+        <mat-list>
+          <mat-list-item *ngFor="let column of availableColumns">
+            <mat-checkbox [(ngModel)]="column.selected">{{ column.displayName }}</mat-checkbox>
+          </mat-list-item>
+        </mat-list>
+    
+        <h3>Reorder Columns</h3>
+        <div cdkDropListGroup>
+          <div cdkDropList [cdkDropListData]="selectedColumns" (cdkDropListDropped)="drop($event)">
+            <div *ngFor="let column of selectedColumns" cdkDrag>{{ column.displayName }}</div>
+          </div>
+        </div>
+        <button (click)="applyChanges()">Apply</button>
+      </div>
+    
+     
+      <table>
+        <thead>
+          <tr>
+            <th *ngFor="let column of selectedColumns">{{ column.displayName }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of data">
+            <td *ngFor="let column of selectedColumns">
+              {{ getColumnValue(row, column.name) }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div> -->
+
+
+
+    
+
+    <div class="table-wrapper">
+      <table class="table table-bordered mt-2">
+        <thead>
+          <tr>
+            <th><input type="checkbox" [checked]="isSelectAllChecked()" (change)="selectAll($event)" /></th>
+            <th  *ngIf="isColumnVisible('Profile Image')">Profile</th>
+           
+            <th (click)="sortData('firstName')" *ngIf="isColumnVisible('Name')">
+              Name 
+              <span [class]="sortDirection['firstName'] ? 'asc' : 'desc'"></span>
+            </th>
+            
+            <th  *ngIf="isColumnVisible('Email')">Email</th>
+            <th  *ngIf="isColumnVisible('Mobile')">Mobile</th>
+            <th  *ngIf="isColumnVisible('Occupancy')">Occupancy</th>
+            <th  *ngIf="isColumnVisible('Flat No')">Flat No</th>
+            <th  *ngIf="isColumnVisible('Type')">Type</th>
+            <th (click)="sortData('updatedAt')" *ngIf="isColumnVisible('Last Update')">Last Update<span [class]="sortDirection['updatedAt'] ? 'asc' : 'desc'"></span></th>
+            <th  *ngIf="isColumnVisible('Approval Status')">Approval Status</th>
+            <!-- <th  *ngIf="isColumnVisible('Active Status')">Active Status</th> -->
+            <th  *ngIf="isColumnVisible('Edit') && role === 'SOCIETY_ADMIN'">Edit</th>
+            <th  *ngIf="isColumnVisible('Active Status') && role === 'SOCIETY_ADMIN'">Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="filteredData.length === 0">
+            <td [attr.colspan]="columns.length" class="text-center" style="color: grey;">No Record Found!!!</td>
+          </tr>
+          <tr *ngFor="let us of filteredData | paginate: { itemsPerPage: 10, currentPage: page, totalItems: filteredLength } " >
+           
+            <td><input type="checkbox" [checked]="selectedIds.includes(us.userId)" (change)="onSelect($event, us.userId)" /></td>
+           
+            <td scope="row" *ngIf="isColumnVisible('Profile Image')">
+              <!-- Assuming this code is within your Angular component's template -->
+              <a *ngIf="us.profileImage; else alternateImage" [href]="us.profileImage">
+   <img [src]="us.profileImage" (error)="onImageError($event)"
+   style="border-radius: 20px; height: 40px; width: 40px;  display: flex; align-items: center; justify-content: center;" *ngIf="us.profileImage; else alternateImage">
+   </a>
+   <ng-template #alternateImage>
+   <ng-container *ngIf="us.lastName; else alternateImage3">
+       <div style="border-radius: 20px; height: 40px; width: 40px;  background-color: #e9d9d9;
+           display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold;">
+           {{ us.firstName?.charAt(0).toUpperCase() || '' }}{{ us.lastName?.charAt(0).toUpperCase() || '' }}
+       </div>
+   </ng-container>
+   </ng-template>
+   <ng-template #alternateImage3>
+   <ng-container *ngIf="us.firstName || us.lastName; else alternateImage2">
+       <div style="border-radius: 20px; height: 40px; width: 40px; background-color: #e9d9d9;
+           display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold;">
+           {{ us.firstName?.charAt(0).toUpperCase() || '' }}{{ us.lastName?.charAt(0).toUpperCase() || '' }}
+       </div>
+   </ng-container>
+   </ng-template>
+   <ng-template #alternateImage2>
+   <div style="border-radius: 20px; height: 40px; width: 40px; background-color: #e9d9d9;
+       display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold;">
+       R
+   </div>
+   </ng-template>
+   
+             </td>
+            <td *ngIf="isColumnVisible('Name')">{{ us.firstName || 'Resident' }} {{ us.lastName ? (us.lastName | capitalizeFirstLetter) : '' }}</td>
+            <td *ngIf="isColumnVisible('Email')">{{us.email}}</td>
+            <td *ngIf="isColumnVisible('Mobile')">{{us.mobileNumber}}</td>
+            <td *ngIf="isColumnVisible('Occupancy')">{{ (us.role.toLowerCase() | capitalizeFirstLetter) }}</td>
+            <td  *ngIf="isColumnVisible('Flat No')">{{us.rentalUnitName}}</td>
+            <td *ngIf="isColumnVisible('Type')">{{map2[us.isOwner]}}</td>
+            <td *ngIf="isColumnVisible('Last Update')">{{us.updatedAt | date:'medium'}}</td>
+            
+            <td  *ngIf="isColumnVisible('Approval Status')">
+              <button mat-stroked-button 
+              (click)="UpdateButton(us)" matTooltip= "click here to approve user" [disabled]="role=='SOCIETY_ADMIN_DISPLAY'"              style="color: aliceblue;" [style.background-color]="us.rentalUnitStatus === 'APPROVED' ? 'green' : 'rgb(195, 135, 23)'" >
+              {{mapApproval[us.rentalUnitStatus]}} 
+              
+                <mat-icon style="color: aliceblue;">{{ us.rentalUnitStatus === 'APPROVED' ? 'check_circle' : 'error'}}</mat-icon>
+              </button>
+            </td>
+            <!-- <td *ngIf="isColumnVisible('Active Status')">
+              <button mat-stroked-button
+              (click)="inactiveResident(us)" matTooltip= "click here to inactivate user" [disabled]="role=='SOCIETY_ADMIN_DISPLAY'"
+              style="color: aliceblue;"[style.background-color]="us.disabled == false ? 'darkcyan' : 'gray'" >
+                {{map[us.disabled]}}
+                <mat-icon>{{ us.disabled == false ? 'check_circle' : 'error'}}</mat-icon>
+              </button>
+            </td> -->
+            <td *ngIf="isColumnVisible('Edit') && role === 'SOCIETY_ADMIN'">
+              <mat-icon color="primary" (click)="open(content); OnEdit(us)">edit</mat-icon>
+            </td>
+            <td *ngIf="isColumnVisible('Active Status') && role === 'SOCIETY_ADMIN'">
+              <mat-icon color="warn" (click)="inactiveResident(us)">delete</mat-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+<div    style="display: flex; justify-content: flex-end;">
+  <div *ngIf="deletedUserData.length > 0" style="text-decoration: underline; color: blue; font-size:medium;"(click)="RemovedUser()"  > View Past Members</div>
+   
+</div>
+<!-- //RemovedUser -->
+
+  
+    <div fxLayoutAlign="center center" fxFlexFill>
+
+      <ng-template class="modal" #content #id let-modal style="background-color: rgba(196, 200, 167, 0.5);">
+
+        <div class="modal-header" style="padding: 0px;">
+          <mat-toolbar class="btn" style="background-color: #1e293b; color: white;">
+            <h2 class="modal-title" id="modal-basic-title">Create Profile</h2>
+            <button type="button" class=" btn btn-close " aria-label="Close" (click)="onCancelClick()"
+              (click)="modal.dismiss('Cross click')"></button>
+          </mat-toolbar>
+        </div>
+        <div class="modal-body" style="background-color: rgba(48, 102, 169, 0.171);" >
+          <mat-card fxFlex="100">
+
+
+            <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form">
+
+
+              <mat-form-field appearance="standard" class="full-width">
+                <mat-label>First Name</mat-label>
+                <input matInput maxlength="15" inputmode="tel" placeholder="Type name" formControlName="firstName"
+                  #nameInput>
+                <mat-hint>Mini character 2: {{ nameInput.value.length }}/2</mat-hint>
+                <mat-error>Name is required</mat-error>
+
+              </mat-form-field>
+
+              <mat-form-field appearance="standard" class="full-width">
+                <mat-label>Last Name</mat-label>
+                <input matInput maxlength="15" inputmode="tel" placeholder="Type name" formControlName="lastName"
+                  #nameInput>
+                <mat-hint>Mini character 2: {{ nameInput.value.length }}/2</mat-hint>
+                <mat-error>Name is required</mat-error>
+
+              </mat-form-field>
+
+              <mat-form-field appearance="legacy" class="full-width">
+                <mat-label>Email Address:</mat-label>
+                <input matInput type="email" formControlName="email" placeholder="Your email">
+
+                <mat-hint>Enter a valid Email</mat-hint>
+                <mat-error *ngIf="(form.get('email')).errors?.required">Email is required</mat-error>
+                <mat-error *ngIf="(form.get('email')).errors?.pattern">Please enter valid email</mat-error>
+              </mat-form-field>
+
+              <div style="margin: 20px;">
+                <mat-radio-group formControlName="isOwner" aria-label="Select an option">
+                  <mat-radio-button [value]=true>Owner</mat-radio-button>
+                  <mat-radio-button class="ms-2" [value]=false>Tenant</mat-radio-button>
+                </mat-radio-group>
+              </div>
+<div *ngIf="form.value.isOwner === true">
+  <mat-checkbox  formControlName="role" class="ms-5" >is Staying</mat-checkbox>
+
+</div>
+
+              
+
+            </form>
+          </mat-card>
+        </div>
+
+        <div class="modal-footer">
+
+          <!-- <button *ngIf="!getparamid" (click)="saveDetails(form)"  (click)="modal.close('Save click')"  class=" btn-group btn btn-primary" >Create</button> -->
+          <button *ngIf="getparamid"  (click)="userUpdate()" (click)="modal.close('Save click')"   class="btn-group btn " style="background-color: #1e293b; color: white;" >Update</button>
+
+          <button type="submit" class=" btn-group btn btn-danger" (click)="onCancelClick()" (click)="modal.close('Save click')">Cancel</button>
+        </div>
+
+      </ng-template>
+
+    </div>
+    <div fxLayoutAlign="center center" fxFlexFill>
+
+      <ng-template class="modal" #content2 #id let-modal style="background-color: rgba(196, 200, 167, 0.5);">
+
+        <div class="modal-header" style="padding: 0px;">
+          <mat-toolbar class="btn" style="background-color: #1e293b; color: white;">
+            <h2 class="modal-title" id="modal-basic-title">Create Profile</h2>
+            <button type="button" class=" btn btn-close " aria-label="Close" (click)="onCancelClick()"
+              (click)="modal.dismiss('Cross click')"></button>
+          </mat-toolbar>
+        </div>
+        <div class="modal-body" style="background-color: rgba(48, 102, 169, 0.171);" >
+          <mat-card fxFlex="100">
+
+
+            <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form2">
+
+
+              <mat-form-field appearance="standard" class="full-width">
+                <mat-label>First Name</mat-label>
+                <input matInput inputmode="tel" placeholder="Type name" formControlName="firstName"
+                  #nameInput>
+                <mat-hint>Mini character 2: {{ nameInput.value.length }}/2</mat-hint>
+                <mat-error>Name is required</mat-error>
+
+              </mat-form-field>
+
+              <mat-form-field appearance="standard" class="full-width">
+                <mat-label>Last Name</mat-label>
+                <input matInput maxlength="15" inputmode="tel" placeholder="Type name" formControlName="lastName"
+                  #nameInput>
+                <mat-hint>Mini character 2: {{ nameInput.value.length }}/2</mat-hint>
+                <mat-error>Name is required</mat-error>
+
+              </mat-form-field>
+
+              <mat-form-field appearance="legacy" class="full-width">
+                <mat-label>Mobile Number</mat-label>
+                <input matInput maxlength="10" type="mobileNumber" formControlName="mobileNumber" placeholder="Your mobileNumber">
+
+              
+              </mat-form-field>
+
+              <div appearance="fill" class="full-width">
+                <div style="margin-right:3%; color:#6b6b6b;">
+                  <mat-label>Select Housing Unit/flat</mat-label>
+              </div>
+                <select style="width: 100%; height: 30px;" formControlName="rentalUnitId" >
+                  <option value="0" disabled>--Select Housing Unit--</option>
+                  <option  *ngFor="let ct of readData2" value={{ct.id}}>{{ct.blockName}} - {{ct.floorName}} - {{ct.name}}</option>
+                </select>
+                
+              </div> 
+
+              
+
+            </form>
+          </mat-card>
+        </div>
+
+        <div class="modal-footer">
+
+          <button *ngIf="!getparamid" [disabled]="loading" (click)="saveDetails(form)"  (click)="modal.close('Save click')"  class="btn-group btn " style="background-color: #1e293b; color: white;" >
+            <span  *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Create</button>
+          <!-- <button *ngIf="getparamid"  (click)="userUpdate()" (click)="modal.close('Save click')"   class="btn-group btn " style="background-color: #1e293b; color: white;" >Update</button> -->
+
+          <button type="submit" class=" btn-group btn btn-danger" (click)="onCancelClick()" (click)="modal.close('Save click')">Cancel</button>
+        </div>
+
+      </ng-template>
+
+    </div>
+
+
+
+
+
+
+
+
+
+  </div>
+</div>

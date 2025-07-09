@@ -1,0 +1,269 @@
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span>      <button mat-raised-button class="btn btn-lg m-1 p-2" style="color: rgb(250, 242, 242);" (click)="back()"><mat-icon>fast_rewind</mat-icon></button>          
+      </span>
+      Show Dues
+
+    </div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+           
+            <!-- <div style="display: flex; justify-content: end;">
+                <button class="btn btn-warning active m-3" > Receipt</button>
+                </div><br> <br> -->
+                <div class="snd">
+                    <div style="font-size: 16px; margin: 10px;">
+                    <b >Owner Details:</b> <b class="none">None</b><br>
+                    <b>Tenant Details:</b> <b class="none">None</b>
+                    </div>
+                    <!-- <div >
+                        <mat-form-field mat-raised-button class="btn m-1 p-2" >
+                            <mat-label>Select Options</mat-label>
+                            <mat-select>
+                                <mat-option [value]="0" disabled (click)="open(content)">Add Charges</mat-option>
+
+                                <mat-option (click)="open(content)">Add Charges</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <button mat-stroked-button class="btn btn-danger m-1">Select House </button>
+                       </div> -->
+                </div><br>
+                <div >
+                <section >
+                    <div class="card">
+                        <div class="card-header">
+                            <b>Total Dues <span class="bi bi-info-circle-fill"></span></b>
+                        </div>
+                        <div class="card-footer">
+                            <b class="a">&#8377; {{readData2.debit}}</b>
+                        </div>
+                    </div>
+                     <div class="card">
+                        <div class="card-header">
+                            <b>Over Dues <span class="bi bi-info-circle-fill"></span></b>
+                        </div>
+                        <div class="card-footer">
+                            <b class="b">&#8377; {{readData2.amounAfterDueDate}}</b>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <b>Advance</b>
+                        </div>
+                        <div class="card-footer">
+                            <b class="c">&#8377; {{readData2.credit}}</b>
+                        </div>
+                    </div>
+                    <div class="card"> 
+                        <div class="card-header">
+                            <b>Security Deposite</b>
+                        </div>
+                        <div class="card-footer">
+                            <b class="d">&#8377; {{readData2.securityDeposit}}</b>
+                        </div>
+                    </div>
+                </section>
+                </div>
+              
+                   
+                    <div style="display: flex; justify-content: flex-end;">
+                      <form [formGroup]="form">
+
+                        Select Charges and click "Settle Dues"
+                        <mat-form-field appearance="fill" class="full-width" >
+                          
+                          <input type="text" placeholder="Enter Amount" style="height: 35px;" formControlName="amount" >
+                        <!-- </button> -->
+                        </mat-form-field>
+                        </form>
+                        <button style="height: fit-content;" class="btn btn-primary mt-3" (click)="saveDetails(form)">Settle Dues</button>
+                        <!-- <b> Select All</b> &nbsp;<input type="checkbox"> -->
+                    </div>
+            
+
+<div style="border: 1px solid rgb(233, 224, 224); background-color: rgba(211, 202, 202,0.3); margin-top: 20px;" >
+    <div style="display: flex; justify-content: space-between; margin: 10px;">
+        <h2> Invoices</h2>
+        <!-- <div style="padding: 20px;">
+            Select &nbsp; <mat-checkbox></mat-checkbox> 
+        </div> -->
+    </div>
+        <div>
+            <div class="table-wrapper">
+
+         <table class="table table-bordered "  >
+                <thead>
+                 <tr>
+                  
+                  <th scope="col">Charge Name</th> 
+                  <th scope="col">Charge Amount</th>  
+                  <th scope="col">Due Date</th>   
+                  <th scope="col">Grace Period(in days)</th>
+                  <th scope="col">Fine</th>
+                  <th scope="col">Amount after fine(&#8377;)</th>
+                  <th scope="col"> Due Amount(&#8377;)</th>   
+                  
+                  <!-- <th scope="col">Balance(&#8377;)</th> -->
+                   </tr>
+                      </thead>
+                         <tbody>
+
+                <tr *ngFor="let us of readData">
+                   
+                  <td>{{us.chargeName}}</td>
+                  <td>{{us.amount}}</td>
+                  <td >{{us.dueDate | date:"medium"}}</td>
+
+                  <td style="color: blue; ">{{us.gracePeriod}}</td>
+                  <td *ngIf="us.isPrecent === false">{{us.fine}}</td>
+                  <td *ngIf="us.isPrecent === true">{{us.fine}}%</td> 
+                  <td>{{us.amounAfterDueDate}}</td>
+
+                  <td>{{us.dueAmount}}</td>
+                  
+                  
+                </tr>
+                <!-- <tr >
+                   <td></td>
+                   <td></td>
+                    <td ></td>        
+                    <td><b>Total:</b></td>
+                    <td>&#8377; 10,000.00</td>
+                    <td>&#8377; 0.00</td>
+                    <td>&#8377; 10,000.00</td>
+                    
+                  </tr>
+                  -->
+
+                         </tbody>
+                        </table>
+            </div>
+                     
+
+        </div>
+        <div style="display: flex; justify-content: space-between; margin: 10px;">
+            <div>
+                <button mat-raised-button class="btn m-2 p-1" style="color: blue;"><mat-icon>send</mat-icon>Send</button>
+                <button mat-raised-button class="btn m-2 p-1" style="color: blue;"><mat-icon>print</mat-icon>Print</button>
+                <button mat-raised-button class="btn m-2 p-1" style="color: rgba(0, 0, 0, 0.644);"><mat-icon>delete</mat-icon>Cancel</button>
+            </div>
+            <div >
+                <button mat-raised-button class="btn btn-primary m-1 p-1" >Add Credit Note</button>
+            </div>
+        </div>
+
+</div>
+<div fxLayoutAlign="center center" fxFlexFill>
+
+    <ng-template class="modal" #content let-modal >
+      
+      <div class="modal-header" style="padding: 0px;">
+        <mat-toolbar class="btn btn-primary">
+        <h2 class="modal-title" id="modal-basic-title">Add Charges</h2>
+        <button  type="button" class=" btn btn-close " aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </mat-toolbar>
+      </div>
+      <div class="modal-body"  >
+        <mat-card fxFlex="100" >
+        
+      
+          <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form" >
+            
+           
+          <div >
+            <mat-form-field style="width: 200px;"  appearance="fill" >
+              <mat-label>Charge Date</mat-label>
+
+              <input  matInput  placeholder="Date*" formControlName="name">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="fill"  class="full-width">
+              <mat-label>Charge Account</mat-label>
+              <select matNativeControl required formControlName="name"> 
+                <option value="DELIVERY">DELIVERY</option>
+                <option value="CAB">CAB</option>
+                <option value="VISITING_HELP">VISITING_HELP</option>
+              </select>
+            </mat-form-field>
+            
+         
+          <mat-form-field style="width: 200px;" appearance="fill" >
+            <mat-label>Due Date</mat-label>
+
+            <input  matInput  placeholder="Date*" formControlName="name">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+         
+            
+         <mat-form-field appearance="fill"  class="full-width">
+            <mat-label>Amount</mat-label>
+            <input matInput maxlength="15" inputmode="tel" placeholder="Enter Amount" formControlName="name" #nameInput>
+            <mat-error>Amount is required</mat-error>
+            
+        </mat-form-field>  
+        <mat-form-field appearance="fill"  class="full-width">
+            <mat-label>Fine Setting</mat-label>
+            <select matNativeControl required formControlName="name"> 
+              <option value="DELIVERY">DELIVERY</option>
+              <option value="CAB">CAB</option>
+              <option value="VISITING_HELP">VISITING_HELP</option>
+            </select>
+          </mat-form-field>
+          <mat-form-field appearance="fill"  class="full-width">
+            <mat-label>Online A/c Details</mat-label>
+            <select matNativeControl required formControlName="name"> 
+              <option value="DELIVERY">DELIVERY</option>
+              <option value="CAB">CAB</option>
+              <option value="VISITING_HELP">VISITING_HELP</option>
+            </select>
+          </mat-form-field>
+          <mat-form-field appearance="fill"  class="full-width">
+            <mat-label>Description</mat-label>
+            <textarea  #message style="height: 100px;" matInput placeholder="Type here..." formControlName="name" >
+            
+            </textarea>            
+            <mat-error>Vendor Name is required</mat-error>
+            
+        </mat-form-field>
+         <mat-form-field appearance="fill"  class="full-width">
+            <mat-label>Comment</mat-label>
+            <textarea  #message style="height: 100px;" matInput placeholder="Type here..." formControlName="name" >
+            
+            </textarea>            
+            
+        </mat-form-field> 
+        <div>
+            <label>Settle From Advance</label> &nbsp;&nbsp;&nbsp;
+            
+        <mat-checkbox></mat-checkbox>
+        <p style="font-size: 12px; color: grey;">Settled automatically on due date from owner's advance account</p>
+          
+        </div>
+        
+        <label>GST</label>  &nbsp;&nbsp;&nbsp;
+        <mat-checkbox></mat-checkbox>
+      </div>
+        
+        
+                            
+      </form>
+    </mat-card>
+      </div>
+    
+      <div class="modal-footer">
+        <button (click)="modal.close('Save click')"  class=" btn-group btn btn-primary ">Add</button>
+        <button type="submit" class="btn btn-danger"  (click)="modal.close('Save click')">Cancel</button>
+      </div>
+      
+    </ng-template>
+    
+    </div>
+
+
+       
+            </div>
+            </div>

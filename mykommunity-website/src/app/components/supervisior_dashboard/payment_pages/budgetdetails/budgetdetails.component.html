@@ -1,0 +1,106 @@
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span>      <button mat-raised-button class="btn btn-lg m-1 p-2" style="color: rgb(250, 242, 242);" (click)="back()"><mat-icon>fast_rewind</mat-icon></button>          
+      </span>
+      Budgets
+
+    </div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+           
+          <div>
+               
+                <div >
+                  <button mat-raised-button class="btn  m-3 p-1" style="color: blue; width: 100px; background-color: rgb(215, 213, 213);"  > <mat-icon color="primary">edit</mat-icon>Edit</button>
+                  <button mat-raised-button class="btn btn-primary m-1 p-1" (click)="budgetreport()" >View Budget Report</button>
+
+                 
+                </div>
+  
+                <div class="m-5" style="display: flex;">
+                    <div>
+                      <!-- <button mat-icon-button [matMenuTriggerFor]="financialYearMenu" style="border: 10px;border-radius: 40px; background-color: rgb(177, 208, 213); color: blue; margin-top: 10px;">
+                        <mat-icon>calendar_month</mat-icon>
+                      </button>
+                      
+                      <mat-menu #financialYearMenu="matMenu">
+                        <button mat-menu-item (click)="selectFinancialYear('2021')">2021</button>
+                        <button mat-menu-item (click)="selectFinancialYear('2022')">2022</button>
+                        <button mat-menu-item (click)="selectFinancialYear('2023')">2023</button>
+                        Add more financial years as needed
+                      </mat-menu> -->
+
+
+                      <button mat-icon-button [matMenuTriggerFor]="financialYearMenu" style="border: 10px;border-radius: 40px; background-color: rgb(177, 208, 213); color: blue; margin-top: 10px;">
+                        <mat-icon>calendar_month</mat-icon>
+                      </button>
+                      
+                      <!-- <span *ngIf="selectedYear" style="margin-left: 10px;">Selected Year: {{ selectedYear }}</span> -->
+                      
+                      <mat-menu #financialYearMenu="matMenu">
+                        <button mat-menu-item  (click)="selectFinancialYear('2021-2022')">2021-2022</button>
+                        <button mat-menu-item (click)="selectFinancialYear('2022-2023')">2022-2023</button>
+                        <button mat-menu-item (click)="selectFinancialYear('2023-2024')">2023-2024</button>
+                        <!-- Add more financial years as needed -->
+                      </mat-menu>
+                    </div>
+                   <div>
+                    <span class="ms-3">Financial Year</span>
+                    <h2 class="ms-3"><b> {{ selectedYear }}</b></h2>
+                   </div>
+                   <div class="ms-5">
+                    <!-- <button style="border: 10px;border-radius: 40px; background-color: rgb(177, 208, 213); color: blue; margin-top: 10px;" > <mat-icon>schedule</mat-icon></button>  -->
+                    <button mat-icon-button [matMenuTriggerFor]="financialPeriodMenu" style="border: 10px;border-radius: 40px; background-color: rgb(177, 208, 213); color: blue; margin-top: 10px;">
+                      <mat-icon>schedule</mat-icon>
+                    </button>
+                    
+                    <!-- <span *ngIf="selectedYear" style="margin-left: 10px;">Selected Year: {{ selectedYear }}</span> -->
+                    
+                    <mat-menu #financialPeriodMenu="matMenu">
+                      <button mat-menu-item  (click)="selectBudgetPeriod('Annual')">Annual</button>
+                      <button mat-menu-item (click)="selectBudgetPeriod('Half Yearly')">Half Yearly</button>
+                      <button mat-menu-item (click)="selectBudgetPeriod('Quarterly')">Quarterly</button>
+                      <!-- Add more financial years as needed -->
+                    </mat-menu>
+                </div>
+               <div>
+                <span class="ms-3">Budget Period</span>
+                <h2 class="ms-4"><b>{{ selectedPeriod }}</b></h2>
+               </div>
+
+                </div>
+             
+            <div>
+                <div class="table-wrapper">
+
+         <table class="table table-bordered ">
+                    <thead>
+                     <tr>
+                      <th scope="col" width="500">Expense Account</th>
+                      <th scope="col">Apr21 - Mar22</th> 
+                       </tr>
+                          </thead>
+                             <tbody>
+                                 <tr >
+                      <td>discount</td>
+                      <td>0</td>
+                      </tr>
+                    <tr >
+                       <td>HouseKeeping Salary: Monthly</td>
+                       <td>0</td>
+                        </tr>
+                             </tbody>
+                            </table>
+            </div>
+                 
+            
+            </div>
+           
+              </div>
+
+
+
+              
+            </div>
+            </div>

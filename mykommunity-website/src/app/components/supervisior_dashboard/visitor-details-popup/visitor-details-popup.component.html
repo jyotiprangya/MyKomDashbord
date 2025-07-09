@@ -1,0 +1,42 @@
+<!-- visitor-details-popup.component.html -->
+<div class="modal-header">
+    <h4 class="modal-title">Visitor Details</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <mat-card *ngIf="message && message.length > 0">
+      <div *ngFor="let uss of message">
+        <div class="mt-5">
+          <strong>Status:</strong>
+          <button matTooltip="{{ uss.AllowedByFirstName }} {{ uss.AllowedByLastName }}"
+                  mat-stroked-button
+                  style="border: none; font-size: small; font-weight: bold;"
+                  [style.color]="getStatusColor(uss.status)">
+            <mat-icon>{{ getStatusIcon(uss.status) }}</mat-icon>
+            {{ uss.status }}
+          </button>
+        </div>
+        <div>
+          <strong>Time:</strong>
+          {{ uss.time | date: 'medium' }}
+        </div>
+        <div>
+          <strong>Action Taken By:</strong>
+          {{ uss.AllowedByFirstName }} {{ uss.AllowedByLastName }}
+        </div>
+        <div>
+          <strong>Gate:</strong>
+          {{ uss.GateName }}
+        </div>
+        <hr>
+      </div>
+    </mat-card>
+    <p *ngIf="!message || message.length === 0">No records available.</p>
+  </div>
+ 
+  
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="closePopup()">Okay</button>
+</div>

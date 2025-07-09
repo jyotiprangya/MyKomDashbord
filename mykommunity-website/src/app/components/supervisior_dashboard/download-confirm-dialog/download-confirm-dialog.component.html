@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Confirm Download</h2>
+<mat-dialog-content>
+  <p>Are you sure you want to download the CSV file?</p>
+  <p>Selected columns data will be downloaded as a CSV file.</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onConfirm()">Download</button>
+</mat-dialog-actions>

@@ -1,0 +1,171 @@
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span>      <button mat-raised-button class="btn btn-lg m-1 p-2" style="color: rgb(250, 242, 242);" (click)="back()"><mat-icon>fast_rewind</mat-icon></button>          
+      </span>
+      Invoice Template
+
+    </div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+            <!-- <button mat-raised-button class="btn btn-success m-1 p-1">Setup Bill Plans</button> -->
+            <button mat-raised-button class="btn btn-warning m-1 p-1" (click)="invoicehistory()"> Invoice History</button>
+            <button mat-raised-button class="btn  m-1 p-1" style="background-color: #1e293b; color: white;" (click)="invoicetemplate()"><mat-icon>add_circle_outline</mat-icon> Create Invoice Template</button>
+
+          
+          <div >
+            <mat-toolbar class="input-group" style="display: flex; justify-content: space-between;">
+              <div>
+                <h2 >Quarterly Maintainace Charges</h2>
+              </div>
+              <div >
+                <!-- <button mat-raised-button class="btn btn-success m-1 p-1">Quick Charge Upload</button> -->
+                <button mat-raised-button class="btn m-1 p-1" style="background-color: #1e293b; color: white;"><mat-icon>edit</mat-icon> Edit Template</button>
+                <button mat-raised-button class="btn btn-warning m-1 p-1"><mat-icon>delete</mat-icon> Delete Template</button>
+              </div>
+
+            </mat-toolbar>
+            <div>
+                <h4>Account Number - 23455789989090</h4>
+
+            </div>
+            <div class="table-wrapper">
+
+         <table class="table table-bordered ">
+                <thead>
+                 <tr>
+                  <th scope="col">Description</th>
+                  <th scope="col">Charge Account</th> 
+                  <th scope="col">Charge ID</th> 
+                  <th scope="col">Type</th> 
+                  <th scope="col">Applicable To</th>  
+                  <th scope="col">Towers</th>   
+                  <th scope="col">Config. Amount</th>
+   
+             
+                    </tr>
+                      </thead>
+                         <tbody>
+                             <tr >
+                   <th scope="row">Electricity Bill 11111</th>
+                  <td>Maintainace Charge</td>
+                  <td>3709</td>
+                  <td>general</td>
+                  <td>owner</td>
+                  <td>3</td>
+                  <td> <button mat-stroked-button class="btn " style="color: #1e293b;" (click)="configamount()"><mat-icon>edit</mat-icon> Config. Amount </button>
+                  </td>
+                  <!-- <td> <button mat-stroked-button class="btn " style="color: blue;"><mat-icon>edit</mat-icon> Config. Credit </button>
+                  </td> -->
+                 
+               
+                </tr>
+                <!-- <tr >
+                    <th scope="row">Bill</th>
+                   <td>Maintainace Charge</td>
+                   <td>3709</td>
+                   <td>general</td>
+                   <td>owner,Tenant</td>
+                   <td>3</td>
+                   <td> <button mat-stroked-button class="btn " style="color: blue;"><mat-icon>edit</mat-icon> Config. Amount </button>
+                   </td>
+                   <td> <button mat-stroked-button class="btn " style="color: blue;"><mat-icon>edit</mat-icon> Config. Credit </button>
+                   </td>
+                </tr> -->
+                         </tbody>
+                        </table>
+            </div>
+              </div>
+
+
+
+              <div>
+                <div class="footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="footer-col ">
+                                <h2>Auto Generation Settings</h2>
+                                <ul>
+                                    <li><b>Periodic Generation</b></li>
+                                    <mat-radio-group aria-label="Select an option">
+                                      <mat-radio-button value="1">Monthly</mat-radio-button>
+                                      <mat-radio-button class="ms-5" value="2">Quarterly</mat-radio-button>
+                                      <mat-radio-button class="ms-5" value="3">Half Yearly</mat-radio-button>
+                                      <mat-radio-button class="ms-5" value="4">Yearly</mat-radio-button>
+
+      
+                                    </mat-radio-group>
+                                   
+                                </ul>
+                            </div>
+            
+                            <!-- <div class="footer-col">
+                                <h2>Invoice Settings</h2>
+                                <ul>
+                                    <li>Fine Settings: <button  mat-stroked-button class="btn " color="warn">Disabled</button></li>
+                                    <li>Settle from Advance: <button mat-stroked-button class="btn " color="primary">Enabled</button></li>
+                                    <li>Instance Settle:  <button mat-stroked-button class="btn " color="primary">Enabled</button></li>
+                                </ul>
+                               
+                            </div>
+            
+                            <div class="footer-col">
+                                <h2>Other Settings</h2>
+                                <ul >
+                                    <li >Template Status: <button mat-stroked-button class="btn " color="warn">Disabled</button></li>
+                                    <li>Previous Arrears: <button mat-stroked-button class="btn " color="primary">Enabled</button></li>
+                                    <li>Tax Split Up:  <button mat-stroked-button class="btn " color="primary">Enabled</button></li>
+                                </ul>
+                            </div> -->
+            
+                            <div class="footer-col">
+                                <h2>Notify via</h2>
+                                <ul>
+                                    <li style="margin-left: 5px;"><span class="add-bottom-padding"> 
+                                        <b>Email</b>
+                                      </span>
+                                      </li>
+                                      <li >
+                                        <span class="add-bottom-padding"> 
+                                            <mat-checkbox>All Owners</mat-checkbox> &nbsp;&nbsp;
+                                          </span><span class="add-bottom-padding"> 
+                                            <mat-checkbox>All Tenants</mat-checkbox>
+                                          </span>
+                                      </li>
+                                      
+                                   
+                                    <li style="margin-left: 5px;"> <span class="add-bottom-padding">
+                                        <b>SMS</b>
+                                      </span></li>
+                                      <li>
+                                        <span class="add-bottom-padding"> 
+                                            <mat-checkbox>All Owners</mat-checkbox>&nbsp;&nbsp;
+                                          </span><span class="add-bottom-padding"> 
+                                            <mat-checkbox>All Tenants</mat-checkbox>
+                                          </span>
+                                      </li>
+                                    <li style="margin-left: 5px;"> <span class="add-bottom-padding">
+                                    <b>Push notification</b>
+                                      </span>
+                                    </li>
+                                    <li>
+                                        <span class="add-bottom-padding"> 
+                                            <mat-checkbox>All Owners</mat-checkbox>&nbsp;&nbsp;
+                                          </span><span class="add-bottom-padding"> 
+                                            <mat-checkbox>All Tenants</mat-checkbox>
+                                          </span>
+                                      </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                 
+                </div>
+            
+              </div>
+              <div>
+                <button style="display: flex; justify-content: flex-end; margin: 20px;" mat-raised-button class="btn btn-success" type="submit" (click)="invoice()" >Generate Invoice</button> &nbsp;
+              </div>
+            </div>
+            </div>

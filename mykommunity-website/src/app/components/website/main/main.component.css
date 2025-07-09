@@ -1,0 +1,289 @@
+.container-fluid{
+    width: 100%;
+    left: 0;
+    right: 0;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+h1{
+    font-family:serif;  
+    font-size:40px ;
+}
+h3{
+    font-family:serif;  
+}
+p{
+    color: rgb(19, 69, 87);
+}
+.background{
+    background-image: url(../../../../assets/bg14.jpg); 
+    background-size: 100%; 
+    filter: blur(1px);
+    -webkit-filter: blur(3px);
+    background-repeat:repeat-y; 
+    width: 100%; height: 600vh;
+    min-height: 100%;
+    left: 0; 
+    position:absolute;
+}
+.para::first-letter{
+    font-size: 25px;
+    font-weight: bold;
+}
+.back-video{
+    position:absolute;
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    top: 50px;
+    left: 0;
+
+}
+#main{
+    display: flex;
+    margin-top: 100vh;
+    padding: 100px;
+}
+.g11{
+    width: 300px;
+}
+
+.to-top {
+    bottom: 0;
+    cursor: pointer;
+    margin: 0;
+    position: fixed;
+    right: 0;
+  }
+  
+  .show-scrollTop {
+    opacity: 1;
+    transition: all 0.2s ease-in-out;
+  }
+
+.g11 img{
+    
+    width: 250px;
+    height: 250px;
+}
+#main img{
+   
+    width: 100%;
+
+}
+
+#main2{
+    display: flex;
+   justify-content: space-around;
+   padding: 50px;
+
+}
+.full-width{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: fit-content;
+}
+#main2 .welcome{
+    padding: 50px;
+}
+#main2 img{
+    margin-left: 0;
+    height:200px;
+}
+
+
+img {
+    
+    transition: 2s;
+    transform: scale3d(1,1,1);
+
+    height: 400px;
+    width: 400px;
+
+}
+img:hover{
+    transform: scale3d(1.1,1.1,1.2);
+    transition: 2s;
+}
+
+h2{
+    font-family:serif;  
+
+    transition: 2s;
+    transform: scale3d(1,1,1);
+   
+
+}
+h2:hover{
+    transform: scale3d(1.2,1.2,1.2);
+    transition: 2s;
+}
+
+
+input.ng-invalid{
+    border: 1px solid red;
+    box-shadow: 2px 2px 3px red;
+
+}
+input.ng-valid{
+    border: 1px solid green;
+    box-shadow: 2px 2px 3px green;
+
+}
+.main3{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+    
+}
+.main3 .box{
+    position: relative;
+    background-color: rgba(15, 59, 78, 0.7);
+    display: flex;
+}
+#main2 h1{
+    
+    transition: 2s;
+    transform: scale3d(1,1,1);
+
+}
+#main2 h1:hover{
+    transform: scale3d(1.2,1.2,1.2);
+    transition: 2s;
+}
+.main4{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 30px;
+}
+.main5{
+    display: flex;
+}
+.main6{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    
+
+}
+.main7{
+    display: flex;
+    
+}
+.moreText{
+    display: none;
+}
+.limitTextHeight {
+    height: 20px;
+    overflow: hidden;
+}
+@media screen and (orientation: portrait){
+    .container-fluid{
+        width: 100%;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    
+    }
+    .background{
+        height: 100%;
+        top: 300px;
+    }
+     #main{
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0%;
+    margin-bottom: 20px;
+    margin-top: 40vh;
+    padding: 20px;
+    
+    }
+    .back-video{
+        width:100%;
+        margin-top: 20px;
+        
+
+    }
+    .g11{
+        margin-right: 0%;
+    }
+    #main2 .welcome{
+        margin-left: 0px;
+        margin-bottom: 10px;
+        width: 100%;
+        padding: 20px;
+    }
+    #main img{
+        width: 100%;
+        margin: 0%;
+        height: 200px;
+      
+    
+    }
+    #main2 .img2{
+        width: 100%;
+        margin: 0%;
+        height: 100px;
+        margin-bottom: 100px;
+
+     }
+
+    img{
+    
+        margin-left: 0%;
+        width: 100%;
+
+    }
+    h1{
+        font-family:serif;  
+        font-size:20px ;
+    }
+     #main2{
+        width: 100%;
+        flex-direction:column-reverse;
+        align-items: center;
+        margin-left: 0%;
+        padding: 0;
+        
+    }
+    .container-fluid .main4{
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0%;
+        margin-right: 0%;
+        
+    }
+    .container-fluid .main6{
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+    .main3{
+        position: relative;
+       width: 100%;
+       margin-bottom: 50px;
+        
+    }
+
+    .main3 .box{
+        background-color:  rgb(15, 59, 78);
+        flex-direction: column;
+    }
+    .to-top {
+        bottom: 0;
+        cursor: pointer;
+        
+        position: sticky;
+        
+      }
+}

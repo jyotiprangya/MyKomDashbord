@@ -1,0 +1,185 @@
+<div class="container-fluid">
+  
+           <div>
+              <app-root></app-root>
+           </div>
+
+           <div>
+            <video autoplay muted loop playsinline preload="auto" onloadedmetadata="this.muted = true" class="back-video">
+               <source src="../../../../assets/video2.mp4" type="video/mp4">
+            </video>
+           </div>
+           
+
+   <div class="background" ></div>
+   <div id="main" >
+      <span class="img1" data-aos="fade-down" data-aos-duration="1000"><img src="assets/visitormykom.jpg" ></span>
+   </div>
+   
+    <!-- <span class=" text-center justify-content" data-aos="slide-right" data-aos-duration="2000" >
+       <h1 style="color: rgb(11, 3, 28);"><b>Visitor & Community</b></h1>
+       <h2 style="color: rgb(11, 3, 28); font-size: xx-large;"><b>Management System</b></h2>
+       <p style="font-size: 17px;">World class technology that makes your daily life more convenlent and secure World 
+         class technology that makes your daily life more convenlent and secure World class technology that makes your daily 
+         life more convenlent and secure World class technology that makes your daily life more convenlent and secure</p>
+       <app-register></app-register> 
+    </span> 
+        <span class="img1" data-aos="fade-right" data-aos-duration="3000"><img src="../../../assets/visitor2.jpg" ></span>
+         -->
+   
+        <!-- <div class="full-width">
+         <img src="assets/web1.png" >
+        </div> -->
+        <!-- <div id="main" >
+         <span class="img1" data-aos="fade-down" data-aos-duration="1000"><img src="assets/web1.png" ></span>
+      </div> -->
+       <div id="main2">
+          
+               <span class="img2" data-aos="fade-down" data-aos-duration="1000"><img src="assets/welcome3.png" ></span>
+               <span class="welcome " data-aos="slide-up" data-aos-duration="1000">
+            
+                  <h1 style="color: rgb(11, 3, 28); "><b>Welcome To My Kommunity</b></h1>
+                  <p class="para" >MyKommunity is a technology based new generation living for apartments,
+                     offices and gated communities, a peaceful living with highly secured security system.</p>
+                  
+               </span>
+               
+          
+              </div>
+              <div>
+                 <h1 class="text-center justify-content mt-5"  data-aos="flip-right" data-aos-duration="1000" style="color: rgb(11, 3, 28);"><b>Resident Management</b></h1>
+              <div class="main4">
+   
+               <span class="g11" data-aos="fade-right" data-aos-duration="2000">
+                  <div><img src="../../../../assets/v1.png" height="250" width="250" >
+                     </div>
+                     <div >
+                        <h3 style="color: rgb(11, 3, 28);">Visitor Management System</h3>
+                        <p [ngClass]="{'limitTextHeight': read}">We make your visitor a pleasure and secure entry</p>
+                        <button (click)="OnreadMore()" 
+                        [style.background-color]="read ? 'rgb(15, 117, 106)' : 'rgb(228, 101, 10)'" 
+                        style="color: white; border: none; padding: 10px; border-radius: 10px; font-size: 15px; display: flex; align-items: center; justify-content: center;">
+                        <mat-icon>{{ read ? 'expand_more' : 'expand_less' }}</mat-icon>
+                      </button>
+                                           </div>
+               </span>
+               <span class="g11" data-aos="flip-left" data-aos-duration="2000">
+                  <div><img src="../../../../assets/v5.png" height="250" width="350" ></div>
+                  <div>
+                     <h3 style="color: rgb(11, 3, 28);">Domestic Staff Management</h3>
+                     <p [ngClass]="{'limitTextHeight': Read}"> Validate & Record Entry / Exit Domestic Staff (House helps, Drivers, Cooks etc.) into the Community </p>
+                     <button (click)="OnRead()" 
+  [style.background-color]="Read ? 'rgb(15, 117, 106)' : 'rgb(228, 101, 10)'" 
+  style="color: white; border: none; padding: 10px; border-radius: 10px; font-size: 15px; display: flex; align-items: center; justify-content: center;">
+  <mat-icon>{{ Read ? 'expand_more' : 'expand_less' }}</mat-icon>
+</button>
+
+                     <!-- <button (click)="OnRead()" [style.background-color]="Read ? 'rgb(15, 117, 106)' : 'rgb(228, 101, 10)'" style="color: white; border: none; padding: 10px; border-radius: 10px; font-size: 15px;">{{Read?"Read More":"Read Less"}}</button> -->
+                  </div>
+               </span>
+               <span class="g11" data-aos="flip-left" data-aos-duration="2000">
+                  <div><img src="../../../../assets/v3.png" height="250" width="250" ></div>
+                  <div>
+                     <h3 style="color: rgb(11, 3, 28);">Maintenance and Utility, Bill Payments</h3> 
+                     <p [ngClass]="{'limitTextHeight': isRead}">All Payment Receivables and Payable through payment gateway .
+      
+                     </p>
+                     <button (click)="OnClick()" 
+                     [style.background-color]="isRead ? 'rgb(15, 117, 106)' : 'rgb(228, 101, 10)'" 
+                     style="color: white; border: none; padding: 10px; border-radius: 10px; font-size: 15px; display: flex; align-items: center; justify-content: center;">
+                     <mat-icon>{{ isRead ? 'expand_more' : 'expand_less' }}</mat-icon>
+                   </button>
+                     <!-- <button (click)="OnClick()" [style.background-color]="isRead ? 'rgb(15, 117, 106)' : 'rgb(228, 101, 10)'" style="color: white; border: none; padding: 10px; border-radius: 10px; font-size: 15px;">{{isRead?"Read More":"Read Less"}}</button> -->
+                  </div>
+               </span> 
+   
+              </div>
+              </div>
+             
+               <div class="main6 ">
+   
+                  <span class="g11" data-aos="fade-right" data-aos-duration="2000">
+                     <div><img src="../../../../assets/c1.png" height="250" width="250" ></div>
+                     <div>
+                        <h3  style="color: rgb(11, 3, 28); ">Communication managements</h3>
+                        <p [ngClass]="{'limitTextHeight': readMore}">Push Notification on all communication. Intercom management will be available</p>
+                        <!-- <button (click)="onReadMore()" [style.background-color]="readMore ? 'rgb(15, 117, 106)' : 'rgb(228, 101, 10)'" style="color: white; border: none; padding: 10px; border-radius: 10px; font-size: 15px;">{{readMore?"Read More":"Read Less"}}</button> -->
+                        <button (click)="onReadMore()" 
+                        [style.background-color]="readMore ? 'rgb(15, 117, 106)' : 'rgb(228, 101, 10)'" 
+                        style="color: white; border: none; padding: 10px; border-radius: 10px; font-size: 15px; display: flex; align-items: center; justify-content: center;">
+                        <mat-icon>{{ readMore ? 'expand_more' : 'expand_less' }}</mat-icon>
+                      </button>
+                     </div>
+                  </span>
+                  <span class="g11" data-aos="fade-up" data-aos-duration="2000">
+                     <div><img src="../../../../assets/c5.jpg" height="250" width="250"></div>
+                     <div >
+                        <h3  style="color: rgb(11, 3, 28);">Safety Management</h3>
+                        <p [ngClass]="{'limitTextHeight': ReadMore}">Your society can sleep peacefully at night with our fool proof guard patrol tracking system</p>
+                        <!-- <button (click)="onRead()" [style.background-color]="ReadMore ? 'rgb(15, 117, 106)' : 'rgb(228, 101, 10)'" style="color: white; border: none; padding: 10px; border-radius: 10px; font-size: 15px;">{{ReadMore?"Read More":"Read Less"}}</button> -->
+                        <button (click)="OnRead()" 
+                        [style.background-color]="ReadMore ? 'rgb(15, 117, 106)' : 'rgb(228, 101, 10)'" 
+                        style="color: white; border: none; padding: 10px; border-radius: 10px; font-size: 15px; display: flex; align-items: center; justify-content: center;">
+                        <mat-icon>{{ ReadMore ? 'expand_more' : 'expand_less' }}</mat-icon>
+                      </button>
+                     </div>
+                  </span>
+                  <span class="g11" data-aos="flip-left" data-aos-duration="2000">
+                     <div><img src="../../../../assets/c3.png" height="250" width="250" ></div>
+                     <div>
+                        <h3  style="color: rgb(11, 3, 28);">Complaint Management</h3>
+                        <p [ngClass]="{'limitTextHeight': isReadMore}">Track and resolve all residents and apartment issues.Assign owners for issues and escalations for closure and get faster resolutions.
+         
+                        </p>
+                        <button (click)="OnClick()" 
+                        [style.background-color]="isReadMore ? 'rgb(15, 117, 106)' : 'rgb(228, 101, 10)'" 
+                        style="color: white; border: none; padding: 10px; border-radius: 10px; font-size: 15px; display: flex; align-items: center; justify-content: center;">
+                        <mat-icon>{{ isReadMore ? 'expand_more' : 'expand_less' }}</mat-icon>
+                      </button>
+                        <!-- <button (click)="onclick()" [style.background-color]="isReadMore ? 'rgb(15, 117, 106)' : 'rgb(228, 101, 10)'" style="color: white; border: none; padding: 10px; border-radius: 10px; font-size: 15px;">{{isReadMore?"Read More":"Read Less"}}</button> -->
+                     </div>
+                  </span> 
+      
+                 </div>
+                 
+                
+                  <div>
+                     <app-body></app-body>
+                   </div>
+   
+             <!-- <div class="main3" >
+                 <div class="box text-white">
+                    <div class="ms-3"   data-aos="fade-right" data-aos-duration="1000">
+                 <h1 class="text-white ms-3 mt-3" style="font-size:50px ;">Get In Touch</h1>
+                 <h1 class="ms-3" style="font-size:30px ;">Ready to make life easier?</h1>
+   
+                 <h1 class="mt-5 ms-3" style="font-size:30px ;">Have questions?</h1>
+                 <h2>Have questions about payments or price plans? We have answers!</h2>
+                     </div>
+                 <div class="mt-5"   data-aos="fade-left" data-aos-duration="1000">  
+                 <app-form></app-form>
+                   </div>
+               </div>
+              </div> -->
+         <div>
+            <app-form></app-form>
+
+         </div>
+              <div>
+                 
+                 <app-footer></app-footer>
+              </div>
+              <!-- <div class="to-top" (click)="scrollToTop()" [ngClass]="{ 'show-scrollTop': windowScrolled }">
+              <button class="btn btn-warning"> <span style="color: white;" class="material-icons">
+                  keyboard_double_arrow_up
+                  </span>   </button>         
+                </div> -->
+                <div class="to-top" (click)="scrollToTop()" [ngClass]="{ 'show-scrollTop': windowScrolled }">
+                  <button style="background-color: rgb(11, 3, 28); margin: 10px; border: none; border-radius: 30px;"> <span style="color: white; padding: 10px;" class="material-icons">
+                      keyboard_double_arrow_up
+                      </span>   </button>         
+                    </div>
+       
+           
+    
+   </div>

@@ -1,0 +1,113 @@
+
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span  class="btn m-1 p-1" style=" color: white;" (click)="back()"><mat-icon>fast_rewind</mat-icon> </span>        
+
+      Advertisement</div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+  </div>
+  <button mat-stroked-button class="btn m-1 p-1" style="background-color: #1e293b; color: white;" (click)="open(content)"><mat-icon>add_circle_outline</mat-icon> Add Advertisement</button>
+   <div class="table-wrapper">
+
+         <table class="table table-bordered   ">
+      <thead>
+      <tr>
+        
+        <th scope="col"> Society</th>
+        <th scope="col"> Ad Name</th>
+        <th scope="col">Image</th>
+        <th scope="col">Redirect to</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+
+       
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor = "let us of readData |
+        paginate: { 
+          itemsPerPage: 10, 
+          currentPage:page,
+          totalItems:totalLength
+                        }">
+          <th scope="row">{{us.societyName}}</th>
+          <td>{{us.name}}</td>
+          <td style="width: 10vh;">{{us.imageUrl}}</td>
+          <td style="width: 15vh;">{{us.redirectUrl}}</td>
+        <td>
+          <mat-icon color="primary" (click)="open(content)" (click)="OnEdit(us,form)" >edit</mat-icon> 
+          </td>
+          <td>
+            <mat-icon color="warn" (click)="deleteAds(us)" >delete</mat-icon> 
+            </td>
+        
+      </tr>
+      
+      </tbody>
+      
+       </table>
+            </div>
+    <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+    <div fxLayoutAlign="center center" fxFlexFill>
+
+      <ng-template class="modal" #content let-modal style="background-color: rgba(196, 200, 167, 0.5);">
+        
+        <div class="modal-header" style="padding: 0px;">
+          <mat-toolbar class="btn" style="background-color: #1e293b; color: white;">
+            <h2 class="modal-title" id="modal-basic-title">Add Ads</h2>
+          <button  type="button" class=" btn btn-close " aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </mat-toolbar>
+        </div>
+        <div class="modal-body" style="background-color: rgba(192, 222, 230, 0.5);"  >
+          <mat-card fxFlex="100" >
+          
+        
+            <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form" >
+              
+              <mat-form-field appearance="standard"  class="full-width">
+                <mat-label>Advertisement Name</mat-label>
+                <input matInput inputmode="tel" placeholder="Enter name" formControlName="name" >
+                <mat-error>Name is required</mat-error>
+                
+            </mat-form-field>
+            <mat-form-field appearance="standard"  class="full-width">
+                <mat-label>Image</mat-label>
+                <input matInput placeholder="Enter imageUrl" formControlName="imageUrl">
+                <mat-error>image is required</mat-error>
+                
+            </mat-form-field>
+            <mat-form-field appearance="standard"  class="full-width">
+                <mat-label>Redirect To</mat-label>
+                <input matInput inputmode="tel" placeholder="Enter Redirect url" formControlName="redirectUrl">
+                <mat-error>Redirect Url is required</mat-error>
+                
+            </mat-form-field>
+            <div appearance="fill" class="full-width">
+              <div style="margin-right:3%; color:#6b6b6b;">
+                <label>Select Society</label>
+            </div>
+              <select style="width: 100%; height: 30px;" required formControlName="societyId" >
+                <option [value]="0" disabled>--Select Society--</option>
+                <option  *ngFor="let soc of readData2" value={{soc.id}}>{{soc.name}}</option>
+              </select>
+            </div>
+             
+             
+                               
+        </form>
+      </mat-card>
+        </div>
+      
+        <div class="modal-footer">
+          <button *ngIf="!getparamid" (click)="saveDetails(form)"  (click)="modal.close('Save click')"  class="btn" style="background-color: #1e293b; color: white;" [disabled]="!form.valid">create</button>
+      <button *ngIf="getparamid" (click)="adsUpdate()"  (click)="modal.close('Save click')"  class="btn" style="background-color: #1e293b; color: white;" >Update</button>
+          <button type="submit" class="btn btn-danger"  (click)="modal.close('Save click')">Cancel</button>
+        </div>
+        
+      </ng-template>
+      
+      </div> 
+    
+  </div>
+</div>

@@ -1,0 +1,21 @@
+.header{ padding-top:10px !important; padding-bottom:10px !important;}
+.logo{ margin-bottom:-95px; width:180px; }
+.banner{ background:#fff; min-height:400px;}
+ h1{ font-family:impact; color:#034962;}
+.uk-button-primary{ background:#034962;}
+.bbg{ padding-top:50px; padding-bottom:50px;  min-height:450px; background:url(images/bbg1.png) top left no-repeat; background-size:110%;}
+.divider{ background:#EE395B; width:20%; min-height:5px;}
+.bhg{/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f9fbff+0,ffffff+100 */
+background: #f9fbff; /* Old browsers */
+background: -moz-linear-gradient(top,  #f9fbff 0%, #ffffff 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #f9fbff 0%,#ffffff 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #f9fbff 0%,#ffffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fbff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+}
+
+.footer {
+
+    padding: 50px 0px;
+    background: #0E166E;
+
+}

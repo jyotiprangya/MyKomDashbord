@@ -1,0 +1,204 @@
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span>     
+         <button mat-raised-button class="btn btn-lg m-1 p-2" style="color: rgb(250, 242, 242);" (click)="back()"><mat-icon>fast_rewind</mat-icon></button>          
+      </span>
+      Bank Reconcilation
+
+    </div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+
+    
+<div style="display: flex; justify-content: space-between;">
+    <h2>Bank Reconcilation for HDFC Bank from 01-01-2023 to 31-01-2023</h2>
+    <div>
+        <button class="btn btn-success active m-1"> Verify</button>
+             <button class="btn btn-warning active m-1" (click)="openEntry(content2)"> Manual Entry</button>
+             <button class="btn  active m-1" style="background-color: #1e293b; color: white;" (click)="open(content)"> Add Bank Date</button>
+    </div>
+</div>
+
+    <div class="fst" >
+       <div>
+        <b>Status</b>
+        <select class="opt1">
+            <option>All</option>
+            <option></option>
+            <option></option>
+        </select>
+       </div>
+       <div class="srh">
+        <b>Search:</b>
+        <input type="text">
+       </div>
+       <div class="srh">
+        <b>Show</b>
+        <select>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+            <option>13</option>
+            <option>14</option>
+        </select>
+        <b>entries</b>
+       </div>
+    </div><br><br>
+    <div class="table-wrapper">
+
+      <table class="table table-bordered" align="center" width="97%">
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>Date</th>
+                <th>Doc & No</th>
+                <th>Description</th>
+                <th>Cheque No</th>
+                <th>Debit</th>
+                <th>Credit</th>
+                <th>Bank Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>01-01-2020</td>
+                <td>Dues Receipt-2233</td>
+                <td>Bank<br>Electronic Fund Transfer <br>(EFT)</td>
+                <td></td>
+                <td>10,00,000.00</td>
+                <td></td>
+                <td><a style="color: #1e293b;" (click)="open(content)" > <mat-icon>edit</mat-icon> Add Bank Date</a></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>01-01-2020</td>
+                <td>General Receiot-222</td>
+                <td>Bank int</td>
+                <td></td>
+                <td>1,000.00</td>
+                <td></td>
+                <td >20-01-2023</td>
+            </tr>
+           
+        </tbody>
+       </table>
+            </div>
+    <div fxLayoutAlign="center center" fxFlexFill>
+
+        <ng-template class="modal" #content let-modal style="background-color: rgba(196, 200, 167, 0.5);">
+          
+          <div class="modal-header" style="padding: 0px;">
+            <mat-toolbar class="btn" style="background-color: #1e293b; color: white;">
+            <h2 class="modal-title" id="modal-basic-title">Add Date</h2>
+            <button  type="button" class=" btn btn-close " aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+          </mat-toolbar>
+          </div>
+          <div class="modal-body" >
+            <mat-card fxFlex="100" >
+              <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form" >
+               
+              <div>
+              <mat-form-field appearance="fill"  class="full-width" >
+                <mat-label>Add Date</mat-label>
+
+                <input  matInput  placeholder="Date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+
+              
+             
+          </div>
+          
+           
+                                
+          </form>
+        </mat-card>
+          </div>
+        
+          <div class="modal-footer">
+            <button (click)="modal.close('Save click')"  class=" btn " style="background-color: #1e293b; color: white;">Add</button>
+            <button type="submit" class="btn btn-danger"  (click)="modal.close('Save click')">Cancel</button>
+          </div>
+          
+        </ng-template>
+        
+        </div>
+
+
+        <div fxLayoutAlign="center center" fxFlexFill>
+
+            <ng-template class="modal" #content2 let-modal style="background-color: rgba(196, 200, 167, 0.5);">
+              
+              <div class="modal-header" style="padding: 0px;">
+                <mat-toolbar class="btn" style="background-color: #1e293b; color: white;">
+                <h2 class="modal-title" id="modal-basic-title">Manual Entry</h2>
+                <button  type="button" class=" btn btn-close " aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+              </mat-toolbar>
+              </div>
+              <div class="modal-body">
+                <mat-card fxFlex="100" >
+                  <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form" >
+                   
+                  <div>
+                  <mat-form-field appearance="standard"  class="full-width" >
+                    <mat-label>Add Date</mat-label>
+    
+                    <input  matInput  placeholder="Date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                  <mat-form-field   >
+                    <mat-label> Doc & No </mat-label>
+    
+                    <input  matInput placeholder=" Doc & No ">
+                    <mat-error>This field is mandatory.</mat-error>
+                  </mat-form-field>
+                  <mat-form-field   >
+                    <mat-label> Description </mat-label>
+    
+                    <input  matInput placeholder=" Description">
+                    <mat-error>This field is mandatory.</mat-error>
+                  </mat-form-field>
+                  <mat-form-field   >
+                    <mat-label> Cheque Number </mat-label>
+    
+                    <input  matInput placeholder=" Cheque Number ">
+                    <mat-error>This field is mandatory.</mat-error>
+                  </mat-form-field>
+                  <mat-form-field   >
+                    <mat-label> Debit </mat-label>
+    
+                    <input  matInput placeholder=" Debit">
+                    <mat-error>This field is mandatory.</mat-error>
+                  </mat-form-field>
+                  <mat-form-field   >
+                    <mat-label> Credit </mat-label>
+    
+                    <input  matInput placeholder=" Credit">
+                    <mat-error>This field is mandatory.</mat-error>
+                  </mat-form-field>
+                  
+                 
+              </div>
+              
+               
+                                    
+              </form>
+            </mat-card>
+              </div>
+            
+              <div class="modal-footer">
+                <button (click)="modal.close('Save click')"  class=" btn" style="background-color: #1e293b; color: white;">Add</button>
+                <button type="submit" class="btn btn-danger"  (click)="modal.close('Save click')">Cancel</button>
+              </div>
+              
+            </ng-template>
+            
+            </div>
+    
+
+</div>
+</div>

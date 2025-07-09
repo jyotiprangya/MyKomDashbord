@@ -1,0 +1,193 @@
+<div class="container-fluid">
+  <div class="page_box" style="color: aliceblue;">
+          <span  class="btn m-1 p-1"  style="color: white;" (click)="back()"><mat-icon>fast_rewind</mat-icon> </span>        
+
+    Staff</div>
+  <div class="page_content shadow p-3 position-relative">
+      <div class="page_content-data position-relative">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+        
+<button mat-stroked-button class="btn m-1 p-1" style="background-color: #1e293b; color: white;" (click)="open(content)">
+  <mat-icon>add_circle_outline</mat-icon> New Staff</button>
+
+   <div class="search-container">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-icon matPrefix class="search-icon">search</mat-icon>
+      <input matInput 
+             placeholder="Search staff.." 
+             [(ngModel)]="searchTerm" 
+             (input)="onSearch($event)"
+             class="search-input">
+    </mat-form-field>
+  </div>
+  </div>
+        
+
+
+<table class="table table-bordered   ">
+   <thead>
+   <tr>
+    <th scope="col">Community</th>
+    <th scope="col">Society Address</th>
+    <th scope="col">Pincode</th>
+    <th scope="col">City</th> 
+     <th scope="col">FirstName</th>
+     <th scope="col">LastName</th>
+     <th scope="col">Email_id</th> 
+     <th scope="col">Mobile Number</th>
+     <th scope="col"> Role</th>
+     <th scope="col">edit</th>
+     
+   </tr>
+   </thead>
+   <tbody>
+   <tr *ngFor = "let us of filteredData |
+    paginate: { 
+       itemsPerPage: 10, 
+       currentPage:page,
+      totalItems:totalLength
+                     }">
+      <th scope="row">{{us.societyName}}</th>
+      <td>{{us.societyAddress}}</td>
+      <td>{{us.societyPinCode}}</td>
+      <td>{{us.cityName}}</td>
+     <td>{{us.firstName}}</td>
+     <td>{{us.lastName}}</td>
+     <td>{{us.email}}</td>
+     <td>{{us.mobileNumber}}</td>
+ 
+    
+     <td>{{us.role}}</td>
+     <td>
+       <mat-icon color="primary" (click)="open(content)" >edit</mat-icon>
+      </td>
+   </tr>
+  
+   </tbody>
+   
+    </table>
+            </div>
+ <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+ 
+ <div fxLayoutAlign="center center" fxFlexFill>
+   
+ <ng-template class="modal" #content #id let-modal style="background-color: rgba(196, 200, 167, 0.5);">
+  
+  <div class="modal-header" style="padding: 0px;">
+    <mat-toolbar class="btn" style="background-color: #1e293b; color: white;">
+      <h2 class="modal-title" id="modal-basic-title">Create Supervisor</h2>
+    <button  type="button" class=" btn btn-close " aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </mat-toolbar>
+  </div>
+  <div class="modal-body" style="background-color: rgba(192, 222, 230, 0.5);" >
+    <mat-card fxFlex="100" >
+    
+   
+    <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form" >
+      
+        
+      <mat-form-field appearance="fill"  class="full-width">
+          <mat-label>First Name</mat-label>
+          <input matInput placeholder="Type name" formControlName="firstName" >
+      
+          <mat-error>Name is required</mat-error>
+          
+      </mat-form-field>
+      
+      <mat-form-field appearance="fill"  class="full-width">
+        <mat-label>Last Name</mat-label>
+        <input matInput maxlength="15" placeholder="Type name" formControlName="lastName" #nameInput>
+        
+        <mat-error>Name is required</mat-error>
+        
+    </mat-form-field>
+    <!-- <mat-form-field appearance="fill"  class="full-width">
+      <mat-label>Role</mat-label>
+      <input matInput maxlength="15" placeholder="Type Role" formControlName="role" #nameInput>
+      
+      <mat-error>Role is required</mat-error>
+      
+  </mat-form-field> -->
+
+      <mat-form-field appearance="fill"  class="full-width">
+          <mat-label>Email Address:</mat-label>
+          <input matInput type="email" formControlName="email" placeholder="Your email">
+          
+          <mat-hint>Enter a valid Email</mat-hint>
+          <mat-error *ngIf="(form.get('email')).errors?.required">Email is required</mat-error>
+          <mat-error *ngIf="(form.get('email')).errors?.pattern">Please enter valid email</mat-error>
+      </mat-form-field>
+
+      
+        <!-- <mat-form-field appearance="fill">
+          <mat-label>Enter your password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'"formControlName="password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field> -->
+    
+    
+
+      <mat-form-field class="full-width mt-1" appearance="fill">
+        <mat-label>Mobile Number</mat-label>
+        <span matPrefix>+91</span><input matInput maxlength="10" minlength="10" formControlName="mobileNumber">
+       <mat-hint>Enter your number</mat-hint>
+        <mat-error *ngIf="(form.get('mobileNumber')).errors?.required">Number is required</mat-error>
+        <mat-error *ngIf="(form.get('mobileNumber')).errors?.minlength">Please enter 10 digit number</mat-error>
+        
+  
+    </mat-form-field>
+    <div appearance="fill" class="full-width">
+      <div style="margin-right:3%; color:#6b6b6b;">
+        <mat-label>User Role</mat-label>
+    </div>
+      <select style="width: 100%; height: 30px;" required formControlName="role" >
+        <option [value]="0" disabled>--Select Role--</option>
+        <option [value]="SOCIETY_ADMIN">Admin privilege</option>
+        <option [value]="SOCIETY_ADMIN_DISPLAY">Display privilege</option>
+      </select>
+      <!-- <mat-hint>Emergency Category required</mat-hint> -->
+    </div>
+    <div appearance="fill" class="full-width">
+      <div style="margin-right:3%; color:#6b6b6b;">
+        <mat-label>Community Name</mat-label>
+    </div>
+      <select style="width: 100%; height: 30px;" formControlName="societyId" >
+        <option [value]="0" disabled>--select community--</option>
+        <option  *ngFor="let ct of readData2" value={{ct.id}}>{{ct.name}}</option>
+      </select>
+      <mat-hint>Community required</mat-hint>
+    </div> 
+        
+    <!-- <div style="margin-top:10px;">
+      <div style="margin-right:3%; color:#6b6b6b;">
+          <mat-label>Active Status</mat-label>
+      </div>
+      <mat-radio-group formControlName="is_active">
+          <mat-radio-button value="1">Active</mat-radio-button>&nbsp;&nbsp;
+          <mat-radio-button  value="0">Not active</mat-radio-button>
+      </mat-radio-group>
+ </div>  -->
+    
+  </form>
+</mat-card>
+  </div>
+
+  <div class="modal-footer">
+     
+     <button *ngIf="!getparamid" (click)="saveDetails(form)"  (click)="modal.close('Save click')"  class="btn" style="background-color: #1e293b; color: white;" >Create</button>
+      <!-- <button *ngIf="getparamid" (click)="userUpdate()" (click)="modal.close('Save click')"   class="btn-group btn btn-primary " >Update</button> -->
+    
+    <button type="submit"  class=" btn-group btn btn-danger"  (click)="modal.close('Save click')">Cancel</button>
+  </div>
+  
+</ng-template>
+
+</div>
+
+
+</div>
+
+</div>

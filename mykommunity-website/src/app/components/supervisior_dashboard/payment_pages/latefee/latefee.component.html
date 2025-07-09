@@ -1,0 +1,333 @@
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span>      <button mat-stroked-button class="btn btn-lg m-1 p-2" style="color: rgb(250, 242, 242);" (click)="back()"><mat-icon>fast_rewind</mat-icon></button>          
+      </span>
+           Late Fee SetUp
+
+    </div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+            <div style="display: flex; justify-content: end;">
+                <button mat-stroked-button class="btn m-1 p-1" style="background-color: #1e293b; color: white;" (click)="open(content)">Create Late Fee SetUp</button>
+
+               
+              </div>
+              <!-- <div class="input-group m-4" style="display: flex; justify-content: center;">
+                <button class="btn" style="background-color: #1e293b; color: white;"><span><mat-icon >search</mat-icon></span></button>
+                            <input type="text" placeholder="Search Description or Amount" style="width: 35vw;"
+                           >
+                            
+                            <button class="btn" style="background-color: #1e293b; color: white;"> Search</button>
+                </div> -->
+                <div  >
+
+                    <!-- <nav >
+                       <div>
+                        <button style="width:150px; text-align: start;" class="btn btn-primary"><mat-icon>pending</mat-icon> Filter</button>
+                       </div>
+                       <div>
+                        <button style="width:150px;text-align: start; background-color: rgba(128, 128, 128, 0.722);" class="btn " ><mat-icon>pending</mat-icon> Approved</button>
+                       </div> <div>
+                        <button style="width:150px;text-align: start; background-color: rgba(227, 214, 214, 0.456);" class="btn"  ><mat-icon>pending</mat-icon> Pending</button>
+                       </div>
+                       
+      
+                      </nav> -->
+                      <div>
+                        <mat-horizontal-stepper>
+                          <mat-step >
+                            <ng-template matStepLabel>Late Fee Setting</ng-template>
+
+                        <div class="table-wrapper">
+
+         <table class="table table-bordered "  >
+                            <thead>
+                              <tr >
+                              <th scope="col">Days of Relaxation</th>
+                              <th scope="col">Amount</th> 
+                              <th scope="col">Percentage(%)</th> 
+                              </tr>
+                                  </thead>
+                                     <tbody>
+
+                            <tr >
+                              <td>5</td>
+                              <td>100</td>
+                              <td></td>
+
+                            </tr>
+
+                            <tr >
+                                <td>10</td>
+                               <td></td>
+                               <td>2</td>
+                               
+                             </tr>
+
+                                     </tbody>
+                                    </table>
+            </div>
+                                </mat-step>
+
+
+                                <!-- <mat-step >
+                                  <ng-template matStepLabel>Cash</ng-template>
+
+                                  <div class="table-wrapper">
+
+         <table class="table table-bordered "  >
+                                      <thead>
+                                        <tr >
+                                        <th scope="col">Type</th>
+                                        <th scope="col">Date</th> 
+                                        <th scope="col">Description</th> 
+                                        <th scope="col">Reference</th>  
+                                       
+                                        <th scope="col">To Account</th>
+                                        <th scope="col">Amount</th> 
+                                        <th scope="col">Credit/Debit</th>   
+  
+                                        <th scope="col">Edit</th>
+                                        <th scope="col">Delete</th>
+                                        <th scope="col">Print</th>
+          
+                         
+                                   
+                                          </tr>
+                                            </thead>
+                                               <tbody>
+          
+                                      <tr *ngFor = "let us of readData4 |
+                                      paginate: { 
+                                        itemsPerPage: 8, 
+                                        currentPage:page,
+                                        totalItems:totalLength
+                                                      }">
+                                        <td>{{us.type}}</td>
+                                        <td>{{us.transactionDate | date:'medium'}}</td>
+                                        <td>{{us.description}}</td>
+                                        <td>{{us.reference}}</td>
+                                        <td>{{us.toAccount}}</td>
+                                        <td>{{us.amount}}</td>
+                                        <td><mat-icon [style.color]="us.credit === true ? 'green' : 'red'"  >
+                                          {{ us.credit === true ?  'add_circle' : 'do_not_disturb_on'}} 
+                                          </mat-icon>
+                                   </td>
+                                       <td ><mat-icon color="primary">edit</mat-icon></td>
+                                       <td ><mat-icon color="warn">delete</mat-icon></td>
+                                       <td ><mat-icon color="primary">print</mat-icon></td>
+                                      </tr>
+          
+                                      
+          
+                                               </tbody>
+                                              </table>
+            </div>
+                                          </mat-step>
+                                          <mat-step >
+                                            <ng-template matStepLabel>Cheque</ng-template>
+                
+                                        <div class="table-wrapper">
+
+         <table class="table table-bordered "  >
+                                            <thead>
+                                              <tr >
+                                              <th scope="col">Type</th>
+                                              <th scope="col">Date</th> 
+                                              <th scope="col">Description</th> 
+                                              <th scope="col">Reference</th>  
+                                              <th scope="col">Cheque Number</th> 
+                                              <th scope="col">Cheque Date</th>   
+                  
+                                              <th scope="col">From Account</th>
+                                              <th scope="col">To Account</th>
+                                              <th scope="col">Amount</th>   
+                                              <th scope="col">Credit/Debit</th>   
+
+                                              <th scope="col">Edit</th>
+                                              <th scope="col">Delete</th>
+                                              <th scope="col">Print</th>
+                
+                               
+                                         
+                                                </tr>
+                                                  </thead>
+                                                     <tbody>
+                
+                                            <tr *ngFor = "let us of readData3 |
+                                            paginate: { 
+                                              itemsPerPage: 8, 
+                                              currentPage:page,
+                                              totalItems:totalLength
+                                                            }">
+                                              <td>{{us.type}}</td>
+                                              <td>{{us.transactionDate | date:'medium'}}</td>
+                                              <td>{{us.description}}</td>
+                                              <td>{{us.reference}}</td>
+                                              <td>{{us.chequeNumber}}</td>
+                                              <td>{{us.chequeDate | date:'medium' }}</td>
+                
+                                              <td>{{us.fromAccount}}</td>
+                                              <td>{{us.toAccount}}</td>
+                                              <td>{{us.amount}}</td>
+                                              <td><mat-icon [style.color]="us.credit === true ? 'green' : 'red'"  >
+                                                {{ us.credit === true ?  'add_circle' : 'do_not_disturb_on'}} 
+                                                </mat-icon>
+                                         </td>
+
+                                             <td ><mat-icon color="primary">edit</mat-icon></td>
+                                             <td ><mat-icon color="warn">delete</mat-icon></td>
+                                             <td ><mat-icon color="primary">print</mat-icon></td>
+                                            </tr>
+                
+                                           
+                
+                                                     </tbody>
+                                                    </table>
+            </div>
+                                                </mat-step> -->
+                                </mat-horizontal-stepper>
+                      </div>
+                </div>
+                
+                <div fxLayoutAlign="center center" fxFlexFill>
+
+                  <ng-template class="modal" #content let-modal style="background-color: rgba(196, 200, 167, 0.5);">
+                    
+                    <div class="modal-header" style="padding: 0px;">
+                      <mat-toolbar class="btn" style="background-color: #1e293b; color: white;">
+                      <h2 class="modal-title" id="modal-basic-title">Late Fee SetUp</h2>
+                      <button  type="button" class=" btn btn-close " aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                    </mat-toolbar>
+                    </div>
+                    <div class="modal-body"  >
+                      <mat-card fxFlex="100" >
+                      
+                    
+                        <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form" >
+                          
+                         
+                        
+                         
+                          <div style="margin: 20px;">
+                            
+                            <mat-radio-group   aria-label="Select an option" formControlName="type">
+                                <mat-radio-button value="fixed" >Fixed</mat-radio-button>
+                                <mat-radio-button class="ms-5"  value="perc">Percentage</mat-radio-button>
+
+                              </mat-radio-group>
+                        </div>
+                        <mat-form-field appearance="fill"  class="full-width">
+                            <mat-label>No. of days after due date</mat-label>
+                            <input matInput maxlength="50" inputmode="tel"  formControlName="description" #nameInput>
+                            
+                        </mat-form-field>  
+                          
+                          <mat-form-field *ngIf="form.value.type === 'perc'" appearance="fill"  class="full-width">
+                            <mat-label>Enter %</mat-label>
+                            <input matInput maxlength="15" inputmode="tel" placeholder="Enter Percentage for Late Fee" formControlName="fromAccount" #nameInput>
+
+                          </mat-form-field>
+                          <!-- <div appearance="fill" class="full-width">
+                            <div style="margin-right:3%; color:#6b6b6b;">
+                              <mat-label>To Account</mat-label>
+                          </div>
+                            <select style="width: 180px; height: 30px;" formControlName="toAccount" >
+                              <option value="0" disabled>--Select Account--</option>
+                              <option  *ngFor="let acc of readData" value={{acc.bankName}}>{{acc.bankName}} - {{acc.accountNumber}}</option>
+                            </select>
+                            
+                          </div>  -->
+                          
+                       
+                        <!-- <mat-form-field *ngIf="form.value.type === 'cheque'" style="width: 200px;" appearance="fill" >
+                          <mat-label>Cheque Date</mat-label>
+                          <input matInput type="date" formControlName="chequeDate" placeholder="not set yet">
+
+                        </mat-form-field>
+
+                        
+                         <mat-form-field appearance="fill"  class="full-width">
+                          <mat-label>Description</mat-label>
+                          <input matInput maxlength="50" inputmode="tel" placeholder="Enter Transaction Description" formControlName="description" #nameInput>
+                          
+                      </mat-form-field>  
+                      
+                       <mat-form-field appearance="fill"  class="full-width">
+                          <mat-label>Reference</mat-label>
+                          <input matInput maxlength="50" inputmode="tel" placeholder="Enter Transaction Reference" formControlName="reference" #nameInput>
+                          
+                      </mat-form-field> 
+                        <mat-form-field *ngIf="form.value.type === 'cheque'" appearance="fill"  class="full-width">
+                          <mat-label>Cheque No</mat-label>
+                          <input matInput maxlength="15" inputmode="tel" placeholder="Enter cheque number" formControlName="chequeNumber" #nameInput>
+                          <mat-error>Cheque Number is required</mat-error>
+                          
+                      </mat-form-field>  -->
+                      <mat-form-field *ngIf="form.value.type === 'fixed'" appearance="fill"  class="full-width">
+                        <mat-label>Amount</mat-label>
+                        <input matInput maxlength="15" inputmode="tel" placeholder="Enter Fixed Late Fee Amount" formControlName="amount" #nameInput>
+                        <mat-error>Amount is required</mat-error>
+                        
+                    </mat-form-field> 
+                    <!-- <div>
+                      <label>
+                        <input type="radio" formControlName="credit" [value]=true [checked]="isCredit" (change)="onRadioButtonChange($event)">
+                        Credit
+                      </label>
+                    </div>
+                    <div>
+                      <label>
+                        <input type="radio" formControlName="debit" [value]=true [checked]="!isCredit" (change)="onRadioButtonChange($event)">
+                        Debit
+                      </label>
+                    </div>  -->
+                    
+                            
+                      <!-- <mat-radio-group formControlName="debit"  aria-label="Select an option"> -->
+                          <!-- <mat-checkbox 
+                          class="example-margin"
+          [(ngModel)]="checked2"
+          [(indeterminate)]="indeterminate2"
+          [labelPosition]="labelPosition2"
+          [disabled]="disable"
+                          [(ngModel)]="disabled" formControlName="debit" value=true >Debit</mat-checkbox> -->
+                          
+
+                        <!-- </mat-radio-group> -->
+                  
+                            
+                    <!-- <mat-radio-group class='ms-2' formControlName="credit"  aria-label="Select an option"> -->
+                        <!-- <mat-checkbox 
+                        class="example-margin"
+          [(ngModel)]="checked"
+          [(indeterminate)]="indeterminate"
+          [labelPosition]="labelPosition"
+          [disabled]="disabled"
+          [(ngModel)]="disable"    class='ms-2' formControlName="credit" value=true >Credit</mat-checkbox> -->
+
+                      <!-- </mat-radio-group> -->
+                
+                       
+                   
+                    
+                     
+                                          
+                    </form>
+                  </mat-card>
+                    </div>
+                  
+                    <div class="modal-footer">
+                      <button (click)="modal.close('Save click')" (click)="saveDetails(form)" class=" btn-group btn " style="background-color: #1e293b; color: white;">Save</button>
+                      <button type="submit" class="btn btn-danger"  (click)="modal.close('Save click')">Cancel</button>
+                    </div>
+                    
+                  </ng-template>
+                  
+                  </div>
+
+
+              
+            </div>
+            </div>

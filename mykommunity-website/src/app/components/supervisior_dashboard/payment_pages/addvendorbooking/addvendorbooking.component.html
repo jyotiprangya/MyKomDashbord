@@ -1,0 +1,304 @@
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span>     
+         <button mat-raised-button class="btn btn-lg m-1 p-2" style="color: rgb(250, 242, 242);" (click)="back()"><mat-icon>fast_rewind</mat-icon></button>          
+      </span>
+      Book Expense
+
+    </div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+           
+            <div>
+           
+              <form [formGroup]="form">
+                 <div >
+                      <div>
+                        <!-- <div appearance="fill" class="full-width">
+                          <div style="margin-right:3%; color:#6b6b6b;">
+                            <mat-label>Vendor</mat-label>
+                        </div>
+                          <select style="width: 300px; height: 30px;" formControlName="department" >
+                            <option value="0" disabled>--Select Vendor--</option>
+                            <option  *ngFor="let vendor of readData2" value={{vendor.id}}>{{vendor.vendorName}}</option>
+                          </select>
+                          
+                        </div>  -->
+                        <mat-form-field appearance="fill"  class="full-width">
+                          <mat-label>Vendor</mat-label>
+                          <select matNativeControl required formControlName="vendorId"> 
+                            <option value="0" disabled>--Select Vendor--</option>
+                            <option  *ngFor="let vendor of readData2" value={{vendor.vendorId}}>{{vendor.vendorName}}</option>
+                          </select>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill"  class="full-width" >
+                          <mat-label>Purchase Account</mat-label>
+                          <select matNativeControl required formControlName="accountId"> 
+                            <option value="0" disabled>--Select Account--</option>
+                            <option  *ngFor="let acc of readData3" value={{acc.accountId}}>{{acc.bankName}} - {{acc.accountNumber}}</option>
+                          </select>
+                        </mat-form-field> 
+                        <mat-form-field appearance="fill">
+                          <mat-label>Invoice Number </mat-label>
+          
+                          <input  matInput placeholder="Invoice Number" formControlName="invoiceNumber">
+                          <mat-error>This field is mandatory.</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                          <mat-label>Invoice Amount </mat-label>
+          
+                          <input  matInput placeholder="Invoice Amount" formControlName="invoiceAmount">
+                          <mat-error>This field is mandatory.</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                          <mat-label>Advance paid </mat-label>
+                          <input  matInput placeholder="Advance amount paid to vendor" formControlName="advancePaid">
+                          <mat-error>This field is mandatory.</mat-error>
+                        </mat-form-field>
+                       
+                        <mat-form-field appearance="fill" class="full-width"  >
+                          <mat-label>Vendor Bill Date*</mat-label>
+  
+                          <input  matInput [matDatepicker]="picker" placeholder="End Date"  formControlName="billDate">
+                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        <!-- <mat-form-field appearance="fill">
+                          <mat-label>Delivery Date</mat-label>
+  
+                          <input  matInput  placeholder="End Date" formControlName="billDate">
+                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field> -->
+
+                        <mat-form-field  appearance="fill" >
+                          <mat-label>Expension Creation Date</mat-label>
+  
+                          <input  matInput [matDatepicker]="picker2"  placeholder="End Date" formControlName="expensionCreationDate">
+                          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                          <mat-datepicker #picker2></mat-datepicker>
+                        </mat-form-field>
+                        
+                        <mat-form-field appearance="fill" >
+                          <mat-label>Due Date</mat-label>
+     
+                          <input  matInput [matDatepicker]="picker3" placeholder="End Date" formControlName="dueDate">
+                          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                          <mat-datepicker #picker3></mat-datepicker>
+                        </mat-form-field>
+                       
+                        </div>
+
+                        <div *ngFor="let item of itemDetails.controls; let i = index"  formArrayName="itemDetails">
+
+                        <div >
+                          <mat-toolbar style="display: flex; justify-content: space-between;">
+                          <h2 >Item {{i+1}}</h2>
+                          <button mat-stroked-button class="btn" style="color: red;" (click)="removeUser(i)">
+                            <mat-icon>delete</mat-icon> Remove Item</button>
+                        </mat-toolbar>
+
+                     
+                      </div>
+
+                      <div  [formGroupName]="i">
+
+                        <div style="border: 1px solid rgb(198, 192, 192) ;">
+                          
+                        <mat-form-field  appearance="fill"   >
+                              <mat-label for="itemName{{i}}">Item Name </mat-label>
+              
+                              <input  matInput placeholder="Enter Item Name" id="itemName{{i}}" formControlName="itemName">
+                              <mat-error>This field is mandatory.</mat-error>
+                            </mat-form-field>
+                            <mat-form-field  appearance="fill" >
+                              <mat-label for="quantity{{i}}"> Quantity </mat-label>
+              
+                              <input  matInput placeholder="Quantity of item" id="quantity{{i}}" formControlName="quantity">
+                              <mat-error>This field is mandatory.</mat-error>
+                            </mat-form-field>
+    
+                          
+                          <mat-form-field  appearance="fill" >
+                            <mat-label for="rate{{i}}">Rate </mat-label>
+            
+                            <input  matInput placeholder="Rate per piece" id="rate{{i}}" formControlName="rate">
+                            <mat-error>This field is mandatory.</mat-error>
+                          </mat-form-field>
+    
+                           <!-- <mat-form-field appearance="fill">
+                            <mat-label for="purchaseAccount{{i}}">Purchase Account</mat-label>
+                            <select matNativeControl required id="purchaseAccount{{i}}" formControlName="purchaseAccount"> 
+                              <option value="0" disabled>--Select Vendor--</option>
+                              <option  *ngFor="let ac of readData3" value={{ac.id}}>{{ac.bankName}}</option>
+                            </select>
+                          </mat-form-field >
+                           -->
+                          
+                            <div>
+                               <mat-form-field appearance="fill"  >
+                                  <mat-label for="description{{i}}">Description </mat-label>
+                  
+                                  <input  matInput placeholder="Item Description" id="description{{i}}" formControlName="description">
+                                  <mat-error>This field is mandatory.</mat-error>
+                                </mat-form-field>
+                                
+                                
+          
+                                  <mat-form-field appearance="fill"  >
+                                      <mat-label for="deduction{{i}}">Deduction </mat-label>
+                      
+                                      <input  matInput placeholder="Item Description" id="deduction{{i}}" formControlName="deduction">
+                                      <mat-error>This field is mandatory.</mat-error>
+                                    </mat-form-field>
+                                    
+                                  <mat-form-field appearance="fill"  >
+                                      <mat-label for="reasonOfDeduction{{i}}">Reason for Deduction </mat-label>
+                      
+                                      <input  matInput placeholder="Item Description" id="reasonOfDeduction{{i}}" formControlName="reasonOfDeduction">
+                                      <mat-error>This field is mandatory.</mat-error>
+                                    </mat-form-field>
+                                
+                                
+                            </div>
+                            <div style=" padding: 30px;">
+                              <mat-checkbox (click)="showScreen = !showScreen"> Taxable</mat-checkbox>
+                              </div>
+                          <div>
+                              <mat-form-field  appearance="fill" *ngIf="showScreen" >
+                                  <mat-label for="cgst{{i}}">CGST </mat-label>
+                  
+                                  <input  matInput placeholder="Enter CGST Amount" id="cgst{{i}}" formControlName="cgst" >
+                                </mat-form-field>
+                                <mat-form-field   appearance="fill" *ngIf="showScreen">
+                                    <mat-label for="sgst{{i}}">SGST </mat-label>
+                    
+                                    <input  matInput placeholder="Enter SGST Amount" id="sgst{{i}}" formControlName="sgst">
+                                  </mat-form-field>
+          
+                                  <mat-form-field  appearance="fill" *ngIf="showScreen">
+                                      <mat-label for="igst{{i}}">IGST </mat-label>
+                      
+                                      <input  matInput placeholder="Enter IGST Amount" id="igst{{i}}" formControlName="igst">
+                                    </mat-form-field>
+                                   
+                                      <!-- <mat-checkbox> TDS to be applied on this item?</mat-checkbox> -->
+                                  
+                                  <mat-form-field appearance="fill" *ngIf="showScreen" >
+                                      <mat-label for="hsn{{i}}">HSN/SAC </mat-label>
+                      
+                                      <input  matInput placeholder="HSN/SAC" id="hsn{{i}}" formControlName="hsn">
+                                    </mat-form-field>
+                                    
+                          </div>
+                          <mat-divider></mat-divider>
+  <div class="p-3" style="display: flex; justify-content: end; font-weight: bold;">
+  <p style="font-size: 20px;">Amount: &#8377; 10,000.00</p> 
+  </div>
+                          
+                                               </div>
+                                               </div>
+                                               <div style="border: 1px solid rgb(198, 192, 192)  ; padding: 30px;">
+                                               </div>
+                                               </div>
+                                               <!-- {{this.form.value | json}}   -->
+
+
+         <button mat-stroked-button class="btn btn-primary m-1" (click)="addItemDetail()"><mat-icon>add_circle</mat-icon> Add Item</button>
+  
+<div class="ms-2">
+         <mat-checkbox (click)="showScreen2 = !showScreen2"> TDS</mat-checkbox>
+         <mat-form-field appearance="fill"  *ngIf="showScreen2">
+          <mat-label >TDS Amount</mat-label>
+
+          <input formControlName="tds"  matInput placeholder=" Enter TDS in %" >
+          <mat-error>This field is mandatory.</mat-error>
+        </mat-form-field>
+
+</div>
+        <div style="display: flex; justify-content: end; color: gray; font-size: medium; margin-top: 10px;">
+          <ul>
+              <li>
+                  Overall CGST Amount &#8377; 0.00
+              </li>
+              <li>
+                  Overall IGST Amount &#8377; 0.00
+              </li> <li>
+                  Overall SGST Amount &#8377; 0.00
+              </li> <li>
+                  Overall TDS Amount &#8377; 0.00
+              </li> <li>
+                  Total Deduction &#8377; 0.00
+              </li>
+          </ul>
+        </div>    
+        <mat-divider></mat-divider>  
+        <div style="display: flex; justify-content: end; font-weight: bold; border: none;">
+          <div class="p-3" >
+            <span style="font-size: 20px;">Total Amount:   </span><span><span style="font-size: 25px; margin-left: 20px;">&#8377;10,000.00</span></span>
+          </div>
+        </div>                                 
+  
+  <div>
+      <mat-form-field style="width: 650px; margin-left: 10px;" appearance="fill" >
+          <label>Description</label>
+          <textarea  #message style="height: 30px;" matInput placeholder="Type here..." formControlName="description">
+  
+          </textarea>
+          <mat-error>This field is mandatory.</mat-error>
+        </mat-form-field>
+        <div appearance="fill" class="full-width" >
+          <div style="margin:10px; ">
+            <mat-label>Upload Attachment/Image</mat-label>
+        </div>
+         
+        <input   type="file" (change)="upload($event)" multiple="" accept="*.png.jpg" formControlName="image" >
+        <!-- <img [src]="SelectedImage" style="height: 200px; width: 200px;"> -->
+
+          
+        </div> 
+  
+  </div>
+  
+        <div class="button-row p-2 m-1" >
+          <!-- <button mat-raised-button color="primary" type="submit" >Generate Invoice</button> &nbsp;
+          <button mat-raised-button color="primary" type="submit" (click)="invoice()">View Invoice</button> &nbsp; -->
+          <button mat-raised-button color="primary" type="submit" [disabled]="loading"   (click)="saveDetails(form)"  >
+            <span  *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Create Expense</button> &nbsp;
+          <button mat-raised-button color="warn" (click)="onCancelClick()">Reset</button>
+        </div>
+  
+              </div>
+              </form>
+              </div>
+   
+
+              <!-- <form [formGroup]="quizForm" class="adjust-form">
+                <div formArrayName="questions" 
+                  *ngFor="let item of quizForm.get('questions').controls; let i = index;">
+                  <div class="col-md-10 col-sm-6 mt-3 mb-3" [formGroupName]="i">
+                    <label>{{i +1}} - {{question}} </label>
+                    <i class="flaticon-delete"    
+                        (click)="quizForm.get('questions').controls.splice(i,1) "
+                        style="font-size: 9px;padding-left: 80px;">
+                    </i>
+                    <div class="row">
+                      <input type="text" class="form-control col-10"
+                          [(ngModel)]="item.ques" formControlName="ques"
+                          placeholder="Enter your question" required>
+                      <button *ngIf="i == 0" (click)="genField()" type="button"
+                          class="btn btn-secondary btn-elevate btn-circle btn-icon ml-4">
+                          <i class="flaticon2-plus"></i>
+                      </button>
+                    </div>
+                    <div *ngIf="item.touched && item.invalid" class="kt-font-danger text-left">
+                      <p>required</p>
+                    </div>
+                  </div>
+                </div>
+              </form> -->
+
+             
+            </div>
+            </div>

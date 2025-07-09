@@ -1,0 +1,900 @@
+
+ <app-root></app-root>
+<div class="container-fluid">
+   
+    <div class="header">
+        <div id="heading">
+                <h1><b>Frequently Asked Questions</b></h1>
+            <p>
+                The MyKommunity app has an extensive feature set, simplifying the way you manage visitors, deliveries, daily staff, society payments and much more.
+                 We're often asked about our thinking behind the features, how they work and how they can be used.
+                  We've compiled our responses to them below.
+            </p>
+            
+        </div>
+        <div class="faq">
+            <img src="../../../../assets/faq6.jpg">
+        </div>
+    </div>
+
+    <div class="card" >
+        <div>
+          <div id="box1"  data-aos="flip-right" data-aos-duration="3000"><img src="../../../../assets/faq8.png"></div>
+          <h2>General Iniquries</h2>
+          <button style="display: grid;" class="btn btn-primary" >Load More</button>
+        </div>
+        <div>
+          <div id="box2"  data-aos="flip-right" data-aos-duration="3000"><img src="../../../../assets/faq3.png"></div>
+          <h2>Technology</h2>
+          <button style="display: grid;" class="btn btn-primary" >Load More</button>  
+         </div>
+        <div>
+          <div id="box3"  data-aos="flip-right" data-aos-duration="3000"><img src="../../../../assets/faq5.png"></div>
+          <h2>Features</h2>
+          <button style="display: grid;" class="btn btn-primary"  >Load More</button>
+  
+          </div>
+        
+        <div>
+          <div id="box4"  data-aos="flip-right" data-aos-duration="3000"><img src="../../../../assets/faq6.png"></div>
+          <h2>Payments</h2>
+          <button style="display: grid;" class="btn btn-primary" >Load More</button>
+        </div>
+  
+      </div>
+
+   
+   
+
+           <cdk-accordion class="example-accordion">
+            <cdk-accordion-item
+          *ngFor="let item of items; let index = index;"
+          #accordionItem="cdkAccordionItem"
+          class="example-accordion-item"
+          role="button"
+          tabindex="0"
+          [attr.id]="'accordion-header-' + index"
+          [attr.aria-expanded]="accordionItem.expanded"
+          [attr.aria-controls]="'accordion-body-' + index">
+          <div class="example-accordion-item-header" style="margin-left: 10px;" (click)="accordionItem.toggle()">
+                General Iniquires
+                <span class="example-accordion-item-description">
+                    <mat-icon>{{ accordionItem.expanded ? 'remove' : 'add' }}</mat-icon>
+                </span>
+              </div>
+              <div
+                class="example-accordion-item-body"
+                role="region"
+                [style.display]="accordionItem.expanded ? '' : 'none'"
+                [attr.id]="'accordion-body-' + index"
+                [attr.aria-labelledby]="'accordion-header-' + index">
+                <h2>General Enquiries</h2>
+               <p><b> What is MyKommunity?</b></p>
+                
+               <p> MyKommunity is a smart and technology-forward security solution that helps you manage gated 
+                community security needs like entry and exit of visitors, household help, and online delivery personnel. 
+                It also helps in managing gated community needs like clubhouse and amenities management, complaint management, 
+                accounting and billing, and more.</p>
+                
+               <p><b> Where can I get the app?</b></p>
+                
+                <p>The app is available for download from the Apple App Store and Google Play Store. But to be able to fully utilize and experience its benefits, the management committee of your society needs to sign up with us.
+                
+                The app is available on Android and iOS.<br>
+                
+                Android: <a href="#">https://play.google.com/store/apps/detailsid=com.MyKommunity.user</a><br>
+                 iOS: <a href="https://apps.apple.com/in/app/my-kommunity/id1572431710">https://apps.apple.com/in/app/my-kommunity/id1572431710</a></p>
+                 
+                
+                 <p><b> What aspects are covered in the demo?</b></p>
+                
+                 <p> All services provided by MyKommunity like onboarding, deployment and post-installation services are covered in the demo, on request.</p>
+                
+                <p><b> How quickly can I get MyKommunity installed?</b></p>
+                
+                <p>The app can be onboarded and deployed within 5-7 days of your society management team signing up with the app. We also create all the backend database of the security personnel, create digital profiles and training of guards to ensure that the services are ready to be used.</p>
+                
+                <p><b> Are there any hidden charges?</b></p>
+                
+                <p>There are no hidden charges. Only the management committee of your gated community needs to subscribe for MyKommunity’s services; the app is absolutely free to use for the residents.</p>
+                
+                <p><b>   How many days will it take to do the onboarding?</b></p>
+                
+                <p>The entire process, including the training process and database creation, takes a week to complete.</p>
+                
+                <p><b>  How long does it take for the residents to adopt the technology? How easy is it for senior citizens to use it?</b></p>
+                
+                <p>The app is very simple to use, and with some assistance, even senior citizens can use the app with ease. If someone finds the navigation difficult, we have an IVR feature that helps in usage of the app.
+                
+                The user and guard app interface is designed intuitively, keeping in mind the ease-of-use and maximum convenience. Moreover, our team conducts regular product walkthrough sessions for the residents, committee members, and guard training programs with assessment exercise before the system goes LIVE.
+                
+                The app is built for ages 9 to 90, keeping in mind a significant section of senior residents living in gated communities. Whether it’s allowing or denying access to visitors or raising a security alert via the app – the flow is designed to achieve the objective in less than a few clicks. Here’s what an 80-yr old customer from Chennai has to say.
+                </p>
+                <p><b> Where can I download MyKommunity app from?</b></p>
+                
+               <p> The app is available on Android and iOS.<br>
+                
+                Android:<a href="#">https://play.google.com/store/apps/detailsid=com.MyKommunity.user</a><br>
+                iOS: <a href="#">https://itunes.apple.com/in/app/MyKommunity-premium/id1101762651?mt=8</a><br>
+                <br>
+                
+                There is no limit on the number of residents who can download the app as long as all are authorized residents of the society. If the application exits immediately on launch, please try to upgrade app version or OS version to match them.
+                </p>
+                <p><b> How can I add a tenant to my flat?</b></p>
+                
+                <p>  You can add a tenant via – Settings>My Flat>Change the status to Let out>add the details of the tenant.</p>
+                
+                <p><b>  What type of support is offered by MyKommunity?</b></p>
+                
+                <ul>MyKommunity's 4-pillar service delivery structure includes;
+                <li> Dedicated Relationship Managers responsible for onboarding coordination, product training and real-time resolution handling.</li>
+                <li> On-field officers for individual pin codes manage stakeholder and guard training sessions and are available 24X7 on-call or WhatsApp.</li>
+                <li>PAN India client service team offers real-time central support with a 4-hr turnaround time for resident query and 2-hr for an onsite visit.</li>
+                <li> We use our proprietary tool for service management and a best-in-class CRM for customer lifecycle management.</li>
+                </ul>
+                
+                <p><b> Is the MyKommunity app safe?</b></p>
+                
+                <p> We diligently follow all best practices to ensure your MyKommunity experience is completely secure. To know more about how you can manage the information you share with us and how it is used, <a href="#">click here.</a>
+                </p>
+                <p><b>  Will our personal data be secure on MyKommunity?</b></p>
+                
+                <p>We use reasonable safeguards to preserve the integrity and security of your information against loss, theft, unauthorised access, disclosure, reproduction, use or amendment. For more details, read our <a href="#">Privacy Policy.</a></p>
+              </div>
+            </cdk-accordion-item>
+          </cdk-accordion>
+          <cdk-accordion class="example-accordion">
+            <cdk-accordion-item
+          *ngFor="let item of items; let index = index;"
+          #accordionItem="cdkAccordionItem"
+          class="example-accordion-item"
+          role="button"
+          tabindex="0"
+          [attr.id]="'accordion-header-' + index"
+          [attr.aria-expanded]="accordionItem.expanded"
+          [attr.aria-controls]="'accordion-body-' + index">
+          <div class="example-accordion-item-header" style="margin-left: 10px;" (click)="accordionItem.toggle()">
+            Technology
+            &nbsp;<span class="example-accordion-item-description">
+              <mat-icon> {{ accordionItem.expanded ? ' remove ' : 'add' }}</mat-icon>
+                </span>
+              </div>
+              <div
+                class="example-accordion-item-body"
+                
+                role="region"
+                [style.display]="accordionItem.expanded ? '' : 'none'"
+                [attr.id]="'accordion-body-' + index"
+                [attr.aria-labelledby]="'accordion-header-' + index">
+                <h2>Technology</h2>
+                
+                <p><b>Why is Biometric not an ideal solution?</b></p>
+                
+                <p>While biometric data provides a secure way to identify residents, it is highly sensitive and needs to be dealt with utmost care. Also, the infrastructure requirements are very high and IT Act 20 requires that all biometric data be renewed every 15 days.</p>
+                
+                <p><b>Why is Access Card not an ideal solution?</b></p>
+                
+                <p>People tend to forget access cards or lose them, and thus can be misused by anyone who has the card. Plus, printing cards and the churn rate is very high.</p>
+                
+                <p><b> Why is RFID not an ideal solution?</b></p>
+                
+                <p>Even when residents vacate their flats they can still retain the apartment RFID. This creates an issue. Additionally, infrastructure to set up RFID tags, RFID readers is quite extensive. Not just that, the infrastructure cost is also financially intensive.
+                    </p>
+              </div>
+            </cdk-accordion-item>
+          </cdk-accordion>
+
+
+          <cdk-accordion class="example-accordion">
+            <cdk-accordion-item
+          *ngFor="let item of items; let index = index;"
+          #accordionItem="cdkAccordionItem"
+          class="example-accordion-item"
+          role="button"
+          tabindex="0"
+          [attr.id]="'accordion-header-' + index"
+          [attr.aria-expanded]="accordionItem.expanded"
+          [attr.aria-controls]="'accordion-body-' + index">
+          <div class="example-accordion-item-header" style="margin-left: 10px;" (click)="accordionItem.toggle()">
+            Features
+            &nbsp;<span class="example-accordion-item-description">
+              <mat-icon> {{ accordionItem.expanded ? ' remove ' : 'add' }}</mat-icon>
+                </span>
+              </div>
+              <div
+                class="example-accordion-item-body"
+                role="region"
+                [style.display]="accordionItem.expanded ? '' : 'none'"
+                [attr.id]="'accordion-body-' + index"
+                [attr.aria-labelledby]="'accordion-header-' + index">
+                <h2>Features</h2>
+                <p><b>  I have an ERP solution, do I need an alternative like MyKommunity?</b></p>
+
+<p>This depends on the comfort factor of the user. While we can’t comment on ERP solutions, we can say that we have an edge over them because of our single-minded focus on simplifying security. Our APIs are open, making any IOT based applications compatible with the app technology-wise – so that in the future, the app can include more features at no substantial expense to society management companies. You can start using the app and then take a call.</p>
+
+<p><b>How can I ensure that I have the updated version of the app?</b></p>
+
+<p>If there are any major updates to features, we ensure that notifications to update the app are triggered. You can always check the Play store /App store for the updated version if you want to be extra safe.</p>
+
+<p><b>Who can see my entry and exit logs?</b></p>
+
+<p>If there is any requirement, the management committee can view data up to 6 months through the dashboard. By default, the data is not available for viewing by everyone.</p>
+
+<p><b>What happens when residents move out?</b></p>
+
+<p>The residents who move out of the premises are removed from the system and cannot access the premises after removal.</p>
+
+<p><b>Can your person be on site for a week for half a day in the clubhouse and be available for our residents to ask any question or help them to download the app?</b></p>
+
+<p>We address real-time queries about the app through YouTube links, flyers, email collaterals, signage at the main gate, standees at the clubhouse and other methods including WhatsApp groups. Using these methods, we are able to help address all queries that the residents of your organization might have, without the need for additional onboarding time.</p>
+
+<p><b>How can I enable the Multi-Tier System?</b></p>
+
+At an additional cost, the Multi-Tier System can be enabled by configuring the main gate device to the Towers. It is recommended that the perimeter or periphery be secured through MyKommunity while onboarding; if you decide otherwise, you can always set it up later when you feel the need for the same.
+               
+              </div>
+            </cdk-accordion-item>
+          </cdk-accordion>
+
+          <cdk-accordion class="example-accordion">
+            <cdk-accordion-item
+          *ngFor="let item of items; let index = index;"
+          #accordionItem="cdkAccordionItem"
+          class="example-accordion-item"
+          role="button"
+          tabindex="0"
+          [attr.id]="'accordion-header-' + index"
+          [attr.aria-expanded]="accordionItem.expanded"
+          [attr.aria-controls]="'accordion-body-' + index">
+          <div class="example-accordion-item-header" style="margin-left: 10px;" (click)="accordionItem.toggle()">
+            e-Intercom
+            &nbsp;<span class="example-accordion-item-description">
+              <mat-icon> {{ accordionItem.expanded ? ' remove ' : 'add' }}</mat-icon>
+                </span>
+              </div>
+              <div
+                class="example-accordion-item-body"
+                role="region"
+                [style.display]="accordionItem.expanded ? '' : 'none'"
+                [attr.id]="'accordion-body-' + index"
+                [attr.aria-labelledby]="'accordion-header-' + index">
+                <h2>e-Intercom</h2>
+                
+                <p><b> What is & e-Intercom?</b></p>
+
+It is a mobile-based intercom which is used for automating visitor validations. This feature will give you an authorization phone call to a number you have previously set (either mobile or landline), if you’re unable to complete the in-app notifications to approve or deny a visitor’s (Guest / Delivery Executives / etc.) entry to the society.
+
+<p><b>How can I set my e-Intercom number?</b></p>
+
+You can set a mobile or landline number as your e-Intercom number from the app. There can be only one e-Intercom number per flat/home. This e-intercom call gets triggered only when the resident does not respond to the app notification. By default, the primary e-Intercom is set to the mobile number of the first person who downloads the app for the flat. Residents who have not downloaded the app can also have an e-Intercom number. For this, they have to request the admin to set a fixed landline or mobile as the e-Intercom of the flat.
+
+<p><b>How to stop calls from MyKommunity?</b></p>
+
+MyKommunity calls you for visitor validation on your mobile. If you don’t want to receive this phone call you can remove your mobile number from e-Intercom and put the mobile number of someone who can approve on your behalf. If you want, you can leave the e-Intercom numbers blank too. To reset the e-intercom number, go to Side menu -&gt; open e-Intercom and then edit the numbers.
+
+<p><b>I am going out of the country for travel. How can I stop calls from MyKommunity?</b></p>
+
+In this case, you can remove your mobile number from e-intercom and put the mobile number of someone who can approve on your behalf. If you want, you can leave the e-intercom numbers blank too. To reset the e-intercom number, go to Side menu -&gt; open e-Intercom and then edit the numbers.
+
+<p><b>I am getting a notification for a visitor (e.g. cab, delivery executive) that I did not expect. What should I do?</b></p>
+
+This is likely due to an error in flat selection by the guard at the gate. You can inform the guard about this and ask him to be more attentive when taking entries at the gate.
+
+<p><b>I am at work and don’t want to be disturbed for visitor approval. My family should be able to do it. What should I do?</b></p>
+
+<ol>
+You need to
+<li> Switch off app notifications in the app</li>
+<li> Assign an e-intercom number where the approval calls should go. If other members (s) of your family have also downloaded the app, then they will receive an in-app notification to authorize the entry. If no response is received from in-app notifications, calls will be initiated in the order of priority, first to the primary number and then to the secondary number.</li>
+</ol>
+<p><b>Is it compulsory to set an e-Intercom number?</b></p>
+
+No, it’s not compulsory to set an e-intercom number. You can leave the e-intercom number blank. However, we recommend that you set at least the primary number so that you don’t miss visitor validation calls from the security.
+
+<p><b>How does the authentication of surprise guests, cabs, courier, delivery executives etc. work?</b></p>
+
+For every visitor at the gate without having a pre-approved OTP, we initiate an authorization process with the residents of a flat. It is important to understand how we recognize numbers/users in our system first.
+Registered users – Residents must be registered in the system for MyKommunity to communicate with them. Owners and tenants can register themselves by sharing their details via their facility office. Further, they can register their family easily using ‘Add family’ feature in the app.
+Active users – When registered users download the app, they become active users. Active users can designate one mobile/landline number as an e-intercom number. This number is given priority when system calls are generated for approval.
+               
+              </div>
+            </cdk-accordion-item>
+          </cdk-accordion>
+
+          <cdk-accordion class="example-accordion">
+            <cdk-accordion-item
+          *ngFor="let item of items; let index = index;"
+          #accordionItem="cdkAccordionItem"
+          class="example-accordion-item"
+          role="button"
+          tabindex="0"
+          [attr.id]="'accordion-header-' + index"
+          [attr.aria-expanded]="accordionItem.expanded"
+          [attr.aria-controls]="'accordion-body-' + index">
+          <div class="example-accordion-item-header" style="margin-left: 10px;" (click)="accordionItem.toggle()">
+            Visitor Management
+            &nbsp;<span class="example-accordion-item-description">
+              <mat-icon> {{ accordionItem.expanded ? ' remove ' : 'add' }}</mat-icon>
+                </span>
+              </div>
+              <div
+                class="example-accordion-item-body"
+                role="region"
+                [style.display]="accordionItem.expanded ? '' : 'none'"
+                [attr.id]="'accordion-body-' + index"
+                [attr.aria-labelledby]="'accordion-header-' + index">
+                <h2>Visitor Management</h2>
+                <p><b>Does the guard stop everybody who enters the society?</b></p>
+
+Yes. The guard is required to collect details from everyone who is entering the premises.
+
+<p><b>What if I do not want my guests to wait at the gate?</b></p>
+
+You can raise a request through the MyKommunity app prior to their visit. A 6 digit passcode is triggered to the visitor, which they can then provide to the security and enter the premises, without waiting for approval from you.
+
+<p><b>What if I haven’t raised an invite for my guests?</b></p>
+
+If you haven’t raised an invite, your guest will have to give their details to the guard who will update it in the app and raise a request for you to approve. On accepting the invite, your guest can enter the premises.
+
+<p><b>What if I am not home when someone comes?</b></p>
+
+If you aren’t home, you will still get a notification on your app. The guards can always inform the visitor if their request to enter the premises has been accepted or declined.
+                
+              </div>
+            </cdk-accordion-item>
+          </cdk-accordion>
+
+          <cdk-accordion class="example-accordion">
+            <cdk-accordion-item
+          *ngFor="let item of items; let index = index;"
+          #accordionItem="cdkAccordionItem"
+          class="example-accordion-item"
+          role="button"
+          tabindex="0"
+          [attr.id]="'accordion-header-' + index"
+          [attr.aria-expanded]="accordionItem.expanded"
+          [attr.aria-controls]="'accordion-body-' + index">
+          <div class="example-accordion-item-header" style="margin-left: 10px;" (click)="accordionItem.toggle()">
+            Attendance & Staff Management
+            &nbsp;<span class="example-accordion-item-description">
+              <mat-icon> {{ accordionItem.expanded ? ' remove ' : 'add' }}</mat-icon>
+                </span>
+              </div>
+              <div
+                class="example-accordion-item-body"
+                role="region"
+                [style.display]="accordionItem.expanded ? '' : 'none'"
+                [attr.id]="'accordion-body-' + index"
+                [attr.aria-labelledby]="'accordion-header-' + index">
+                <h2>Attendance & Staff Management</h2>
+                <p><b> What happens when a new daily staff joins?</b></p>
+
+We create a new digital profile for the daily help using any government issued ID. A 6 digit code is provided to the help, and this profile can further be attached to your profile.
+
+<p><b>Our staff is not comfortable with technology, can they adjust to MyKommunity?</b></p>
+
+Yes. MyKommunity is simple to use. If they still find it difficult, you can help them understand how to use it.
+
+<p><b>If the staff enters the premises but skips our house, how can MyKommunity help?</b></p>
+
+Since you will get to know exactly when the staff has entered the premises, there is no scope of missing out on the entry. You can follow up on their absence if they skip coming to your house.
+
+<p><b>How many profiles can I create per household?</b></p>
+
+You can create multiple profiles for all the staff that visits your household.
+                
+              </div>
+            </cdk-accordion-item>
+          </cdk-accordion>
+
+          <cdk-accordion class="example-accordion">
+            <cdk-accordion-item
+          *ngFor="let item of items; let index = index;"
+          #accordionItem="cdkAccordionItem"
+          class="example-accordion-item"
+          role="button"
+          tabindex="0"
+          [attr.id]="'accordion-header-' + index"
+          [attr.aria-expanded]="accordionItem.expanded"
+          [attr.aria-controls]="'accordion-body-' + index">
+          <div class="example-accordion-item-header" style="margin-left: 10px;" (click)="accordionItem.toggle()">
+            Delivery Management
+            &nbsp;<span class="example-accordion-item-description">
+              <mat-icon> {{ accordionItem.expanded ? ' remove ' : 'add' }}</mat-icon>
+                </span>
+              </div>
+              <div
+                class="example-accordion-item-body"
+                role="region"
+                [style.display]="accordionItem.expanded ? '' : 'none'"
+                [attr.id]="'accordion-body-' + index"
+                [attr.aria-labelledby]="'accordion-header-' + index">
+                <h2>Delivery Management</h2>
+                <p><b>  If I have a package, who will pick it up?</b></p>
+
+If you are on the premises, you can allow the delivery personnel to enter – through the accept button upon their arrival at the gate. If you are not available, you can raise a request for the guards to pick up the parcel at the gate and stow it away safely. You can pick it up using the 6-digit code that’s generated to your phone when the guard picks up the parcel.
+
+<p><b>Do I have to tell the delivery executive about the guards?</b></p>
+
+The delivery personnel are stopped by the guards at the gate. You need not have to tell the delivery person about the guards or the MyKommunity protocol.
+
+<p><b>How will the guards know the package belongs to me?</b></p>
+
+When the guards pick up a parcel that belongs to you, a 6-digit code is triggered to your phone. You can claim your parcel after giving said code to the guards.
+
+<p><b>Where can I pick/drop off my package?</b></p>
+
+The guards can pick up your parcels and drop off your ‘to be returned’ packages at the gate.
+
+<p><b>What happens in case of damage to my package?</b></p>
+
+We have taken many thoughtful measures to ensure that your packages are not misplaced or damaged.
+              
+              </div>
+            </cdk-accordion-item>
+          </cdk-accordion>
+
+          <cdk-accordion class="example-accordion">
+            <cdk-accordion-item
+          *ngFor="let item of items; let index = index;"
+          #accordionItem="cdkAccordionItem"
+          class="example-accordion-item"
+          role="button"
+          tabindex="0"
+          [attr.id]="'accordion-header-' + index"
+          [attr.aria-expanded]="accordionItem.expanded"
+          [attr.aria-controls]="'accordion-body-' + index">
+          <div class="example-accordion-item-header" style="margin-left: 10px;" (click)="accordionItem.toggle()">
+            Clubhouse Management
+                        &nbsp;<span class="example-accordion-item-description">
+              <mat-icon> {{ accordionItem.expanded ? ' remove ' : 'add' }}</mat-icon>
+                </span>
+              </div>
+              <div
+                class="example-accordion-item-body"
+                role="region"
+                [style.display]="accordionItem.expanded ? '' : 'none'"
+                [attr.id]="'accordion-body-' + index"
+                [attr.aria-labelledby]="'accordion-header-' + index">
+                <h2>Clubhouse Management</h2>
+                <p><b>  Who can use the clubhouse using the app?</b></p>
+
+Only authorized personnel like residents and management committee members can access the clubhouse.
+
+<p><b>What about people who haven’t renewed their club membership?</b></p>
+
+The management committee can remove those who have not renewed their membership, from the list.
+
+<p><b>What kind of inventory can I keep with the app?</b></p>
+
+You can keep track of all your common assets, indoor sports, outdoor sports equipment, clubhouse specific inventory like chairs and tables among others.
+
+<p><b>Who will ensure that residents will give the details for club usage?</b></p>
+
+While the guards are required to enter all the details, the strict enforcement of the system is the responsibility of the residents and the management committee.
+              
+              </div>
+            </cdk-accordion-item>
+          </cdk-accordion>
+
+          <cdk-accordion class="example-accordion">
+            <cdk-accordion-item
+          *ngFor="let item of items; let index = index;"
+          #accordionItem="cdkAccordionItem"
+          class="example-accordion-item"
+          role="button"
+          tabindex="0"
+          [attr.id]="'accordion-header-' + index"
+          [attr.aria-expanded]="accordionItem.expanded"
+          [attr.aria-controls]="'accordion-body-' + index">
+          <div class="example-accordion-item-header" style="margin-left: 10px;" (click)="accordionItem.toggle()">
+            Multi-Property Management
+            &nbsp;<span class="example-accordion-item-description">
+              <mat-icon> {{ accordionItem.expanded ? ' remove ' : 'add' }}</mat-icon>
+                </span>
+              </div>
+              <div
+                class="example-accordion-item-body"
+                role="region"
+                [style.display]="accordionItem.expanded ? '' : 'none'"
+                [attr.id]="'accordion-body-' + index"
+                [attr.aria-labelledby]="'accordion-header-' + index">
+                <h2>Multi-Property Management</h2>
+               <p><b> How can I add a tenant to my flat?</b></p>
+
+You can add a tenant via Settings > My Flat > Change the status to Let out -> add the details of the tenant.
+              
+              </div>
+            </cdk-accordion-item>
+          </cdk-accordion>
+
+          <cdk-accordion class="example-accordion">
+            <cdk-accordion-item
+          *ngFor="let item of items; let index = index;"
+          #accordionItem="cdkAccordionItem"
+          class="example-accordion-item"
+          role="button"
+          tabindex="0"
+          [attr.id]="'accordion-header-' + index"
+          [attr.aria-expanded]="accordionItem.expanded"
+          [attr.aria-controls]="'accordion-body-' + index">
+          <div class="example-accordion-item-header" style="margin-left: 10px;" (click)="accordionItem.toggle()">
+            Payments
+            &nbsp;<span class="example-accordion-item-description">
+              <mat-icon> {{ accordionItem.expanded ? ' remove ' : 'add' }}</mat-icon>
+                </span>
+              </div>
+              <div
+                class="example-accordion-item-body"
+                role="region"
+                [style.display]="accordionItem.expanded ? '' : 'none'"
+                [attr.id]="'accordion-body-' + index"
+                [attr.aria-labelledby]="'accordion-header-' + index">
+                <h2>Payments</h2>
+                <p><b>What is the ‘Payments’ option under the community section of MyKommunity app?</b></p>
+
+                Payments option ensure that you get timely updates on dues and make Hasslefree payments such as maintenance charges.
+                
+                <p><b> How to pay your dues in your society?</b></p>
+                
+               <ul>
+                <li>Click on “Payments” tab on the app screen</li>
+                <li> Click on “Pay Now”on the specific invoice you want to make the payment</li>
+                <li>Select the Transaction mode (UPI/ PayU)</li>
+                <li>Click on “Pay”</li>
+                </ul>
+                <b> a. Payment flow via UPI —></b> Select UPI > Click Pay > Enter your UPI ID > Select Save > Click Submit > Make the payment from your UPI app
+                
+                Note: Receipt generation might take time for UPI payments. Please wait for 90 minutes for the email confirmation from MyKommunity.
+                <br>
+                <b>b. Payment flow via PayU/ RazorPay —></b> Select PayU/ RazorPay > Click Pay > Enter the phone number registered with bank > Select Payment Method > Make the payment
+                
+                Note: To know about the transaction charges click on ‘Transaction charges may apply’ dropdown option under UPI/PayU.
+                <br>
+                <b>c. Select ‘I have paid by Cheque/ Cash/ EFT’ </b>in case you have cleared the dues—> Select ‘I have paid by Cheque/ Cash/ EFT’ > Click on “Provide Details” > Select the date of Payment > Select the Mode of Payment > Enter details. Supporting documents and photos can be attached as well.
+                <br>
+                <p><b>What are the payment Types in MyKommunity app?</b></p>
+                
+                Payment from MyKommunity app can be made via UPI/ PayU (Debit card/Credit card/Net Banking).
+                
+                <p><b>What are the UPI payments options in MyKommunity app?</b></p>
+                
+                Payment can be made through all the UPI applications such as BHIM, Google Pay, WhatsApp, PhonePe, Paytm, etc.
+                
+                <p><b>Where to see my payment history? / How to check the payment history of the previous or current year?</b></p>
+                
+                Click on “Community” tab on the app screen
+                Select “Payments”
+                Click on bill icon on the top right corner
+                Select the financial year from the dropdown
+                <p><b>What is ‘Advance’, ‘Dues’, ‘Overdues’ on the Payment page?</b></p>
+                
+                Advance – The amount you pay over and above the invoice amount is the advance.
+                
+                Dues – The date by when your payment is supposed to be paid. 
+                
+                Overdues – Bills that are not paid on or before the due date are overdue. Let’s say yesterday was the last day to pay the bill but the payment was not cleared then for today, the invoice becomes overdue.
+                
+                <p><b>How do I make an Advance Payment?</b></p>
+                
+                Click on “Community” tab on the app screen
+                Click on “Payments”
+                Click on the arrow mark next to Advance/ Dues/ Overdue at the right corner
+                Select “Pay Advance”
+                Enter the amount you want to make as an advance payment
+                Click on “Pay Advance”
+                Select the Payment Type via which you want to make the payment and “Pay”
+                <p><b>What happens if you make payment of an amount more than your due amount?</b></p>
+                
+                The difference gets added to the advance. When the new invoice is generated, the bill amount gets settled from advanced. 
+                
+                <p><b>What is the difference between the invoice date, due date and overdue? / Where can I find the invoice date, due date? </b></p>
+                
+                Invoice date – The date on which invoice is raised by the society management team. You can find invoice date beside the status of every invoice.
+                
+                Due date – The date on or before which the payment has to be made else a fine/penalty fee might be charged. Due date is mentioned at the bottom of every invoice.
+                
+                Overdue – If the invoice cross the due date then the invoice becomes overdue. If an invoice is not cleared on or before the due date, the status changes from ‘Due’ (blue colour) to ‘Overdue’ (red colour). 
+                
+                <p><b>Where can I see receipts of my payments?</b></p>
+                <ul>
+                    <li>
+                Click on “Community” tab on the app screen</li>
+                <li>Click on “Payments”</li>
+                <li>Filter the Status to “Paid” – You will find receipts of the paid bills  </li>
+                </ul>
+                <p><b>How can I intimate my payment to the society management team?</b></p>
+                <ul>
+                    <li>
+                Go to the “Community” tab.</li>
+                <li>Click on “Payments”</li>
+                <li>Click on “I have paid” button on the specific invoice.</li>
+                    <li>Select the mode of payment, Enter the details and click “Submit details”</li></ul>
+                    <p><b>I already paid my dues but still, my dues are showing as outstanding.</b></p>
+                
+                We recommend you to use the MyKommunity app to clear your dues, this will ensure that receipt is generated immediately and there is no outstanding. In case you have used any other app or offline mode of payment then you could intimate the society management team about the payment made following the steps below. Further, the society management team can clear the dues and generate the receipt manually. 
+                
+                Steps to be followed to intimate the society management team:
+                <ul>
+                <li>Go to the “Community” tab.</li>
+                    <li>Click on “Payments”</li>
+                        <li>Click on “I have paid” button on the specific invoice.</li>
+                            <li>Select the mode of payment, Enter the details and click “Submit details”</li></ul>
+                <p><b>I can see some amount of advance & dues in my account. How do I adjust it?</b></p>
+                
+                Please reach out to the society management team. They can adjust it for you.
+                
+                I am seeing late payment fee added to my account whereas I have an advance amount in my account.
+                
+                In case the due amount has not been adjusted from the advance amount, we request you to reach out to the society management team. 
+                
+                When I am clicking on ‘I have paid’ option. I am getting an error saying ‘Payment request already created for this charge’.
+                
+                It means you have already raised a request but the society management team has not yet accepted or rejected the request. The intimation is pending for action from the society management team.
+                
+                <p><b>Can I pay my dues using any foreign bank card?</b></p>
+                
+                Yes. You can pay the dues using foreign cards via RazorPay. If RazorPay is not showing as a payment gateway option, please reach out to the society management team to get it enabled. 
+                
+                <p><b>What is Financial Year? </b></p>
+                
+                In India, gated communities are commonly following financial year based auditing & tax filing. The financial year starts from 1st April of the current year and ends on 31st March of next year.
+                
+                <p><b>I cannot see the ‘Pay Now’ button to make payment. Why?</b></p>
+                
+                Online transactions are allowed in the current financial year only. The selected financial year in the app may be incorrect. Please change the financial year from the drop down option under “Payments” menu and you will find the “Pay Now” option.
+                
+                <p><b>How can I see my payment receipts of the previous financial years?</b></p>
+                
+                Once you click on “Payments”, you can see the current financial ‘2019-2020’, click on it and select the options from the dropdown to change the view.
+                
+                <p><b>What is the meaning of each filter in the Payments section?</b></p>
+                
+                New – New bill/Invoice
+                
+                Overdue – Bills/Invoice that has crossed the due date
+                
+                Paid – receipt of the payments you have made
+                
+                Pending – Bill/Invoice that “I Have Paid” intimation raised, but not accepted/ rejected by the society management team
+                
+                Rejected – Bill/Invoice that “I Have Paid” intimation raised and rejected by the society management team.  
+                
+                <p><b>Should I use ‘Pay dues’ or ‘Pay advance’ to make payment? </b></p>
+                
+                It is advised to make the payment by selecting “Pay dues”. You can use the “Pay advance” option in case you do not have any dues to pay. This will decrease the chances of the late fee being charged incorrectly.
+                
+                <p><b>‘Dues’ is showing some items with the name “From previous year”.  What is this?</b></p>
+                
+                When one financial year ends, the outstanding dues of the previous year get carry forwarded to the new financial year. The carry forwarded items will have the tag “From previous year”, it is the unpaid dues of the previous financial year.
+                
+                <p><b>Why Convenience fee is charged?</b></p>
+                
+                Here we are using Payment Gateways instead of direct transfer like NEFT/RTGS/P2P UPI. There is a Convenience fee for online payments in Housing Societies which payment gateways either charge to customer or association. Normal merchants like Online shopping platform will bear the charges themselves, the case of Residents Association is different. Hence the user is being charged.                
+              
+              </div>
+            </cdk-accordion-item>
+          </cdk-accordion>
+
+          <cdk-accordion class="example-accordion">
+            <cdk-accordion-item
+          *ngFor="let item of items; let index = index;"
+          #accordionItem="cdkAccordionItem"
+          class="example-accordion-item"
+          role="button"
+          tabindex="0"
+          [attr.id]="'accordion-header-' + index"
+          [attr.aria-expanded]="accordionItem.expanded"
+          [attr.aria-controls]="'accordion-body-' + index">
+          <div class="example-accordion-item-header" style="margin-left: 10px;" (click)="accordionItem.toggle()">
+            Helpdesk
+            &nbsp;<span class="example-accordion-item-description">
+              <mat-icon> {{ accordionItem.expanded ? ' remove ' : 'add' }}</mat-icon>
+                </span>
+              </div>
+              <div
+                class="example-accordion-item-body"
+                role="region"
+                [style.display]="accordionItem.expanded ? '' : 'none'"
+                [attr.id]="'accordion-body-' + index"
+                [attr.aria-labelledby]="'accordion-header-' + index">
+                <h2>Helpdesk</h2>
+               
+                <p><b>What is Helpdesk?</b></p>
+
+                It is a complaint management system to ensure a quick and convenient way to track complaints via MyKommunity app. When you face a society related issue(for eg. Electrical, plumbing), you can raise a complaint through the MyKommunity app. The complaint will be forwarded to the Society Management or Facility Manager. Further, he/she will update the complaint and assign it to the respective society staffs. You will be notified about the assigned staff and ETA and the action taken against your complaint. You can also add comments, attach photo/documents and reopen a closed complaint.
+                
+                <p><b>How to raise a service request?</b></p>
+               <ul> 
+               <li> Click on “Community” tab on the app screen</li>
+               <li>Click on “Helpdesk”</li>
+               <li>Click on “Raise Complaint” present at the bottom of the app screen</li>
+               <li>You can select the category and type of issue, select “Personal” if the issue is related to your house and “Community” if the issue is related to the common area of your society. </li>
+               <li>Provide details related to the issue</li>
+               <li>You can attach up to 3 supporting documents and photos </li></ul>
+                <b>Note:</b> In case you want to further communicate with the society management you can further add comments and documents/photos.
+                
+                <p><b>What is the process flow for the service desk/helpdesk complaints raised? How does the escalation matrix work?</b></p>
+                
+                <p>The moment residents raise a complaint/query (service request) using the helpdesk feature in the MyKommunity app, the service request will be sent to the “Helpdesk Manager” and resident will also receive the SMS/email notification with service request ID and subject.</p>
+                
+                <p>If the “Helpdesk Manager” does not take actions within the stipulated time, then the service request will get escalated to the “Facility Manager/Manager”.</p>
+                
+                <p>Despite, still no actions taken, then the service request will get escalated to the “Admin” who will be the last point of contact.</p>
+                
+                <p>When the admin/Facility Manager, updates the status or add any comment to the complaint, the resident will again receive the email which will have the service request ID in the subject line.</p>
+                
+                <p>Residents could go to “Helpdesk” menu under the “Community” tab and click on the specific service request/complaint and view the changes made by the admin/Facility Manager.</p>
+                
+                <p>The app will be updated with the progress/action taken by the Admin/Facility Manager against the complaint.</p>
+                
+                <p><b>Can a closed complaint be reopened?</b></p>
+                
+                Yes, Resident can reopen a closed complaint any time.
+                <ul>
+                <li>Go to the “Helpdesk” menu under “Community” Tab.</li>
+                <li>Click on the specific complaint which is “Resolved”</li>
+                    <li>Click on “Reopen” and enter the comments and “Re-open” the resolved/closed complaint.</li></ul>
+                <p><b>How to filter the Complaints according to the category or status of the complaint?</b></p>
+                <ul>
+                <li>Go to the “Helpdesk” menu under “Community” Tab.</li>
+                <li>Click on “Category” present on the top of the app screen.</li> 
+                <li>Select a specific category from the dropdown option.</li>
+                <p><b>To filter according to the status:</b></p>
+                
+                <li>Go to the “Helpdesk” menu under “Community” Tab.</li>
+                <li>Click on “Status” present on the top of the app screen. </li>
+                <li>Select a status (New, In Progress, Closed) from the dropdown option.</li>
+                </ul>
+              
+              </div>
+            </cdk-accordion-item>
+          </cdk-accordion>
+
+          <cdk-accordion class="example-accordion">
+            <cdk-accordion-item
+          *ngFor="let item of items; let index = index;"
+          #accordionItem="cdkAccordionItem"
+          class="example-accordion-item"
+          role="button"
+          tabindex="0"
+          [attr.id]="'accordion-header-' + index"
+          [attr.aria-expanded]="accordionItem.expanded"
+          [attr.aria-controls]="'accordion-body-' + index">
+          <div class="example-accordion-item-header" style="margin-left: 10px;" (click)="accordionItem.toggle()">
+            Communication        
+            &nbsp;<span class="example-accordion-item-description">
+              <mat-icon> {{ accordionItem.expanded ? ' remove ' : 'add' }}</mat-icon>
+                </span>
+              </div>
+              <div
+                class="example-accordion-item-body"
+                role="region"
+                [style.display]="accordionItem.expanded ? '' : 'none'"
+                [attr.id]="'accordion-body-' + index"
+                [attr.aria-labelledby]="'accordion-header-' + index">
+                <h2>Communication</h2>
+                <p><b>What is Communication?</b></p>
+
+                Resident can initiate a discussion with several groups within the community. These groups can be created by the society management team. 
+               
+                <p><b>How to initiate a discussion among different groups in the society such as only owners/tenants etc? </b></p>
+              <ul> 
+               <li>Click on “Community” tab on the app screen</li>
+               <li>Click on “Communication”</li>
+                <li>Click on “Start Discussion” present at the bottom of the app screen</li>
+                    <li>Type Title and details, photos and documents can also be attached</li>
+                    </ul>
+               <p><b>How to hide a discussion?</b></p>
+               <ul>
+               You can hide any particular discussion in two ways. 
+              <li> Click on the “Discussion” </li>
+              <li> Click on the “Eye icon” on the top right corner of the app screen</li>
+              &nbsp;   &nbsp;   &nbsp;   &nbsp;    &nbsp;   &nbsp;   &nbsp;   &nbsp;   (OR)
+               
+                <li>Click on the “Eye icon” on the discussion card</li></ul>
+                    <p><b>Your discussion might be approved/ rejected. How does it happen?</b></p>
+               
+               This is a society settings, depending on the society management committee’s guidelines, this will be enabled. In case management committee do not want this to be enabled, the residents need not wait for the Discussion to be “Approved” by the Admin when the discussion is initiated. Else, the discussion initiated by the residents needs to be approved by the “Admin” so that the other residents of the society could start sharing their comments. 
+               
+               <p><b>How to initiate a Poll?</b></p>
+               
+               Only the Admin of society has access to initiate a poll. When a Poll is created, the admin can also create options like Yes/No. Further, residents can cast their vote accordingly.                
+              
+              </div>
+            </cdk-accordion-item>
+          </cdk-accordion>
+
+          <cdk-accordion class="example-accordion">
+            <cdk-accordion-item
+          *ngFor="let item of items; let index = index;"
+          #accordionItem="cdkAccordionItem"
+          class="example-accordion-item"
+          role="button"
+          tabindex="0"
+          [attr.id]="'accordion-header-' + index"
+          [attr.aria-expanded]="accordionItem.expanded"
+          [attr.aria-controls]="'accordion-body-' + index">
+          <div class="example-accordion-item-header" style="margin-left: 10px;" (click)="accordionItem.toggle()">
+            Amenities
+            &nbsp;<span class="example-accordion-item-description">
+              <mat-icon> {{ accordionItem.expanded ? ' remove ' : 'add' }}</mat-icon>
+                </span>
+              </div>
+              <div
+                class="example-accordion-item-body"
+                role="region"
+                [style.display]="accordionItem.expanded ? '' : 'none'"
+                [attr.id]="'accordion-body-' + index"
+                [attr.aria-labelledby]="'accordion-header-' + index">
+                <h2>Amenities</h2>
+               <p><b> What is ‘Amenities’?</b></p>
+
+                Amenities feature provides easy and real-time access to book the facilities present in the community.  Online payments can be made while booking an amenity through the MyKommunity app.  
+                
+                <p><b>  How to book an amenity in your society?</b></p>
+                
+                <ul>
+                    <li>Click on “Community” tab on the app screen</li>
+                    <li>Click on “Amenities”</li>
+                    <li>Click on “Book Amenity” present at the bottom of the app screen</li>
+                    <li>Select the Amenity and select date and time slot</li>
+                    <li>Click on “Book Now”</li>
+                </ul>
+                <p><b> How to make payment for a paid amenity?</b></p>
+                <ul>
+                  <li>Click on “Community” tab on the app screen</li>
+                  <li>Click on “Amenities”</li>
+                  <li>Click on “Book Amenity” present at the bottom of the app screen</li>
+                  <li>Select the Amenity and select date and time slot</li>
+                  <li>Click on “Proceed to Payment”</li>
+                  <li>Select the Payment Type UPI/ PayU/ RazorPay/ I will pay later</li>
+                  <li>Click on “Book Now” </li>
+                </ul>   
+              
+              </div>
+            </cdk-accordion-item>
+          </cdk-accordion>
+
+          <cdk-accordion class="example-accordion">
+            <cdk-accordion-item
+          *ngFor="let item of items; let index = index;"
+          #accordionItem="cdkAccordionItem"
+          class="example-accordion-item"
+          role="button"
+          tabindex="0"
+          [attr.id]="'accordion-header-' + index"
+          [attr.aria-expanded]="accordionItem.expanded"
+          [attr.aria-controls]="'accordion-body-' + index">
+          <div class="example-accordion-item-header" style="margin-left: 10px;" (click)="accordionItem.toggle()">
+            Delivery Management
+            &nbsp;<span class="example-accordion-item-description">
+              <mat-icon> {{ accordionItem.expanded ? ' remove ' : 'add' }}</mat-icon>
+                </span>
+              </div>
+              <div
+                class="example-accordion-item-body"
+                role="region"
+                [style.display]="accordionItem.expanded ? '' : 'none'"
+                [attr.id]="'accordion-body-' + index"
+                [attr.aria-labelledby]="'accordion-header-' + index">
+                    <h2>Delivery Management</h2>            
+                <p><b>If there is a parcel delivery for me, who will pick it up?</b></p>
+                <p>If you are on the premises, you can authorise the delivery executive’s entry by using the ‘accept’ button upon their arrival at the gate. If you are not available, you can raise a request for the guards to pick up the parcel at the gate and keep it away safely. You can collect it using the 6-digit code generated to your phone when the guard picks up the parcel.</p>
+                <p><b>Should I tell the delivery executive that they will be stopped at the gate?</b></p>
+                <p>All delivery executives are stopped by the guards at the gate. You need not tell the executive about the guards or the Mykommunity protocol.</p>
+                <p><b>How will the guards know the package belongs to me?</b></p>
+                <p>When the guards pick up a parcel that belongs to you, a 6-digit code is triggered to your phone. You can claim your parcel after giving said code to the guards.</p>
+                <p><b>Where can I pick/drop off my package?</b></p>
+                <p>The guards can pick up your parcels on your behalf. You can leave your ‘to be returned’ packages at the gate.</p>
+                <p><b>What happens in case of damage to my package?</b></p>
+                <p>We have taken many measures to ensure that your packages are not misplaced or damaged.</p>
+               
+                
+              
+              </div>
+            </cdk-accordion-item>
+          </cdk-accordion>
+          
+          
+        </div>

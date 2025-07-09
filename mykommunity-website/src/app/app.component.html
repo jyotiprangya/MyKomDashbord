@@ -1,0 +1,45 @@
+<!-- <div class="container-fluid">
+<nav class="navbar navbar-expand-lg " style="margin-left: 200px;">
+    <a href="#" class="navbar-brand">
+        <img src="../../../assets/LOGO 5.jpg" height="100" width="100">
+    </a>
+    <div>
+        <ul class="nav nav-tabs" style="margin-left: 150px;">
+            <li class="nav-item" (click)="home()"class="nav-link"><span class="bi bi-house-fill"></span> HOME</li>
+            <li class="nav-item" (click)="about()" class="nav-link"><span class="bi bi-file-person"></span> ABOUT US</li>
+            <li class="nav-item" (click)="features()" class="nav-link"><span class="bi bi-arrow-down-square-fill"></span> FEATURE</li>
+            <li class="nav-item" (click)="contact()" class="nav-link"><span class="bi bi-telephone-fill"></span> CONTACT US</li> 
+           
+        </ul>
+    </div>
+    <div style="margin-left: 150px;">
+           <a  (click)="login()" class="btn btn-danger"><span class="bi bi-person-circle"></span> LOGIN </a>
+         </div> 
+</nav>
+ -->
+
+<header class="navbar"  [ngClass]="{'navbar-fixed': isFixedNavbar}">
+    <div class="container" fxLayout="row wrap" fxLayoutAlign="start center">
+       <div class="navbar-mobile-top" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="start center">
+          <div class="navbar-logo">
+             <a routerLink="/">       
+                <img src="../assets/logo2.png" height="60" width="60">
+             </a>
+          </div>
+          <button mat-icon-button color="accent" class="navbar-toggle" (click)="toggleNavbar()">
+             <mat-icon>{{!navbarOpened ? 'menu': 'close'}}</mat-icon>
+          </button>
+       </div>
+       <div fxFlex class="top-navbar" >
+          <span fxFlex></span>
+          <a mat-button (click)="home()" class="navbartop-btn" style="font-family:serif; font-size: 20px;" ><strong>Home</strong></a>
+          <a mat-button  (click)="about()" class="navbartop-btn" style="font-family:serif; font-size: 20px;" ><strong>About Us</strong></a>
+          <a mat-button (click)="contact()"  class="navbartop-btn" style="font-family:serif; font-size: 20px;"><strong>Contact</strong></a>
+          <a mat-button (click)="features()" class="navbartop-btn" style="font-family:serif; font-size: 20px;"><strong>Services</strong></a>
+          <a mat-button (click)="login()"  class="navbartop-btn" style="font-family:serif; font-size: 20px;"><strong>LogIn</strong></a>
+
+           
+
+       </div>
+    </div>
+  </header>

@@ -1,0 +1,273 @@
+<div class="container-fluid ">
+    <div class="page_box p-3 mt-1" style="color: aliceblue;">
+      <span>      <button mat-raised-button class="btn btn-lg m-1 p-2" style="color: rgb(250, 242, 242);" (click)="back()"><mat-icon>fast_rewind</mat-icon></button>          
+      </span>
+      <span *ngFor = "let us of readData3">
+        Settle Dues of {{us.blockName}}-{{us.rentalUnitName}}
+      </span>
+
+    </div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+           
+          <div>
+               
+                
+  
+             
+              <!-- <form [formGroup]="form">
+
+            <div style="border: 1px solid; padding: 40px;margin: 10px;">
+                <div>
+                    <div  class="input-group">
+                      <mat-radio-group aria-label="Select an option" formControlName="paymentMode">
+                        <mat-radio-button  value="cash"  >Cash</mat-radio-button>
+                        <mat-radio-button class="ms-5" value="cheque" >Cheque</mat-radio-button>
+                        <mat-radio-button class="ms-5" value="EFT">EFT</mat-radio-button>
+                         <mat-radio-button class="ms-5" value="4">From Advance Amount</mat-radio-button> 
+
+
+                      </mat-radio-group> 
+                       
+                    </div>
+  
+                    
+                      <mat-form-field appearance="fill" style="width: 350px;">
+                        <mat-label>Receipt Date</mat-label>
+    
+                        <input  matInput [matDatepicker]="picker" formControlName="date">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                      <mat-form-field style="width: 350px; margin-left: 50px;" >
+                        <mat-label>Receiving Amount</mat-label>
+                        <input  matInput placeholder="Receiving Amount" formControlName="amount">
+                        <mat-error>This field is mandatory.</mat-error>
+                      </mat-form-field>
+                    <mat-form-field *ngIf="form.value.paymentMode === 'cheque'"  style="width: 350px; margin-left: 50px;" >
+                      <mat-label>Receiving Account</mat-label>
+                      
+                        <mat-select matNativeControl required formControlName="accountId"> 
+                          <mat-option value="0" disabled>--Select Account--</mat-option>
+                          <mat-option  *ngFor="let acc of readData2" value={{acc.accountId}}>{{acc.bankName}} - {{acc.accountNumber}}</mat-option>
+                        </mat-select>                
+                    </mat-form-field>
+                   <div>
+                    <mat-form-field  *ngIf="form.value.paymentMode === 'EFT'" style="width: 350px; margin-left: 50px;" >
+                      <mat-label>Receiving Account</mat-label>
+                      <mat-select matNativeControl required formControlName="accountId"> 
+                        <mat-option value="0" disabled>--Select Account--</mat-option>
+                        <mat-option  *ngFor="let acc of readData2" value={{acc.accountId}}>{{acc.bankName}} - {{acc.accountNumber}}</mat-option>
+                      </mat-select>  
+                    </mat-form-field>
+                    
+                       <mat-form-field *ngIf="form.value.paymentMode === 'cheque'" style="width: 350px; margin-left: 50px;" >
+                            <mat-label>Cheque Number</mat-label>
+                            <input  matInput placeholder="Enter cheque number" formControlName="chequeNo">
+                            <mat-error>This field is mandatory.</mat-error>
+                          </mat-form-field>
+                          <mat-form-field *ngIf="form.value.paymentMode === 'EFT'" style="width: 350px; margin-left: 50px;" >
+                            <mat-label>Reference Number</mat-label>
+                            <input  matInput placeholder="Enter Reference Number" formControlName="chequeNo">
+                            <mat-error>This field is mandatory.</mat-error>
+                          </mat-form-field>
+                          <mat-form-field *ngIf="form.value.paymentMode === 'cheque'" style="width: 250px; margin-left: 50px;" >
+                            <mat-label>Bank Name</mat-label>
+                            <input  matInput placeholder="Enter Bank Name">
+                            <mat-error>This field is mandatory.</mat-error>
+                          </mat-form-field>
+                        <mat-form-field *ngIf="form.value.paymentMode === 'cheque'" style="width: 250px; margin-left: 50px;" >
+                            <mat-label>Bank Branch</mat-label>
+                            <input  matInput placeholder="Enter Bank Branch">
+                            <mat-error>This field is mandatory.</mat-error>
+                          </mat-form-field>
+
+                   </div>
+                         <div>
+                          <mat-form-field style="width: 550px;" appearance="fill" >
+                            <label>Reference</label>
+                            <textarea  #message style="height: 30px;" matInput placeholder="Type here..."formControlName="reference">
+                                
+                            </textarea>
+
+                            <mat-error>This field is mandatory.</mat-error>
+                          </mat-form-field>
+                        <mat-form-field style="width: 550px; margin-left: 50px;" appearance="fill" >
+                            <label>Description</label>
+                            <textarea  #message style="height: 30px;" matInput placeholder="Type here..."formControlName="description">
+
+                            </textarea>
+                            <mat-error>This field is mandatory.</mat-error>
+                          </mat-form-field>
+                   
+                         </div>
+                  </div>
+            </div>
+        </form> -->
+            <h1>Payment Intimation Details:-</h1>
+            <!-- <div class="table-wrapper">
+
+         <table class="table table-bordered " >
+                <thead>
+                 <tr>
+                  <th scope="row">rentalTransactionUpdatedAt</th>
+                  <th scope="row">amount</th> 
+                  <th scope="row">billDate </th> 
+                  <th scope="row"> chargeName</th> 
+                  <th scope="row"> chequeBankBranch</th>
+  		  <th scope="row"> chequeBankName</th> 
+                  <th scope="row"> chequeDate</th> 
+                  <th scope="row">chequeNo </th>
+		  <th scope="row"> intimation sent on</th> 
+                  <th scope="row">description </th> 
+                  <th scope="row">dueAmount </th>
+		  <th scope="row">dueDate </th> 
+                  <th scope="row">paymentMode </th> 
+                  <th scope="row">reference </th>
+                  <th scope="row">attachment </th>  
+                   </tr>
+                      </thead>
+                         <tbody>
+                             <tr *ngFor = "let us of readData3" >
+                              <td>{{us.rentalTransactionUpdatedAt}}</td>
+                              <td>{{us.amount}}</td> 
+                              <td>{{us.billDate }}</td> 
+                              <td>{{us.chargeName}}</td> 
+                              <td>{{us.chequeBankBranch}}</td>
+                    <td>{{us.chequeBankName}}</td> 
+                              <td>{{us.chequeDate}}</td> 
+                              <td>{{us.chequeNo }}</td>
+                  <td>{{us.date}}</td>
+                              <td>{{us.description }}</td> 
+                              <td>{{us.dueAmount }}</td>
+                  <td>{{us.dueDate }}</td> 
+                              <td>{{us.paymentMode }}</td> 
+                              <td>{{us.reference }}</td>
+                 
+                              <td>{{us.attachment }}</td>
+                  
+                 
+               
+                </tr>
+                       </tbody>
+                       
+
+                        </table>
+            </div> -->
+                     <div style="display: flex; justify-content:space-between; margin: 30px;">
+                     <div style="display: flex; justify-content: flex-start;">
+                      <div>
+                        <div class="table2">
+                          <div class="table-row" >
+                            <div class="table-cell">Raised On</div>
+                            <div class="table-cell">Amount</div> 
+                            <div class="table-cell">Payment Mode </div> 
+                            <div class="table-cell"> Payment Date </div> 
+                            <div class="table-cell"> ChargeName </div> 
+
+                            <div class="table-cell">BillDate </div> 
+                            <div class="table-cell">DueDate </div> 
+
+                            <div class="table-cell"> ChequeBankBranch </div>
+                           <div class="table-cell"> ChequeBankName </div> 
+                            <div class="table-cell"> ChequeDate </div> 
+                            <div class="table-cell">ChequeNo  </div>
+                            <div class="table-cell">DueAmount  </div>
+                            <div class="table-cell">Description </div> 
+                            <div class="table-cell">Reference  </div>
+                            <div class="table-cell">Attachment  </div>
+          
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <div class="table">
+                          <div class="table-row" *ngFor = "let us of readData3">
+                            <div class="table-cell">:{{us.rentalTransactionUpdatedAt | date:'medium'}}</div>
+                            <div class="table-cell">:{{us.amount}}</div> 
+                            <div class="table-cell">:{{us.paymentMode }}</div> 
+                            <div class="table-cell">:{{us. date | date:'medium'}}</div> 
+
+                            <div class="table-cell">:{{us. chargeName}}</div> 
+
+                            <div class="table-cell">:{{us.billDate | date:'medium'}}</div> 
+                            <div class="table-cell">:{{us.dueDate | date:'medium'}}</div> 
+
+                            <div class="table-cell">:{{us. chequeBankBranch}}</div>
+                            <div class="table-cell">:{{us. chequeBankName}}</div> 
+                            <div class="table-cell">:{{us. chequeDate | date:'medium'}}</div> 
+                            <div class="table-cell">:{{us.chequeNo }}</div>
+                            <div class="table-cell">:{{us.dueAmount }}</div>
+                            <div class="table-cell">:{{us.description }}</div> 
+                            <div class="table-cell">:{{us.reference}}</div>
+                            <div class="table-cell">:
+                              <ng-container *ngIf="us.attachment" >
+                                <a [href]="us.attachment" style="color: blue;" target="_blank"><mat-icon>file_present</mat-icon>click here</a>
+                              </ng-container>
+                            </div>
+          
+                          </div>
+                        </div>
+                      </div>
+                     </div>
+
+
+                     <div>
+                      <!-- <div  *ngFor = "let us of readData3">
+                        <h4>
+                         Owner: {{us.firstName}} {{us.lastName}}
+                        </h4>
+                        <h4>Mobile:{{us.mobileNumber}}</h4>
+                        <h4>Settled Total Amount : {{us.amount}}</h4>
+         
+                       </div> -->
+                       <div style="display: flex; justify-content: flex-start;">
+                        <div>
+                          <div class="table2">
+                            <div class="table-row" >
+                              <div class="table-cell">Intimation Send By</div>
+                              <div class="table-cell">Mobile</div> 
+                              <div class="table-cell">Amount </div> 
+                              <div class="table-cell">Address </div> 
+                              <div class="table-cell">RentalUnitType </div> 
+
+
+                              
+            
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="table">
+                            <div class="table-row" *ngFor = "let us of readData3">
+                              <div class="table-cell">:{{us.firstName}} {{us.lastName}}</div>
+                              <div class="table-cell">:{{us.mobileNumber}}</div>
+                              <div class="table-cell">:{{us.amount}}</div>
+                              <div class="table-cell">:{{us.blockName}} - {{us.rentalUnitName}}  </div> 
+                              <div class="table-cell">:{{us.rentalUnitType}}</div> 
+
+                              
+            
+                            </div>
+                          </div>
+                        </div>
+                       </div>
+                     </div>
+                    </div>
+      
+                     <div *ngFor = "let us of readData3">
+                      <!-- <button class="btn btn-danger ms-1" (click)="receipt()">view</button> -->
+
+   <button class=" btn-group btn btn-primary ms-1" (click)="createReceipt(us.billingId,us.rentalUnitId,us.RentalTrasactionID)" >Create Receipt</button>
+  
+   <button class="btn btn-danger ms-1" (click)="cancelIntimation(us.billingId,us.RentalTrasactionID,us.rentalUnitId)">Cancel</button>
+
+   <button  class="btn btn-danger ms-1"  *ngIf="us.paymentMode === 'cheque'" (click)="checkBounce(us.billingId,us.RentalTrasactionID,us.rentalUnitId)">Cheque Bounce</button>
+</div>
+              </div>
+
+             
+              
+            </div>
+            </div>

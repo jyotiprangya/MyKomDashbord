@@ -1,0 +1,53 @@
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span>     
+         <button mat-raised-button class="btn btn-lg m-1 p-2" style="color: rgb(250, 242, 242);" (click)="back()"><mat-icon>fast_rewind</mat-icon></button>          
+      </span>
+      Vendor Report
+
+    </div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+
+    
+<div style="display: flex; justify-content: space-between; font-size: 0.5rem;">
+    <h1>{{vendorName}} Report from <b>{{startDate | date:'medium'}}</b> to <b>{{endDate | date:'medium'}}</b></h1>
+   
+</div>
+
+   
+<div class="table-wrapper">
+
+    <table class="table table-bordered" align="center" width="97%">
+        <thead>
+            <tr>
+                <th>Invoice Number</th>
+                <th>Bill Date </th>
+                <th>Expension Creation Date</th>
+                <th>Due Date</th>
+                <th>Description</th>
+                <th>Invoice Amount</th>
+                <th>Advance Paid</th>
+                <th>Dues Balance</th>
+                <th>Advance Balance</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr *ngFor = "let us of data">
+                <td>{{us.invoiceNumber}}</td>
+                <td>{{us.billDate}}</td>
+                <td>{{us.expensionCreationDate}}</td>
+                <td>{{us.dueDate}}</td>
+                <td>{{us.description}}</td>
+                <td>{{us.invoiceAmount}}</td>
+                <td>{{us.advancePaid}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+       </table>
+            </div>
+</div>
+</div>

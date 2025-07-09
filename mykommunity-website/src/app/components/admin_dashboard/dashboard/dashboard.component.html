@@ -1,0 +1,77 @@
+<div fxLayout="row wrap">
+    <div fxFlex="100" fxFlex.gt-sm="25" fxFlex.sm="50" (click)="State()">
+      <mat-card>
+        <mat-card-title fxLayoutAlign="start center">
+          <small class="text-muted" >State</small>
+          <span fxFlex></span>
+          <mat-chip
+          class="icon-chip" 
+          color="primary" 
+          selected="true"> <mat-icon>apartment</mat-icon></mat-chip>
+        </mat-card-title>
+        <mat-card-content >
+          <h3 class="m-0 font-normal">{{readstate.length}}</h3>
+         
+          <small class="text-muted">Monthly</small>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div fxFlex="100" fxFlex.gt-sm="25" fxFlex.sm="50" (click)="Community()">
+        <mat-card>
+          <mat-card-title>
+            <small class="text-muted" >Community</small>
+            <span fxFlex></span>
+            <mat-chip
+            class="icon-chip" 
+            color="accent" 
+            selected="true"> <mat-icon>people</mat-icon></mat-chip>
+          </mat-card-title>
+          <mat-card-content >
+            <h3 class="m-0 font-normal">{{readCom.length}}</h3>
+           
+            <small class="text-muted">Monthly</small>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    
+      <div fxFlex="100" fxFlex.gt-sm="25" fxFlex.sm="50" (click)="City()">
+        <mat-card>
+          <mat-card-title>
+            <small class="text-muted" >City</small>
+            <span fxFlex></span>
+            <mat-chip
+            class="icon-chip" 
+            color="accent" 
+            selected="true"><mat-icon>location_city</mat-icon></mat-chip>
+          </mat-card-title>
+          <mat-card-content>
+            <h3 class="m-0 font-normal">{{readCity.length}}</h3>
+            <small class="text-muted">Monthly</small>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div fxFlex="100" fxFlex.gt-sm="25" fxFlex.sm="50" (click)="User()" >
+        <mat-card>
+          <mat-card-title>
+            <small class="text-muted" >Society Supervisor</small>
+            <span fxFlex></span>
+            <mat-chip
+            class="icon-chip" 
+            color="warn" 
+            selected="true"><mat-icon>supervised_user_circle</mat-icon></mat-chip>
+          </mat-card-title>
+          <mat-card-content>
+            <h3 class="m-0 font-normal">{{readadmin.length}}</h3>
+            <small class="text-muted">Monthly</small>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+
+    
+
+   
+    
+   

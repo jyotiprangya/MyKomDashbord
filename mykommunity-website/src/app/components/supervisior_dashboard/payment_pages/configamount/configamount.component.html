@@ -1,0 +1,144 @@
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span>     
+         <button mat-raised-button class="btn btn-lg m-1 p-2" style="color: rgb(250, 242, 242);" (click)="back()"><mat-icon>fast_rewind</mat-icon></button>          
+      </span>
+     Edit Amount
+
+    </div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+           
+
+            <div >
+                <mat-toolbar class="input-group">
+              <div>
+                <h2>Maintainace Charges</h2>
+              </div>
+            </mat-toolbar>
+           
+              <form [formGroup]="form">
+                 <div >
+                      <div style="border: 1px solid rgb(211, 202, 202); background-color: rgba(211, 202, 202,0.3);" >
+
+                       <div style="display: flex; justify-content: space-between;">
+                        <div style="margin: 20px;">
+                            
+                            <mat-radio-group aria-label="Select an option">
+                                <mat-radio-button  value="1" (click)="showScreen = !showScreen">Same rate for all</mat-radio-button>
+                                <mat-radio-button class="ms-5" value="2" (click)="showScreen2 = !showScreen2">Rate based on Area</mat-radio-button>
+                                <mat-radio-button class="ms-5" value="3" (click)="showScreen3 = !showScreen3">Rate Based on House type</mat-radio-button>
+
+                              </mat-radio-group>
+                        </div>
+                        <div>
+                            <button mat-raised-button class="btn btn-primary m-1 ">Download</button>
+                            <button mat-raised-button class="btn btn-success m-1">Upload</button>
+                            <button mat-raised-button class="btn btn-primary m-1 ">Save</button>
+                        </div>
+                       </div>
+                        
+
+                        <div *ngIf="showScreen">
+                            <mat-form-field appearance="standard"  class="full-width">
+                                <mat-label>Rate</mat-label>
+                                <input matInput maxlength="15" inputmode="tel"  formControlName="name" #nameInput>
+                                
+                            </mat-form-field> 
+
+                        </div>
+                        <div *ngIf="showScreen2">
+                          <mat-form-field appearance="standard"  class="full-width">
+                            <mat-label>Rate per Squarefeet</mat-label>
+                            <input matInput maxlength="15" inputmode="tel"  formControlName="name" #nameInput>
+                            
+                        </mat-form-field> 
+                        </div>
+                        <div *ngIf="showScreen3">
+                          <mat-form-field appearance="standard"  class="full-width">
+                            <mat-label>1 BHK</mat-label>
+                            <input matInput maxlength="15" inputmode="tel"  formControlName="name" #nameInput>
+                            
+                        </mat-form-field> 
+                        <mat-form-field appearance="standard"  class="full-width">
+                          <mat-label>2 BHK</mat-label>
+                          <input matInput maxlength="15" inputmode="tel"  formControlName="name" #nameInput>
+                          
+                      </mat-form-field> 
+                      <mat-form-field appearance="standard"  class="full-width">
+                        <mat-label>3 BHK</mat-label>
+                        <input matInput maxlength="15" inputmode="tel"  formControlName="name" #nameInput>
+                        
+                    </mat-form-field> 
+                        </div>
+                        <mat-form-field appearance="fill"  class="full-width">
+                            <mat-label>Description</mat-label>
+                            <input matInput maxlength="15" inputmode="tel" placeholder="Enter Description" formControlName="name" #nameInput>
+                            <mat-error>Description is required</mat-error>
+                            
+                        </mat-form-field> 
+                        <span  class="add-bottom-padding">
+                            <mat-checkbox >Round Off generated charge of each house to nearest amount</mat-checkbox>
+                          </span> &nbsp;
+                          <button mat-raised-button class="btn btn-primary m-1">Submit</button>
+                          </div>
+                          <div>
+                            
+
+                          </div>
+
+<div>
+    <mat-toolbar class="input-group">
+        
+      </mat-toolbar>
+      <div class="table-wrapper">
+
+         <table class="table table-bordered ">
+        <thead>
+         <tr>
+          <th scope="col" >House</th>
+          <th scope="col">Resident Type</th> 
+          <th scope="col" >House Type(BHK)</th>
+          <th scope="col">Area</th>
+          <th scope="col">Rate</th>
+
+           <th scope="col" >Total Amount</th>
+          <th scope="col">Description</th> 
+           </tr>
+              </thead>
+                 <tbody>
+                    
+        <tr >
+           <td>Tower A -111</td>
+           <td>Owner</td>
+           <td>Apartment</td>
+           <td>550</td>
+           <td>2.5000</td>
+           <td>1375.00</td>
+           <td></td>
+
+            </tr>
+            <tr >
+                <td>Tower A -222</td>
+                <td>Owner</td>
+                <td>Apartment</td>
+                <td>550</td>
+                <td>2.5000</td>
+                <td>1375.00</td>
+                <td></td>
+                 </tr>
+                 </tbody>
+                </table>
+            </div>
+     
+
+</div>
+                      
+        
+              </div>
+              </form>
+              </div>
+   
+            </div>
+            </div>

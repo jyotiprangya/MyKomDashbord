@@ -1,0 +1,208 @@
+.container-fluid{
+    height: 500px;
+}
+.page {
+    color: white;
+    padding: 0 1rem;
+    background: #f1f5f9;
+    width: 1050px;
+}
+.page_box {
+    min-height: fit-content;
+    background: #0f172a;
+    margin: 0 -1rem;
+    font-size: 20px;
+    position: relative;
+}
+ul{
+    list-style: none;
+}
+.display{
+    display: flex;
+    justify-content: space-around;
+    
+}
+/* In your component's CSS file (e.g., society-details.component.css) */
+
+.society-details-container {
+    padding: 20px;
+    background-color: #f9f9f9; /* Optional: Background color */
+    border-radius: 8px; /* Optional: Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Shadow effect */
+  }
+  
+  .header-divider-container {
+    display: flex; /* Use flexbox layout */
+    align-items: center; /* Center align items vertically */
+    justify-content: space-between; /* Space between header and divider */
+    margin-bottom: 10px; /* Space between header/divider and content */
+  }
+  
+  .society-header {
+    margin: 0; /* Remove default margins */
+    font-size: 24px; /* Font size for header */
+  }
+  
+  .divider {
+    flex: 1; /* Allow the divider to take available space */
+    height: 2px; /* Height of the line */
+    background-color: #007BFF; /* Color of the line */
+    margin-left: 20px; /* Space between header and line */
+  }
+  
+  .details-container {
+    display: flex; /* Use flexbox layout for details and images */
+    justify-content: space-between; /* Space between image and details */
+  }
+  
+  .image-container {
+    flex: 1; /* Allow image container to take up space */
+    margin-right: 20px; /* Space between image and details */
+  }
+  
+  .society-image {
+    width: 200px; /* Make images responsive */
+    height:200px; /* Maintain aspect ratio */
+    border-radius: 100px; /* Optional: Rounded corners for images */
+  }
+  .stars {
+    display: inline-block;
+    font-size: 14px;
+    color: gray; /* Default color for empty stars */
+  }
+  
+  .stars span {
+    cursor: pointer;
+    padding: 0 5px;
+    font-size: 14px; /* Adjust this size as needed */
+    color: #758286;
+  }
+  
+  .stars span.filled {
+    color: rgb(241, 205, 1); /* Color for filled stars */
+  }
+  
+  
+  .details {
+    flex: 2; /* Allow details to take more space */
+    font-size: 14px; /* Font size for details */
+    display: grid; /* Use grid layout */
+    grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+    gap: 10px; /* Space between grid items */
+  }
+  
+  .detail-item {
+    padding: 10px; /* Padding for each detail item */
+    border-radius: 5px; /* Optional: Rounded corners for detail items */
+  }
+  
+.page_box_content {
+    min-height: calc(100vh - 170px);
+    border-radius: 10px;
+    margin-top: -2rem;
+    background: white;
+    color: black;
+    font-size: 1.5rem;
+}
+.page_box_content_data{
+    top: 100%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+}
+/* Container for the list */
+.households-list {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 0 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .not_assigned{
+    color: gray;
+  }
+  
+  /* Title of the list */
+
+  
+  /* Individual household card */
+  .household-card {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  /* Hover effect for the cards */
+  .household-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Household block and floor details */
+  .block-floor {
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #0f172a;
+  }
+  
+  /* Rental unit details */
+  .rental-unit {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #555;
+  }
+  
+  /* Add responsiveness for mobile */
+  @media (max-width: 600px) {
+    .households-list {
+      padding: 0 10px;
+    }
+  
+    .household-card {
+      padding: 10px;
+    }
+  
+    .block-floor {
+      font-size: 0.6rem;
+    }
+  
+    .rental-unit {
+      font-size: 0.6rem;
+    }
+  }
+  
+
+  @media screen and (orientation: portrait) {
+    .container-fluid {
+        width: max-content;
+    }
+  
+    .table-wrapper {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+  
+    .display {
+        display: flex;
+        flex-direction: column;
+    }
+  
+    .page {
+        width: 100%; /* Full width in portrait */
+        padding: 0; /* Remove padding for better fit */
+    }
+  
+    .society-image {
+        width: 40%; /* Image takes full width in portrait */
+    }
+  
+    .details {
+        grid-template-columns: 1fr; /* Single column grid for smaller screens */
+    }
+  }
+  

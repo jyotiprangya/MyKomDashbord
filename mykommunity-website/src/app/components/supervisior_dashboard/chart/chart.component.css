@@ -1,0 +1,104 @@
+
+*{
+  margin-left: 0.2rem;
+
+}
+.top-stats {
+  grid-column: span 2;
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding-bottom: 10px;
+}
+
+.stat-card {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.icon-container {
+  width: 50px;
+  height: 50px;
+  background-color: #f0f4f8;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.stat-info h4 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.stat-info p {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+.vertical-divider {
+  width: 1px;
+  height: 50px;
+  background-color: #ddd;
+  margin: 0 15px;
+}
+.custom-card {
+    display: inline-block;
+    max-width: fit-content;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    border-spacing: 10px;
+    overflow-x: auto;
+  }
+  .chart-card{
+    height: 200px;
+    width: 200px;
+  }
+  .bar-card{
+    height: auto;
+    width: auto;
+  }
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(odd) {
+    background-color: #d6eeeea1;
+  }
+  .helpdesk{
+    display:flex;
+justify-content: space-around;
+
+
+}
+.tabledetails {
+padding: 3rem;}
+
+  @media screen and (orientation: portrait){
+    /* .tabledetails {
+         display: none;
+    } */
+    .custom-card{
+      
+      display: none;
+    }
+    .helpdesk{
+      display:flex;
+      flex-direction: column;
+    }
+    .table-wrapper {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+  }
+ 
+  

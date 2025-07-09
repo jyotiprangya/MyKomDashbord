@@ -1,0 +1,163 @@
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span>      <button mat-raised-button class="btn btn-lg m-1 p-2" style="color: rgb(250, 242, 242);" (click)="back()"><mat-icon>fast_rewind</mat-icon></button>          
+      </span>
+      Dues
+    </div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+            <!-- <div style="display: flex; justify-content: end;">
+                <button mat-raised-button class="btn m-1 p-2" style="background-color: #1e293b; color: white;">Download Bill Statement</button>
+               
+              </div> -->
+              
+          <div style="display: flex; justify-content: center;">
+            <form [formGroup]="form">
+            <mat-form-field appearance="fill" class="full-width"   >
+              <mat-label>Select House</mat-label>
+              <mat-select formControlName="rentalUnitId" >
+             
+                <mat-option *ngFor="let flat of readData2" [value]="flat.id"> {{ flat.blockName }} - {{ flat.name }}</mat-option>
+    
+          </mat-select>
+          <mat-error>Select House</mat-error>
+          </mat-form-field>
+        </form>
+
+            <span>       
+                   <button class="btn mt-3" style="background-color: #1e293b; color: white;" (click)="showdues()"  [disabled]="!form.valid">Show Dues</button>
+            </span>
+
+            </div>
+            <h2>All Houses</h2>
+
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+               
+                <div>
+                    <table>
+                        
+                        <tr>
+                          <td>
+                            <h1>Total Dues</h1>
+                            <p>
+                                Total Amount Due
+                            </p>
+                        </td>
+                          <td>0</td>
+                          
+
+                        </tr>
+                        <tr>
+                            <td>
+                              <h1>Over Dues</h1>
+                              <p>
+                                  Amount not paid by due date
+                              </p>
+                          </td>
+                            <td style="color: red;">0</td>
+                            
+  
+                          </tr> <tr>
+                            <td>
+                              <h1>Security Deposite</h1>
+                              <p>
+                                  Total Security Deposite
+                              </p>
+                          </td>
+                            <td>0</td>
+                            
+  
+                          </tr> 
+                         </table>
+            </div>
+                      
+                </div>
+                <!-- <div class="Dues">
+                    <div >
+                        <h4>Send Email & SMS to All Houses</h4>
+                    </div>
+                    <div >
+                        Dues Statement        <button style="margin-left: 100px;" class="btn btn-success" (click)="open(content)"> Send</button> Last Seen on : 01-01-2023 3:23pm
+                    </div>
+                    <div>
+                        Auto dues Statement sending: Enabled Day 15 of every month         <button  style="margin-left: 100px;" class="btn btn-warning" (click)="open(content)"> Change</button> 
+                    </div> <div>
+                        Dues Reminder         <button  style="margin-left: 100px;" class="btn btn-success"> Send</button> Last Seen on : 01-01-2023 3:23pm
+                    </div> <div>
+                        Dues Statement         <button  style="margin-left: 100px;" class="btn btn-success"> Send</button> Last Seen on : 01-01-2023 3:23pm
+                    </div>
+                </div>
+            </div> -->
+
+            <div fxLayoutAlign="center center" fxFlexFill>
+
+                <ng-template class="modal" #content let-modal >
+                  
+                  <div class="modal-header" style="padding: 0px;">
+                    <mat-toolbar class="btn btn-primary">
+                    <h2 class="modal-title" id="modal-basic-title">Dues Reminder</h2>
+                    <button  type="button" class=" btn btn-close " aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                  </mat-toolbar>
+                  </div>
+                  <div class="modal-body">
+                    <mat-card fxFlex="100" >
+                    
+                  
+                      <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form" >
+                      <div>
+                        <mat-checkbox></mat-checkbox>&nbsp;&nbsp;&nbsp;&nbsp; SMS &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 
+                        <mat-checkbox></mat-checkbox>&nbsp;&nbsp;&nbsp;&nbsp; Email
+
+                      </div>  
+                       
+                      <div style=" margin-top: 10px;" >
+
+                        
+                        <mat-form-field appearance="fill" style="width: 200px;">
+                          <mat-label>Frequency</mat-label>
+                          <select matNativeControl required formControlName="name"> 
+                            <option value="DELIVERY">Montly</option>
+                            <option value="CAB">Daily</option>
+                            <option value="VISITING_HELP">Yearly</option>
+                          </select>
+                        </mat-form-field>
+                     
+                      
+                      <mat-form-field appearance="fill"  style="width: 180px;">
+                        <mat-label></mat-label>
+                        <select matNativeControl  formControlName="name"> 
+                          <option value="DELIVERY">1</option>
+                          <option value="CAB">2</option>
+                          <option value="VISITING_HELP">3</option>
+                        </select>
+                      </mat-form-field>
+
+                      <mat-form-field  appearance="fill" class="full-width" >
+                        <mat-label>Date</mat-label>
+
+                        <input  matInput  placeholder="Date*" formControlName="name">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+
+                       
+                  </div>
+                                   
+                  </form>
+                </mat-card>
+                  </div>
+                
+                  <div class="modal-footer">
+                    <button (click)="modal.close('Save click')"  class=" btn-group btn btn-primary ">Save</button>
+                    <button type="submit" class="btn btn-danger"  (click)="modal.close('Save click')">Cancel</button>
+                  </div>
+                  
+                </ng-template>
+                
+                </div>
+
+
+            
+            </div>
+            </div>

@@ -1,0 +1,110 @@
+
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span  class="btn" style="color: white;" (click)="back()"><mat-icon>fast_rewind</mat-icon> </span>  
+      Vendor
+    </div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+  </div>
+  <button mat-stroked-button class="btn m-1 p-1" style="background-color: #1e293b; color: white;" (click)="open(content)"><mat-icon>add_circle_outline</mat-icon> Add Vendor</button>
+   <div class="table-wrapper">
+
+         <table class="table table-bordered   ">
+      <thead>
+      <tr>
+        <th scope="col">Category</th>
+        <th scope="col"> Name</th>
+        <th scope="col"> Created on</th>
+        <th scope="col">Edit</th>
+       
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor = "let us of readData |
+        paginate: { 
+          itemsPerPage:15, 
+          currentPage:page,
+          totalItems:totalLength
+                        }">
+          <th scope="row">{{us.category}}</th>
+        <td>{{us.name}}</td>
+        <td>{{us.createdAt | date:'medium'}}</td>
+        
+        <td>
+          <mat-icon color="warn" (click)="deleteID(us)">delete</mat-icon>
+        
+          </td>
+        
+      </tr>
+      
+      </tbody>
+      
+       </table>
+            </div>
+    <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+    <div fxLayoutAlign="center center" fxFlexFill>
+
+      <ng-template class="modal" #content let-modal style="background-color: rgba(196, 200, 167, 0.5);">
+        
+        <div class="modal-header" style="padding: 0px;">
+          <mat-toolbar class="btn" style="background-color: #1e293b; color: white;">
+            <h2 class="modal-title" id="modal-basic-title">Add Vendor</h2>
+          <button  type="button" class=" btn btn-close btn-danger" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </mat-toolbar>
+        </div>
+        <div class="modal-body" style="background-color: rgba(192, 222, 230, 0.5);" >
+          <mat-card fxFlex="100" >
+          
+        
+            <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form" >
+              
+              <!-- <mat-form-field appearance="standard"  class="full-width">
+                <mat-label>Vendor Category</mat-label>
+                <input matInput maxlength="15" inputmode="tel" placeholder="Enter Category" formControlName="category" #nameInput>
+                <mat-error>Vendor Category is required</mat-error>
+                
+            </mat-form-field> -->
+
+            <!-- <mat-form-field appearance="standard" formControlName="category">
+              <mat-label>Vendor Category</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let category of category" [value]="category.value">
+                  {{category.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> -->
+
+<mat-form-field appearance="standard"  class="full-width">
+  <mat-label>Vendor Category</mat-label>
+  <select matNativeControl required formControlName="category"> 
+    <option value="DELIVERY">DELIVERY</option>
+    <option value="CAB">CAB</option>
+    <option value="VISITING_HELP">VISITING_HELP</option>
+  </select>
+</mat-form-field>
+
+            <mat-form-field appearance="standard"  class="full-width">
+                <mat-label>Vendor Name</mat-label>
+                <input matInput maxlength="15" inputmode="tel" placeholder="Enter Vendor Name" formControlName="name" #nameInput>
+                <mat-error>Vendor Name is required</mat-error>
+                
+            </mat-form-field>
+             
+             
+                               
+        </form>
+      </mat-card>
+        </div>
+      
+        <div class="modal-footer">
+          <button (click)="saveDetails(form)"  (click)="modal.close('Save click')"  mat-stroked-button class="btn" style="background-color: #1e293b; color: white;" [disabled]="!form.valid">Add Vendor</button>
+          <button type="submit" class="btn btn-danger"  (click)="modal.close('Save click')">Cancel</button>
+        </div>
+        
+      </ng-template>
+      
+      </div> 
+    
+  </div>
+</div>

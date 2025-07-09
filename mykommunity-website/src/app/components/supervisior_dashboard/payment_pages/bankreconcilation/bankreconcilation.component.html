@@ -1,0 +1,49 @@
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span>     
+         <button mat-raised-button class="btn btn-lg m-1 p-2" style="color: rgb(250, 242, 242);" (click)="back()"><mat-icon>fast_rewind</mat-icon></button>          
+      </span>
+      Bank Reconcilation
+
+    </div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+           
+            <div class="vendor">
+                
+
+                <mat-form-field appearance="fill" class="full-width" >
+                    <mat-label>Account</mat-label> 
+
+                    <mat-select matNativeControl required formControlName="vendorId"> 
+                      <mat-option value="0" disabled>--Select Account--</mat-option>
+                      <mat-option  *ngFor="let acc of readData2" value={{acc.accountId}}>{{acc.bankName}} - {{acc.accountNumber}}</mat-option>
+                    </mat-select>
+
+                  </mat-form-field>
+                  <mat-form-field appearance="fill" class="full-width" >
+                    <mat-label>From Date</mat-label>
+
+                    <input  matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                  <mat-form-field appearance="fill" class="full-width">
+                    <mat-label>To Date</mat-label>
+
+                    <input  matInput [matDatepicker]="picker" >
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+              </div>
+              <div class="vendorbutton">
+                <button class="btn btn-success active m-3" (click)="bankreconcilation()"> View</button>
+             <button class="btn btn-warning active m-3"> Upload</button>
+             <button class="btn btn-primary active m-3"> Download</button>
+
+              </div>
+
+
+            </div>
+            </div>

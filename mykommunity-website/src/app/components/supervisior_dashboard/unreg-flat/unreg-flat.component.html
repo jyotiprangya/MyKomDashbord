@@ -1,0 +1,61 @@
+
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span mat-stroked-button class="btn mt-1 p-2" style="color: white;" (click)="back()"><mat-icon>fast_rewind</mat-icon> </span>        
+  
+      UnRegistered User Flat</div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+  </div>
+  <div class="input-group" style="justify-content: center;">
+
+    <button class="btn" style="background-color: #1e293b; color: white;">Search: </button>
+                <input type="text" placeholder="Search..." style="width: 30vw;"
+                [(ngModel)]="searchFlat">
+                <button class="btn" style="background-color: #1e293b; color: white;"><span><mat-icon >search</mat-icon></span></button>
+    </div>
+    <button mat-stroked-button class="btn btn-success m-3 p-1" (click)="flat()" ><mat-icon>list</mat-icon> Total Flat List</button>
+
+  <div class="table-wrapper">
+
+         <table class="table table-bordered   ">
+    <thead>
+    <tr>
+      <th scope="col">Type</th>
+      <th scope="col">Block Name</th>
+      <th scope="col">Floor</th>  
+      <th scope="col">Flat Number</th> 
+      <th scope="col">Active Status</th> 
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor = "let us of readData | flatfilter: searchFlat |
+      paginate: { 
+        itemsPerPage: 20, 
+        currentPage:page,
+        totalItems:totalLength
+                      }">
+        <th scope="row">{{us.type}}</th>
+      <td>{{us.blockName}}</td>
+      <td>{{us.floorName}}</td>
+      <td>{{us.name}}</td>
+      <td>
+        <button mat-stroked-button 
+        style="border: none; background-color: rgba(80, 195, 23, 0.138); font-size: small;"
+          [style.color]="us.disabled == false ? 'green' : 'rgb(195, 135, 23)'">{{map[us.disabled]}}
+          <mat-icon style="font-size: x-large ;">{{ us.disabled == false ? 'check_circle' : 'error'}}</mat-icon>
+        </button>
+      </td>
+      
+    </tr>
+    
+    </tbody>
+    
+     </table>
+            </div>
+
+    <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+  
+     
+    </div>
+    </div>  

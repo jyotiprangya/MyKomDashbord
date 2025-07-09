@@ -1,0 +1,494 @@
+<div class="dashboard-container">
+  <div class="top-stats">
+    <div class="stat-card">
+      <div class="icon-container">
+        <mat-icon color="primary">account_balance</mat-icon>
+      </div>
+      <!-- Divider -->
+      <div class="vertical-divider"></div>
+      <div class="stat-info">
+        <h4>Society Account</h4>
+        <p>{{readData2.length}}</p>
+      </div>
+    </div>
+  
+    <div class="stat-card">
+      <div class="icon-container">
+        <mat-icon color="accent">bubble_chart</mat-icon>
+      </div>
+      <!-- Divider -->
+      <div class="vertical-divider"></div>
+      <div class="stat-info">
+        <h4>Vendor</h4>
+        <p>{{readData.length}}</p>
+      </div>
+    </div>
+  
+    <div class="stat-card">
+      <div class="icon-container">
+        <mat-icon color="warn">savings</mat-icon>
+      </div>
+      <!-- Divider -->
+      <div class="vertical-divider"></div>
+      <div class="stat-info">
+        <h4>Budget</h4>
+        <p>{{readData3.length}}</p>
+      </div>
+    </div>
+  
+    <div class="stat-card">
+      <div class="icon-container">
+        <mat-icon color="primary">balance</mat-icon>
+      </div>
+      <!-- Divider -->
+      <div class="vertical-divider"></div>
+      <div class="stat-info">
+        <h4>General Ledger</h4>
+        <p>{{readData4.length}}</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="icon-container">
+        <mat-icon color="primary">real_estate_agent</mat-icon>
+      </div>
+      <!-- Divider -->
+      <div class="vertical-divider"></div>
+      <div class="stat-info">
+        <h4>Chart Of Account</h4>
+        <p>{{readData5.length}}</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="charts-section">
+    <div class="chart-container">
+      <mat-card >
+    
+      
+        <div style="display: flex; justify-content: space-between;">
+          <div style="color: darkcyan;"><mat-icon >balance</mat-icon> </div>
+      
+          <h2 style="color: darkcyan; margin-left: 70px;">Chart Of Account</h2>
+        </div>
+      
+        <div class="m-2 p-2">
+          <tr>
+            <td style="color: green; font-weight:500;">Total Credit</td>
+            <td style="color: rgb(211, 169, 32); font-weight:500;">Total Debit</td>
+  
+          </tr>
+          <tr>
+            <td>0</td>
+  
+            <td>0</td>
+  
+          </tr>
+         
+         
+        </div>
+       <div style=" display: flex;justify-content: end;">
+        <button mat-stroked-button class="btn" style="color: darkcyan; " (click)="COA()">View Details</button>
+      
+       </div>
+      </mat-card>
+    </div>
+    <div class="chart-container">
+      <mat-card >
+    
+      
+        <div style="display: flex; justify-content: space-between;">
+          <div style="color: darkcyan;"><mat-icon>savings</mat-icon> </div>
+      
+          <h2 style="color: darkcyan; margin-left: 70px;">Budget</h2>
+        </div>
+      
+        <div class="m-2 p-2">
+          <tr>
+            <td style="color: green; font-weight:500;">Total Credit</td>
+            <td style="color: rgb(211, 169, 32); font-weight:500;">Total Debit</td>
+  
+          </tr>
+          <tr>
+            <td>0</td>
+  
+            <td>0</td>
+  
+          </tr>
+         
+         
+        </div>
+       <div style=" display: flex;justify-content: end;">
+        <button mat-stroked-button class="btn" style="color: darkcyan; " (click)="budget()">View Details</button>
+      
+       </div>
+      </mat-card>
+    </div>
+    
+      <div *ngFor="let us of readData2">
+      <div class="chart-container" >
+        
+          <mat-card >
+    
+      
+          <div style="display: flex; justify-content: space-between;">
+            <div style="color: darkcyan;"><mat-icon>currency_rupee</mat-icon> </div>
+        
+            <h2 style="color: darkcyan; margin-left: 70px;">{{us.bankName}}</h2>
+          </div>
+        
+          <div class="m-2 p-2" >
+            <tr>
+              <td style="color: green; font-weight:500;">Total Credit</td>
+              <td style="color: rgb(211, 169, 32); font-weight:500;">Total Debit</td>
+    
+            </tr>
+            <tr>
+              <td >{{us.credit}}</td>
+              <td>{{us.debit}}</td>
+    
+            </tr>
+            
+          </div>
+         <div style=" display: flex;justify-content: end;">
+          <button mat-stroked-button class="btn" style="color: darkcyan; " (click)="account()">View Details</button>
+        
+         </div>
+        </mat-card>
+        </div>
+      </div>
+  </div>
+  <div class="chart-container">
+    <mat-card>
+  
+  
+      <div style="display: flex; justify-content: space-between;">
+        <div style="color: darkcyan; font-size: 50px;"><mat-icon>paid</mat-icon> </div>
+    
+        <h2 style="color: darkcyan; margin-left: 70px;" >Payment Status</h2>
+      </div>
+    
+      <div  (click)="user()">
+        <div class="chart-card">
+          <canvas class="chart" id="paymentChart"></canvas>
+        
+        </div>
+      </div>
+    
+     <div style=" display: flex;justify-content: end;">
+      <button mat-stroked-button class="btn" style="color: darkcyan; " (click)="payment()">View Details</button>
+    
+     </div>
+    </mat-card>
+    </div>
+
+  <!-- <div class="performance-charts">
+    <div fxLayout="row wrap" height="50" >
+  
+  
+      <div fxFlex="50" fxFlex.gt-sm="30" fxFlex.sm="50" style="padding: 10px;" >
+      
+      <mat-card >
+    
+      
+          <div style="display: flex; justify-content: space-between;">
+            <div style="color: darkcyan;"><mat-icon >balance</mat-icon> </div>
+        
+            <h2 style="color: darkcyan; margin-left: 70px;">Chart Of Account</h2>
+          </div>
+        
+          <div class="m-2 p-2">
+            <tr>
+              <td style="color: green; font-weight:500;">Total Credit</td>
+              <td style="color: rgb(211, 169, 32); font-weight:500;">Total Debit</td>
+    
+            </tr>
+            <tr>
+              <td>0</td>
+    
+              <td>0</td>
+    
+            </tr>
+           
+           
+          </div>
+         <div style=" display: flex;justify-content: end;">
+          <button mat-stroked-button class="btn" style="color: darkcyan; " (click)="COA()">View Details</button>
+        
+         </div>
+        </mat-card>
+      </div>
+      <div fxFlex="100" fxFlex.gt-sm="30" fxFlex.sm="50" style="padding: 10px;" >
+      
+      <mat-card >
+    
+      
+          <div style="display: flex; justify-content: space-between;">
+            <div style="color: darkcyan;"><mat-icon>savings</mat-icon> </div>
+        
+            <h2 style="color: darkcyan; margin-left: 70px;">Budget</h2>
+          </div>
+        
+          <div class="m-2 p-2">
+            <tr>
+              <td style="color: green; font-weight:500;">Total Credit</td>
+              <td style="color: rgb(211, 169, 32); font-weight:500;">Total Debit</td>
+    
+            </tr>
+            <tr>
+              <td>0</td>
+    
+              <td>0</td>
+    
+            </tr>
+           
+           
+          </div>
+         <div style=" display: flex;justify-content: end;">
+          <button mat-stroked-button class="btn" style="color: darkcyan; " (click)="budget()">View Details</button>
+        
+         </div>
+        </mat-card>
+      </div>
+      <div fxFlex="50" fxFlex.gt-sm="30" fxFlex.sm="30" style="padding: 10px;" >
+        <mat-card>
+    
+    
+        <div style="display: flex; justify-content: space-between;">
+          <div style="color: darkcyan; font-size: 50px;"><mat-icon>paid</mat-icon> </div>
+      
+          <h2 style="color: darkcyan; margin-left: 70px;" >Payment Status</h2>
+        </div>
+      
+        <div  (click)="user()">
+          <div class="chart-card">
+            <canvas class="chart" id="paymentChart"></canvas>
+          
+          </div>
+        </div>
+      
+       <div style=" display: flex;justify-content: end;">
+        <button mat-stroked-button class="btn" style="color: darkcyan; " (click)="payment()">View Details</button>
+      
+       </div>
+      </mat-card>
+    </div>
+      </div>
+    
+      <h1 class="m-2 p-2" style="color: darkcyan;" *ngIf="readData2.length > 0">Society Account Details</h1>
+      <div fxLayout="row wrap" height="100" >
+        <div fxFlex="100" fxFlex.gt-sm="30" fxFlex.sm="50" style="padding: 10px;" *ngFor="let us of readData2">
+          <mat-card >
+    
+      
+          <div style="display: flex; justify-content: space-between;">
+            <div style="color: darkcyan;"><mat-icon>currency_rupee</mat-icon> </div>
+        
+            <h2 style="color: darkcyan; margin-left: 70px;">{{us.bankName}}</h2>
+          </div>
+        
+          <div class="m-2 p-2" >
+            <tr>
+              <td style="color: green; font-weight:500;">Total Credit</td>
+              <td style="color: rgb(211, 169, 32); font-weight:500;">Total Debit</td>
+    
+            </tr>
+            <tr>
+              <td >{{us.credit}}</td>
+              <td>{{us.debit}}</td>
+    
+            </tr>
+            
+          </div>
+         <div style=" display: flex;justify-content: end;">
+          <button mat-stroked-button class="btn" style="color: darkcyan; " (click)="account()">View Details</button>
+        
+         </div>
+        </mat-card>
+      </div>
+  </div> -->
+
+
+
+  <!-- <div class="calendar">
+    <h3>Calendar</h3>
+    <app-calendar></app-calendar>
+  </div> -->
+</div>
+
+
+
+
+
+
+
+<!-- <div class="container-fluid">
+
+    <mat-card class="p-0" >
+      <div fxLayout="row wrap">
+        <div fxFlex="50" fxFlex.gt-sm="20" fxFlex.sm="50" (click)="account()">
+          <div class="text-center pt-16 pb-16 border-right-light">
+            <mat-icon color="primary">account_balance</mat-icon>
+            <h4 class="m-0 ">{{readData2.length}}</h4>
+            <small class="m-0 ">Society Account</small>
+          </div>
+        </div>
+        <div fxFlex="50" fxFlex.gt-sm="20" fxFlex.sm="50"  (click)="vendorlist()">
+          <div class="text-center pt-16 pb-16 border-right-light">
+            <mat-icon color="accent">bubble_chart</mat-icon>
+            <h4 class="m-0 ">{{readData.length}}</h4>
+            <small class="m-0 ">Vendor</small>
+          </div>
+        </div>
+        <div fxFlex="50" fxFlex.gt-sm="20" fxFlex.sm="50" (click)="budget()">
+          <div class="text-center pt-16 pb-16 border-right-light">
+            <mat-icon color="warn">savings</mat-icon>
+            <h4 class="m-0 ">{{readData3.length}}</h4>
+            <small class="m-0 ">Budget</small>
+          </div>
+        </div>
+        <div fxFlex="50" fxFlex.gt-sm="20" fxFlex.sm="50" (click)="GL()">
+          <div class="text-center pt-16 pb-16 border-right-light">
+            <mat-icon color="primary">balance</mat-icon>
+            <h4 class="m-0 ">{{readData4.length}}</h4>
+            <small class="m-0 ">General Ledger</small>
+          </div>
+        </div>
+        <div fxFlex="50" fxFlex.gt-sm="20" fxFlex.sm="50" (click)="COA()">
+          <div class="text-center pt-16 pb-16">
+            <mat-icon color="warn">real_estate_agent</mat-icon>
+            <h4 class="m-0 ">{{readData5.length}}</h4>
+            <small class="m-0 ">Chart Of Account</small>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  
+  
+  
+  </div>
+  <div fxLayout="row wrap" height="100" >
+  
+  
+  <div fxFlex="100" fxFlex.gt-sm="30" fxFlex.sm="50" style="padding: 10px;" >
+  
+  <mat-card >
+
+  
+      <div style="display: flex; justify-content: space-between;">
+        <div style="color: darkcyan;"><mat-icon >balance</mat-icon> </div>
+    
+        <h2 style="color: darkcyan; margin-left: 70px;">Chart Of Account</h2>
+      </div>
+    
+      <div class="m-2 p-2">
+        <tr>
+          <td style="color: green; font-weight:500;">Total Credit</td>
+          <td style="color: rgb(211, 169, 32); font-weight:500;">Total Debit</td>
+
+        </tr>
+        <tr>
+          <td>0</td>
+
+          <td>0</td>
+
+        </tr>
+       
+       
+      </div>
+     <div style=" display: flex;justify-content: end;">
+      <button mat-stroked-button class="btn" style="color: darkcyan; " (click)="COA()">View Details</button>
+    
+     </div>
+    </mat-card>
+  </div>
+  <div fxFlex="100" fxFlex.gt-sm="30" fxFlex.sm="50" style="padding: 10px;" >
+  
+  <mat-card >
+
+  
+      <div style="display: flex; justify-content: space-between;">
+        <div style="color: darkcyan;"><mat-icon>savings</mat-icon> </div>
+    
+        <h2 style="color: darkcyan; margin-left: 70px;">Budget</h2>
+      </div>
+    
+      <div class="m-2 p-2">
+        <tr>
+          <td style="color: green; font-weight:500;">Total Credit</td>
+          <td style="color: rgb(211, 169, 32); font-weight:500;">Total Debit</td>
+
+        </tr>
+        <tr>
+          <td>0</td>
+
+          <td>0</td>
+
+        </tr>
+       
+       
+      </div>
+     <div style=" display: flex;justify-content: end;">
+      <button mat-stroked-button class="btn" style="color: darkcyan; " (click)="budget()">View Details</button>
+    
+     </div>
+    </mat-card>
+  </div>
+  <div fxFlex="50" fxFlex.gt-sm="30" fxFlex.sm="30" style="padding: 10px;" >
+    <mat-card>
+
+
+    <div style="display: flex; justify-content: space-between;">
+      <div style="color: darkcyan; font-size: 50px;"><mat-icon>paid</mat-icon> </div>
+  
+      <h2 style="color: darkcyan; margin-left: 70px;" >Payment Status</h2>
+    </div>
+  
+    <div  (click)="user()">
+      <div class="chart-card">
+        <canvas class="chart" id="paymentChart"></canvas>
+      
+      </div>
+    </div>
+  
+   <div style=" display: flex;justify-content: end;">
+    <button mat-stroked-button class="btn" style="color: darkcyan; " (click)="payment()">View Details</button>
+  
+   </div>
+  </mat-card>
+</div>
+  </div>
+
+  <h1 class="m-2 p-2" style="color: darkcyan;" *ngIf="readData2.length > 0">Society Account Details</h1>
+  <div fxLayout="row wrap" height="100" >
+    <div fxFlex="100" fxFlex.gt-sm="30" fxFlex.sm="50" style="padding: 10px;" *ngFor="let us of readData2">
+      <mat-card >
+
+  
+      <div style="display: flex; justify-content: space-between;">
+        <div style="color: darkcyan;"><mat-icon>currency_rupee</mat-icon> </div>
+    
+        <h2 style="color: darkcyan; margin-left: 70px;">{{us.bankName}}</h2>
+      </div>
+    
+      <div class="m-2 p-2" >
+        <tr>
+          <td style="color: green; font-weight:500;">Total Credit</td>
+          <td style="color: rgb(211, 169, 32); font-weight:500;">Total Debit</td>
+
+        </tr>
+        <tr>
+          <td >{{us.credit}}</td>
+          <td>{{us.debit}}</td>
+
+        </tr>
+        
+      </div>
+     <div style=" display: flex;justify-content: end;">
+      <button mat-stroked-button class="btn" style="color: darkcyan; " (click)="account()">View Details</button>
+    
+     </div>
+    </mat-card>
+  </div>
+  
+   
+  </div> -->

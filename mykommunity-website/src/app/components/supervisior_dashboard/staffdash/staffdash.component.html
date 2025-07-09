@@ -1,0 +1,22 @@
+    <!-- <mat-drawer-container>
+       
+      <mat-drawer mode="side" [opened]="sideBarOpen" >
+        <app-sidenav></app-sidenav>
+     </mat-drawer>
+     <mat-drawer-content>
+         <app-header (toggleSidebarForMe)="sideBarToggler()" ></app-header>
+         <app-staffdashboard></app-staffdashboard>
+        </mat-drawer-content>
+        
+
+    </mat-drawer-container>
+ -->
+ <div class="con">
+ <app-sidenav (onToggleSideNav)="onToggleSideNav($event)"></app-sidenav>
+ <app-supervisor-body
+ [collapsed]="isSideNavCollapsed"
+ [screenWidth]="screenWidth"
+ 
+ ></app-supervisor-body>
+ <app-dashboard-footer></app-dashboard-footer>
+</div>

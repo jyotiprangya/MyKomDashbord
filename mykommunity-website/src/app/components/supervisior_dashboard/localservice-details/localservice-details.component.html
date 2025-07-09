@@ -1,0 +1,117 @@
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+        <span mat-stroked-button class="btn btn-lg mt-1 p-2" style="color: white;" (click)="back()"><mat-icon>fast_rewind</mat-icon> </span>        
+
+        DailyHelp Details</div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+           
+            <div class="society-details-container">
+                <div class="header-divider-container">
+                  <h2 class="society-header">DailyHelp Details</h2>
+                  <hr class="divider">
+                </div>
+              
+                <div class="details-container">
+                    <div class="image-container">
+                  <div class="image-container">
+                    
+                    <h3><strong>Profile Image:</strong></h3>
+                      <!-- <div *ngFor="let image of images"> -->
+                        <img *ngIf="image; else alternateImage" [src]="image" alt="Society Image" class="society-image">
+                      <!-- </div> -->
+                      
+                    <ng-template #alternateImage>
+                      <div
+                        style="border-radius:100px; 
+                        height: 200px; 
+                        width: 200px; 
+                        background-color: #eee6e6; 
+                        display: flex; 
+                        align-items: center; 
+                        justify-content: center; 
+                        font-size: 50px; 
+                        font-weight: bold;">
+                        
+                        {{ name.charAt(0) | capitalizeFirstLetter}}
+                      </div>
+                    </ng-template>
+                  </div>
+                  <div class="stars pt-3" >
+                    <span *ngFor="let star of [1, 2, 3, 4, 5]" 
+                          [class.filled]="star <= averageRating"><mat-icon>star</mat-icon></span>
+                  </div>
+                  </div>
+              
+                  <div class="details">
+                    <div class="detail-item">
+                        <strong>Name:</strong> {{ name }}
+                      </div>
+                    <div class="detail-item">
+                      <strong>Category:</strong> {{ category }}
+                    </div>
+                    <div class="detail-item">
+                      <strong>Mobile Number:</strong> {{ mobileNumber }}
+                    </div>
+                   
+                    <div class="detail-item">
+                       
+                        <strong>Ratings:</strong> 
+                        <!-- Ratings Section -->
+                      
+                          <div>
+                          
+                          <div class="stars">
+                            <p><strong>Punctuality:</strong></p>
+                            <span *ngFor="let star of [1, 2, 3, 4, 5]" 
+                                  [class.filled]="star <= punctuality"><mat-icon>star</mat-icon></span>
+                          </div>
+                      
+                          <div class="stars">
+                            <p><strong>Quality:</strong></p>
+                            <span *ngFor="let star of [1, 2, 3, 4, 5]" 
+                                  [class.filled]="star <= quality"><mat-icon>star</mat-icon></span>
+                          </div>
+                      
+                          <div class="stars">
+                            <p><strong>Behaviour:</strong></p>
+                            <span *ngFor="let star of [1, 2, 3, 4, 5]" 
+                                  [class.filled]="star <= behaviour"><mat-icon>star</mat-icon></span>
+                          </div>
+                      </div>
+                          
+                        </div>
+                        <div class="detail-item">
+                            <strong>Assign To Households:</strong> 
+                          
+                            <div *ngIf="households && households.length > 0; else noHouseholdsMessage" class="households-list">
+                              <div *ngFor="let household of households" class="household-card">
+                                <div class="household-info">
+                                  <p class="block-floor">{{household.blockName}} - Floor {{household.floorName}}</p>
+                                  <p class="rental-unit">Rental Unit: {{household.rentalUnitName}}</p>
+                                </div>
+                              </div>
+                            </div>
+                          
+                            <!-- Template to show when households array is empty -->
+                            <ng-template #noHouseholdsMessage>
+                              <p class="not_assigned">Not assigned to any household yet</p>
+                            </ng-template>
+                         
+                          
+                          
+                          
+                          
+                     </div> 
+                      
+                  </div>
+                </div>
+              </div>
+             
+            
+       
+ 
+            </div>
+            </div>
+            

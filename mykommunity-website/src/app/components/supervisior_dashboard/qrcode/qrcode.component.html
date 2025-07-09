@@ -1,0 +1,83 @@
+<div class="container-fluid">
+  <div class="page_box text-white">
+    <span mat-stroked-button class="btn mt-1 p-2 text-white" (click)="back()">
+      <mat-icon>fast_rewind</mat-icon>
+    </span>
+    QRCode
+  </div>
+
+  <div class="page_content shadow p-3 position-relative">
+    <button
+      *ngIf="role === 'SOCIETY_ADMIN'"
+      mat-raised-button
+      class="btn m-1 p-1 text-white"
+      style="background-color: #1e293b"
+      (click)="addQRCode()"
+    >
+      <mat-icon>add_circle_outline</mat-icon> Generate New QRCode
+    </button>
+
+    <div class="table-wrapper">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>QRCode</th>
+            <th>Point Name</th>
+            <th>Last Updated On</th>
+            <th>Print</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let us of readData | paginate: { itemsPerPage: 5, currentPage: page, totalItems: totalLength }">
+            <td>
+              <a [href]="us.qrCodeImage" target="_blank">
+                <img [src]="us.qrCodeImage" height="100px" width="100px" />
+              </a>
+            </td>
+            <td>{{ us.pointName }}</td>
+            <td>{{ us.updatedAt | date: 'medium' }}</td>
+            <td>
+              <button mat-icon-button color="primary" (click)="printRow(us)" matTooltip="Download A4 PDF">
+                <mat-icon>file_download</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+
+    <!-- Hidden printable content -->
+    <div #printSection style="display: none;">
+      <div style="
+        width: 21cm; 
+        height: 29.7cm; 
+        padding: 0; 
+        font-family: Arial, sans-serif; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center; 
+        text-align: center; 
+        box-sizing: border-box;">
+    
+        <!-- QR Code (Scanner) at center -->
+        <div style="margin-bottom: 2rem;">
+          <img [src]="selectedQRCode?.qrCodeImage" height="300px" width="300px" style="border-radius: 12px;" />
+        </div>
+    
+        <!-- Point Name -->
+        <div style="font-size: 28px; font-weight: bold; margin-bottom: 1.5rem;">
+          Point Name: <span style="font-weight: normal; font-size: 26px;">{{ selectedQRCode?.pointName }}</span>
+        </div>
+    
+        <!-- 
+        <div style="font-size: 28px; font-weight: bold;">
+          Updated At: <span style="font-weight: normal; font-size: 26px;">{{ selectedQRCode?.updatedAt | date: 'medium' }}</span>
+        </div> -->
+      </div>
+    </div>
+    
+
+  </div>
+</div>

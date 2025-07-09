@@ -1,0 +1,96 @@
+<div class="container-fluid ">
+  <div class="page_box" style="color: aliceblue;">
+    <span  class="btn btn-lg mt-1 p-2" style="color: white;" (click)="back()"><mat-icon>fast_rewind</mat-icon> </span>        
+
+    City</div>
+  <div class="page_content shadow p-3 position-relative">
+      <div class="page_content-data position-absolute">
+          </div>>
+  <button mat-stroked-button class="btn m-1 p-1" style="background-color: #1e293b; color: white;" (click)="open(content)"><mat-icon>add_circle_outline</mat-icon> Add City</button>
+   <div class="table-wrapper">
+
+         <table class="table table-bordered   ">
+      <thead>
+      <tr>
+       
+        
+        <th scope="col"> City Name</th>
+        <th scope="col"> State Name</th>
+        <th scope="col">Edit</th>
+       
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor = "let us of readData |
+        paginate: { 
+          itemsPerPage: 5, 
+          currentPage:page,
+          totalItems:totalLength
+                        }">
+          <th scope="row">{{us.city}}</th>
+          <td>{{us.state}}</td>
+        
+        
+        <td>
+          <mat-icon color="primary" (click)="open(content)" (click)="OnEdit(us,form)" >edit</mat-icon>
+         
+          </td>
+        
+      </tr>
+      
+      </tbody>
+      
+       </table>
+            </div>
+    <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+    <div fxLayoutAlign="center center" fxFlexFill>
+
+      <ng-template class="modal" #content let-modal style="background-color: rgba(196, 200, 167, 0.5);">
+        
+        <div class="modal-header" style="padding: 0px;">
+          <mat-toolbar class="btn" style="background-color: #1e293b; color: white;">
+            <h2 class="modal-title" id="modal-basic-title">Add City</h2>
+          <button  type="button" class=" btn btn-close " aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </mat-toolbar>
+        </div>
+        <div class="modal-body" style="background-color: rgba(192, 222, 230, 0.5);"  >
+          <mat-card fxFlex="100" >
+          
+        
+            <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form" >
+              
+              <mat-form-field appearance="standard"  class="full-width">
+                <mat-label>City</mat-label>
+                <input matInput inputmode="tel" placeholder="Enter city name" formControlName="name" #nameInput>
+                <mat-error>City is required</mat-error>
+                
+            </mat-form-field>
+            <div appearance="fill" class="full-width">
+              <div style="margin-right:3%; color:#6b6b6b;">
+                <mat-label>Select State</mat-label>
+            </div>
+              <select style="width: 100%; height: 30px;" required formControlName="stateId" >
+                <option [value]="0" disabled>--select state--</option>
+                <option  *ngFor="let state of stateData" value={{state.id}}>{{state.name}}</option>
+              </select>
+              <mat-hint>State required</mat-hint>
+            </div>
+             
+             
+                               
+        </form>
+      </mat-card>
+        </div>
+      
+        <div class="modal-footer">
+          <button *ngIf="!getparamid" (click)="saveDetails(form)"  (click)="modal.close('Save click')"  class="btn" style="background-color: #1e293b; color: white;" [disabled]="!form.valid">create</button>
+      <button *ngIf="getparamid" (click)="cityUpdate()"  (click)="modal.close('Save click')"  class="btn" style="background-color: #1e293b; color: white;">Update</button>
+          <button type="submit" class="btn btn-danger"  (click)="modal.close('Save click')">Cancel</button>
+        </div>
+        
+      </ng-template>
+      
+      </div> 
+    
+  </div>
+</div>

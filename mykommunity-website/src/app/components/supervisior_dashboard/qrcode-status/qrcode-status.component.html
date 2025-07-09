@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <div class="page_box text-white">
+      <span mat-stroked-button class="btn mt-1 p-2 text-white" (click)="back()">
+        <mat-icon>fast_rewind</mat-icon>
+      </span>
+      Scan Record
+    </div>
+  
+    <div class="page_content shadow p-3 position-relative">
+    
+  
+      <div class="table-wrapper">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <!-- <th>QRCode</th> -->
+              <th> Name </th>
+              <th>Last Updated On</th>
+              <th > Status </th>
+             
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let us of readData | paginate: { itemsPerPage: 5, currentPage: page, totalItems: totalLength }">
+              <!-- <td>
+                <a [href]="us.qrCodeImage" target="_blank">
+                  <img [src]="us.qrCodeImage" height="100px" width="100px" />
+                </a>
+              </td> -->
+              <td >{{ us.UserFirstName || 'Resident' }} {{ us.UserLastName ? (us.UserLastName | capitalizeFirstLetter) : '' }}</td>
+              <td>{{ us.updatedAt | date: 'medium' }}</td>
+              <td >
+                <button matTooltip= " {{us.UserFirstName}} {{us.UserLastName}}"   mat-stroked-button style=" border: none; font-size: small; font-weight: bold;" 
+                [style.color]="getStatusColor(us.status)" > 
+                <mat-icon>{{ getStatusIcon(us.status) }}</mat-icon>
+                {{ us.status }}
+              </button>
+              </td>
+            
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+
+    </div>
+  </div>
+  

@@ -1,0 +1,149 @@
+
+.form-signin 
+{
+    max-width: 400px;
+    margin: 0 auto;
+    
+ }
+ 
+ .f1
+ {
+    display: flex;
+ }
+
+ .image-container {
+   display: inline-block;
+   transition: transform 0.3s, filter 0.3s;
+}
+
+/* Style changes on hover */
+.image-container:hover {
+   transform: scale(1.2); /* Increase size to 120% on hover */
+   filter:drop-shadow(50%); /* Convert to grayscale on hover */
+}
+
+.image {
+   display: flex;
+   flex-direction: column; 
+   align-items: center; 
+   padding: 5vw;
+}
+
+/* Style the image */
+.image img {
+   width: 40vw; /* Set the image width to 50% of the container width */
+   height: 80vh;
+   
+    /* Make sure the image doesn't exceed the container height */
+}
+
+.image {
+   display: inline-block;
+   transition: transform 0.3s, filter 0.3s;
+}
+
+/* Style changes on hover */
+.image:hover {
+   transform: scale(1.2) translateX(20px); /* Increase size to 120% and move 20 pixels to the right on hover */
+   filter:drop-shadow(50%); /* Convert to grayscale on hover */
+}
+
+.container-fluid{
+   margin-top: 20vh;
+   display: inline-block;
+   /* transition: transform 0.3s, filter 0.3s; */
+}
+/* .container-fluid:hover {
+   transform: scale(1.2) translateX(5px); 
+   filter:drop-shadow(50%); 
+} */
+
+.custom-btn {
+   background: rgb(51, 22, 116);
+   color: white;
+}
+
+.custom-btn:disabled {
+   background: rgb(110, 102, 102); /* Change the background color for the disabled state */
+   color: white; /* Change the text color for the disabled state */
+}
+
+@media screen and (orientation: portrait){
+   .login-view{
+      display: flex;
+      flex-direction: column-reverse;
+   }
+   .image {
+      display: flex;
+      align-items: center; 
+      padding: 5vw;
+   }
+   .image img {
+      width: 100%; /* Set the image width to 50% of the container width */
+      height: 100%;
+      
+       /* Make sure the image doesn't exceed the container height */
+   }
+   .container-fluid{
+      margin-top: 2vh;
+      display: inline-block;
+      /* transition: transform 0.3s, filter 0.3s; */
+   }
+}
+
+
+.password-toggle-btn .fa-eye, 
+.password-toggle-btn .fa-eye-slash {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.password-toggle-btn:hover .fa-eye, 
+.password-toggle-btn:hover .fa-eye-slash {
+  color: rgb(51, 22, 116) !important;
+}
+
+.password-input-container .form-control {
+  padding-right: 45px !important;
+}
+
+.password-input-container {
+  position: relative;
+  display: block;
+}
+
+.password-input {
+  padding-right: 45px !important;
+  width: 100%;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  color: #6c757d;
+  z-index: 10;
+}
+
+.password-toggle-btn:hover {
+  color: rgb(51, 22, 116);
+}
+
+.password-toggle-btn span {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.password-toggle-btn i {
+  font-size: 16px;
+}

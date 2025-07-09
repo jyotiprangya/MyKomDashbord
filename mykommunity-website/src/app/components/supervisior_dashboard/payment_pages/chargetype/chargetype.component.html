@@ -1,0 +1,84 @@
+
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span mat-stroked-button class="btn mt-1 p-2" style="color: white;" (click)="back()"><mat-icon>fast_rewind</mat-icon> </span>        
+
+      Charge Type</div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+  </div>
+  <button mat-stroked-button class="btn m-1 p-1" style="background-color: #1e293b; color: white;" (click)="open(content)"><mat-icon>add_circle_outline</mat-icon> Add Charge Type</button>
+    <div class="table-wrapper">
+
+         <table class="table table-bordered   ">
+      <thead>
+      <tr>
+       
+        <th scope="col">Charge Type</th>
+        <th scope="col">Edit</th>   
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor = "let us of readData |
+        paginate: { 
+          itemsPerPage: 8, 
+          currentPage:page,
+          totalItems:totalLength
+                        }">
+        <td>{{us.type}}</td>
+        <td>
+          <mat-icon color="primary" (click)="open(content)" (click)="OnEdit(us,form)" >edit</mat-icon>
+        </td>
+       
+      </tr>
+      
+      </tbody>
+      
+       </table>
+            </div>
+    <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+                                                                         
+    <div fxLayoutAlign="center center" fxFlexFill>
+
+        <ng-template class="modal" #content let-modal style="background-color: rgba(196, 200, 167, 0.5);">
+          
+          <div class="modal-header" style="padding: 0px;">
+            <mat-toolbar class="btn" style="background-color: #1e293b; color: white;">
+            <h2 class="modal-title" id="modal-basic-title">Add Charge Type</h2>
+            <button  type="button" class=" btn btn-close " aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+          </mat-toolbar>
+          </div>
+          <div class="modal-body">
+            <mat-card fxFlex="100" >
+            
+          
+              <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form" >
+                
+                <mat-form-field appearance="standard"  class="full-width">
+                  <mat-label>Charge Type</mat-label>
+                  <input matInput inputmode="tel" placeholder="Charge Type" formControlName="type" >
+                  <mat-error>Charge Type is required</mat-error>
+                  
+              </mat-form-field>
+             
+               
+                                 
+          </form>
+        </mat-card>
+          </div>
+        
+        
+          <div class="modal-footer">
+            <button *ngIf="!getparamid" [disabled]="loading"  (click)="saveDetails(form)"  (click)="modal.close('Save click')"  class=" btn-group btn" style="background-color: #1e293b; color: white;" [disabled]="!form.valid">
+              <span  *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>create</button>
+
+            <button *ngIf="getparamid" [disabled]="loading"  (click)="BlockUpdate()"  (click)="modal.close('Save click')"  class="btn-group btn" style="background-color: #1e293b; color: white;" >
+              <span  *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Update</button>
+
+            <button type="submit" class="btn btn-danger"  (click)="modal.close('Save click')">Cancel</button>
+          </div>
+        </ng-template>
+        
+        </div> 
+    </div>
+    </div>  

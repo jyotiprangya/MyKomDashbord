@@ -1,0 +1,342 @@
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+        <span mat-stroked-button class="btn btn-lg mt-1 p-2" style="color: white;" (click)="back()"><mat-icon>fast_rewind</mat-icon> </span>        
+
+        Notice Board</div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+            <!-- <button mat-raised-button class="btn btn-lg m-1 p-2" style="color: rgb(84, 81, 81);" (click)="back()"><mat-icon>fast_rewind</mat-icon> Go Back</button>           -->
+            <!-- <button *ngIf="role=='SOCIETY_ADMIN'" mat-raised-button class="btn m-1 p-1" style="background-color: #1e293b; color: white;" (click)="open(content)"><mat-icon>add_circle_outline</mat-icon> Add Notice</button> -->
+            <div class="top-content">
+              <div class="button-container">
+                <!-- Button: New Resident -->
+                <button *ngIf="role === 'SOCIETY_ADMIN'" 
+                        mat-raised-button 
+                         
+                        (click)="open(content)"
+                        class="btn m-1 pe-2 button-responsive" 
+                        style="background-color: #1e293b; color: white;">
+                  <mat-icon>add_circle_outline</mat-icon> New Resident
+                </button>
+            
+                <!-- Button: Export CSV -->
+                <button mat-raised-button 
+                        (click)="exportData()" 
+                        class="btn m-1 pe-2 button-responsive" 
+                        style="background-color: #1e293b; color: white;"
+                        >
+                  <mat-icon>file_download</mat-icon> Export CSV
+                </button>
+            
+                <!-- Button: Select Columns -->
+                <button mat-raised-button  (click)="toggleModal()" 
+                class="btn m-1 pe-2 button-responsive" 
+                style="background-color: #1e293b; color: white;">
+                  <mat-icon>checklist</mat-icon> Visible Fields 
+                </button>
+              </div>
+            
+              <!-- Search bar -->
+             
+            </div>
+            
+           
+                    <div class="grp">
+                
+             
+                   
+                    <div class="modal" [ngClass]="{'show': isModalOpen}" (click)="toggleModal()">
+                      <div class="modal-content" (click)="$event.stopPropagation()"style="width: 800px; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+                        <div class="settings-container">
+                          <div class="tab-container">
+                            <div class="tabs" style="display: flex; justify-content: center; align-items: center; flex-direction: row; width: 100%; padding:10px">
+                              <h1 style="margin: 0;">Column Selection</h1>
+                            </div>
+                            
+                            <div class="tab-content">
+                              <div class="list-container" style="display: flex; justify-content: space-between;">
+                                <div class="list-box" style="width: 45%;">
+                                  <h3 style="font-weight: bold;">Hidden Columns</h3>
+                                  <ul id="hidden-columns" class="list">
+                                    <li *ngFor="let column of hiddenColumns">
+                                      <input type="checkbox" [(ngModel)]="column.selected"> {{ column.name }}
+                                    </li>
+                                  </ul> 
+                                </div>
+                                <div class="buttons-container" style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-left: 20px; gap: 15px; padding: 15px;">
+                                  <button class="btn" (click)="addColumn()"  style="width: 100px; height: 40px; background-color: #1e293b; color: white; font-weight: bold; padding: 10px; display: flex; align-items: center; justify-content: space-between;">
+                                    Add <span style="font-size: 14px; margin-left: 5px;">▶</span>
+                                  </button>
+                                  <button class="btn" (click)="removeColumn()" style="width: 100px; height: 40px; background-color: #1e293b; color: white; font-weight: bold; padding: 10px; display: flex; align-items: center; justify-content: space-between;">
+                                    <span style="font-size: 14px; margin-right: 5px;">◀</span> Remove
+                                  </button>
+                                </div>
+                                <div class="list-box" style="width: 45%; padding-top: 5px;">
+                                  <h3 style="font-weight: bold;">Displayed Columns</h3>
+                                  <ul id="displayed-columns" class="list">
+                                    <li *ngFor="let column of displayedColumns">
+                                      <input type="checkbox" [(ngModel)]="column.selected"> {{ column.name }}
+                                    </li>
+                                  </ul>
+                                 
+                                  <!-- <div class="reorder-buttons" style="text-align: center; margin-top: 15px;">
+                                    <button (click)="moveColumnUp()" class="arrow-btn">
+                                      <span class="material-icons">▲</span> 
+                                    </button>
+                                    <button (click)="moveColumnDown()" class="arrow-btn">
+                                      <span class="material-icons">▼</span> 
+                                    </button>
+                                  </div> -->
+                                </div>
+                                
+                              </div>
+                            </div>  
+                          </div>
+                          <div class="footer" style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 15px; padding:10px">
+                            <!-- <button class="btn btn-primary" (click)="applyColumnSelection()">OK</button> -->
+                            <button class="btn" style="background-color: gray; color: white;" (click)="cancelChanges()" >Back</button>
+                            <!-- <button class="btn btn-warning" (click)="resetChanges()" >Reset</button> -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+            
+                   <div class="table-wrapper">
+            
+                   <table class="table table-bordered ">
+                          <thead>
+                              <tr>
+                   
+                                <th scope="col" *ngIf="isColumnVisible('title')">Title</th>
+                                <th scope="col" *ngIf="isColumnVisible('message')">Message</th>
+                                
+                                <th (click)="sortData('createdAt')" *ngIf="isColumnVisible('createdOn')">Created On<span [class]="sortDirection['createdAt'] ? 'asc' : 'desc'"></span></th>
+                                <th (click)="sortData('updatedAt')" *ngIf="isColumnVisible('lastUpdatedOn')">Last Update<span [class]="sortDirection['updatedAt'] ? 'asc' : 'desc'"></span></th>
+                                
+                                <th scope="col" *ngIf="isColumnVisible('attachment')">Attachment</th>
+                                <th scope="col" *ngIf="isColumnVisible('Edit') && role === 'SOCIETY_ADMIN'">Edit</th>
+                                <th scope="col" *ngIf="isColumnVisible('Delete') && role === 'SOCIETY_ADMIN'">Delete</th>
+                          
+                              </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngIf="readData.length === 0">
+                              <td [attr.colspan]="columns.length" class="text-center" style="color: grey;">No Record Found!!!</td>
+                            </tr>
+                              <tr *ngFor = "let us of readData |
+                  paginate: { 
+                     itemsPerPage: 10, 
+                     currentPage:page,
+                    totalItems:totalLength
+                                   }">
+                    <td scope="row" *ngIf="isColumnVisible('title')">{{us.title}}</td>
+                  
+                    <td style="width: 50vh;" *ngIf="isColumnVisible('message')">
+                      <span *ngIf="us.description.length <=  100">
+                        {{ us.description }}
+                      </span>
+                      <span *ngIf="us.description.length > 100">
+                      <span *ngIf="!showFullDescription[us.id]">
+                        {{ us.description | slice:0:200 }}...
+                      </span>
+                      <span *ngIf="showFullDescription[us.id]">
+                        {{ us.description }}
+                      </span>
+                      <a style="color: blue;" (click)="toggleDescription(us.id)">
+                        {{ showFullDescription[us.id] ? 'Read Less' : 'Read More' }}
+                      </a>
+                      </span>
+                    </td>
+                    
+                             <td  *ngIf="isColumnVisible('createdOn')">{{us.createdAt | date:'medium'}}</td>
+                   <td *ngIf="isColumnVisible('lastUpdatedOn')">{{us.updatedAt | date:'medium'}}</td>
+            
+                   <td *ngIf="isColumnVisible('attachment')">
+                  
+                      <!-- <ng-container *ngIf="us.image">
+                        <a [href]="us.image" target="_blank">click here</a>
+                      </ng-container> -->
+                      <ng-container [ngSwitch]="us.mimeType" *ngIf="us.image">
+                       <a [href]="us.image"> <mat-icon  style="color: #e74c3c;" *ngSwitchCase="'application/pdf'">picture_as_pdf</mat-icon></a>
+                       <a [href]="us.image"><mat-icon  style="color: #3498db;" *ngSwitchCase="'image/jpeg'">image</mat-icon></a>
+                        <a [href]="us.image"> <mat-icon  style="color: #3498db;" *ngSwitchCase="'image/png'">image</mat-icon></a>
+                          <a [href]="us.image"><mat-icon  style="color: #0078d4;" *ngSwitchCase="'application/msword'">description</mat-icon></a>
+                            <a [href]="us.image"> <mat-icon  style="color: #0078d4;" *ngSwitchCase="'application/vnd.openxmlformats-officedocument.wordprocessingml.document'">description</mat-icon></a>
+                              <a [href]="us.image">  <mat-icon  style="color: #95a5a6;" *ngSwitchDefault>attach_file</mat-icon></a>
+                        
+                      </ng-container>
+                      <a [href]="us.image" style="text-decoration: none;">{{ us.fileType }}</a>
+                     
+           
+                   </td>
+                  
+                   <td *ngIf="isColumnVisible('Edit') && role === 'SOCIETY_ADMIN'">
+                    <mat-icon color="primary" (click)="open(content)" (click)="OnEdit(us,form)" >edit</mat-icon>
+                    </td>
+                    <td *ngIf="isColumnVisible('Delete') && role === 'SOCIETY_ADMIN'">
+                    <a><mat-icon color="warn" (click)="deleteID(us.id)" >delete</mat-icon></a>
+                    </td>
+                 </tr>
+                          </tbody>
+                         </table>
+                      </div>
+                      <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+
+         <!-- <div class="table-wrapper">
+
+         <table class="table table-bordered ">
+                <thead>
+                    <tr>
+         
+         <th scope="col">title</th>
+         <th scope="col">Message</th>
+         <th scope="col">Created On</th> 
+         <th scope="col">Last Updated On</th> 
+         <th scope="col">Attachment</th> 
+         <th scope="col" *ngIf="role=='SOCIETY_ADMIN'">Edit</th>
+         <th scope="col" *ngIf="role=='SOCIETY_ADMIN'">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor = "let us of readData |
+        paginate: { 
+           itemsPerPage: 10, 
+           currentPage:page,
+          totalItems:totalLength
+                         }">
+          <th scope="row">{{us.title}}</th>
+        
+          <td style="width: 50vh;">
+            <span *ngIf="us.description.length <=  100">
+              {{ us.description }}
+            </span>
+            <span *ngIf="us.description.length > 100">
+            <span *ngIf="!showFullDescription[us.id]">
+              {{ us.description | slice:0:200 }}...
+            </span>
+            <span *ngIf="showFullDescription[us.id]">
+              {{ us.description }}
+            </span>
+            <a style="color: blue;" (click)="toggleDescription(us.id)">
+              {{ showFullDescription[us.id] ? 'Read Less' : 'Read More' }}
+            </a>
+            </span>
+          </td>
+          
+                   <td >{{us.createdAt | date:'medium'}}</td>
+         <td >{{us.updatedAt | date:'medium'}}</td>
+
+         <td>
+        
+           
+            <ng-container [ngSwitch]="us.mimeType" *ngIf="us.image">
+             <a [href]="us.image"> <mat-icon  style="color: #e74c3c;" *ngSwitchCase="'application/pdf'">picture_as_pdf</mat-icon></a>
+             <a [href]="us.image"><mat-icon  style="color: #3498db;" *ngSwitchCase="'image/jpeg'">image</mat-icon></a>
+              <a [href]="us.image"> <mat-icon  style="color: #3498db;" *ngSwitchCase="'image/png'">image</mat-icon></a>
+                <a [href]="us.image"><mat-icon  style="color: #0078d4;" *ngSwitchCase="'application/msword'">description</mat-icon></a>
+                  <a [href]="us.image"> <mat-icon  style="color: #0078d4;" *ngSwitchCase="'application/vnd.openxmlformats-officedocument.wordprocessingml.document'">description</mat-icon></a>
+                    <a [href]="us.image">  <mat-icon  style="color: #95a5a6;" *ngSwitchDefault>attach_file</mat-icon></a>
+              
+            </ng-container>
+            <a [href]="us.image" style="text-decoration: none;">{{ us.fileType }}</a>
+  </td>
+        
+         <td *ngIf="role=='SOCIETY_ADMIN'">
+          <mat-icon color="primary" (click)="open(content)" (click)="OnEdit(us,form)" >edit</mat-icon>
+          </td>
+          <td *ngIf="role=='SOCIETY_ADMIN'">
+          <a><mat-icon color="warn" (click)="deleteID(us.id)" >delete</mat-icon></a>
+          </td>
+       </tr>
+                </tbody>
+               </table>
+            </div>
+            <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls> -->
+
+            <div fxLayoutAlign="center center" fxFlexFill>
+   
+                <ng-template class="modal" #content #id let-modal style="background-color: rgba(196, 200, 167, 0.5);">
+                 
+                 <div class="modal-header" style="padding: 0px;">
+                   <mat-toolbar class="btn" style="background-color: #1e293b; color: white;">
+                   <h2 class="modal-title" id="modal-basic-title">Add Notice</h2>
+                   <button  type="button" class=" btn btn-close " aria-label="Close" (click)="onCancelClick()" (click)="modal.dismiss('Cross click')"></button>
+                 </mat-toolbar>
+                 </div>
+                 <div class="modal-body" >
+                   <mat-card fxFlex="100" >
+                   
+                  
+                   <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form" >
+                     
+
+                   
+                       
+                     <mat-form-field appearance="standard"  class="full-width">
+                         <mat-label>Notice Title</mat-label>
+                         <input matInput #subject placeholder="Notice title" formControlName="title" >
+                         
+                         <mat-error>Title required</mat-error>
+                         
+                     </mat-form-field>
+                     
+                     <mat-form-field appearance="standard"  class="full-width">
+                       <mat-label>Message</mat-label>
+                       <textarea  #message style="height: 200px;" matInput placeholder="Type here..." formControlName="description" >
+
+
+                           </textarea>
+                       <mat-error>Message can't be blank</mat-error>
+                       
+                   </mat-form-field>
+               
+                   <div appearance="fill" class="full-width">
+                   
+                    <div style="margin-right:3%; color:#6b6b6b;">
+                      <mat-label>Add Notice Image</mat-label>
+                  </div>
+                 
+                  <input  type="file" (change)="upload($event)" multiple="" accept="*.png.jpg" formControlName="image">
+                  <div *ngIf="Percentage">
+                    <meter [value]="Percentage | async" style="width: 300px; height: 40px; "> </meter>
+                    <div class="mb-1">
+                   Uploading... Please Wait... {{ Percentage | async }}%
+                   </div>
+                </div>
+                  <div *ngIf="firebase">
+                    <img [src]="firebase" style="height: 200px; width: 200px;">
+                    <span style="margin-left: 20px;"><mat-icon color="warn" (click)="onCancel()">cancel</mat-icon></span>
+
+                  </div>
+                  <!-- <div *ngIf="getidimg">
+                    <img [src]="getidimg" style="height: 200px; width: 200px;">
+                  </div> -->
+                    
+                  </div> 
+               
+                    
+                 </form>
+               </mat-card>
+                 </div>
+               
+                 <div class="modal-footer">
+                    
+                    <button *ngIf="!getparamid" [disabled]="loading"  
+                      (click)="saveDetails(form)" (click)="modal.close('Save click')"  class=" btn-group btn" style="background-color: #1e293b; color: white;" > 
+                      <span  *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> Create</button>
+
+                    <button *ngIf="getparamid" [disabled]="loading" (click)="NoticeUpdate()"  (click)="modal.close('Save click')"  class="btn-group btn" style="background-color: #1e293b; color: white;" >
+                      <span  *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> Update</button> 
+                   <button type="submit"  class=" btn-group btn btn-danger" (click)="onCancelClick()" (click)="modal.close('Save click')">Cancel</button>
+                 </div>
+                 
+               </ng-template>
+               
+               </div>
+
+
+             
+        
+            </div>
+            </div>

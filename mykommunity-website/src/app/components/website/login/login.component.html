@@ -1,0 +1,98 @@
+<div style="display: flex; justify-content: space-between;" class="login-view">
+
+    <div class="image"> <img src="../../../../assets/login back2.png"></div>
+
+<div class="container-fluid" >   
+
+
+    <div >
+    <form [formGroup]="formData" (ngSubmit)="onClickSubmit()" class="form-signin" >
+   
+<div style="text-align:center;">
+    <h1 style="color: rgb(51, 22, 116);">                
+       
+        <b>MyKommunity</b>
+    </h1>
+    <div class="image-container"> <img src="../assets/logo2.png" height="80" width="80"></div>
+    </div>
+    <dt for="inputEmail" class="m-1" style="color: rgb(51, 22, 116);">Email Id</dt>
+   <dd> <input type="text" id="Email" class="form-control" 
+        formControlName="email" placeholder="Email" required autofocus>
+       
+    </dd>
+    <dt for="inputPassword" class="m-1" style="color: rgb(51, 22, 116);">Password</dt>
+   <dd> 
+     <div class="password-input-container">
+       <input [type]="showPassword ? 'text' : 'password'" id="inputPassword" class="form-control password-input" 
+            formControlName="password" placeholder="Password" required>
+       <button class="password-toggle-btn" type="button" (click)="togglePasswordVisibility()">
+         <!-- Using Unicode eye symbols as fallback if Font Awesome isn't loaded -->
+         <span *ngIf="!showPassword">👁️</span>
+         <span *ngIf="showPassword">🙈</span>
+         <!-- Font Awesome icons (will show if FA is loaded) -->
+         <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'" style="display: none;" 
+            onload="this.style.display='inline'; this.previousElementSibling.style.display='none';"></i>
+       </button>
+     </div>
+   </dd>
+        <div class="d-grid">
+        <button [disabled]="loading" class="btn custom-btn" [disabled]="!formData.valid">
+         <span  *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+         
+         Login
+     </button>
+     </div>
+    
+     <!-- <div *ngIf="error"  class="alert alert-danger mt-3 mb-0">{{error}}</div> -->
+
+     <div style="display: flex; justify-content: flex-end;">
+       
+ 
+           <div >
+             <p  class="btn mb-3 pb-lg-2" style="color: #393f81;"><a style="text-decoration-line: underline;" (click)="open(content)"> Reset Password</a></p>
+           </div>
+           </div>
+         </form>
+    </div>
+
+    <div fxLayoutAlign="center center" fxFlexFill>
+
+        <ng-template class="modal" #content let-modal style="background-color: rgba(196, 200, 167, 0.5);">
+          
+            <div class="modal-header" style="padding: 0px;">
+                <mat-toolbar class="btn" style="background: linear-gradient(to right, rgb(16, 24, 82), #797e86); color: white;">
+                <h2 class="modal-title" id="modal-basic-title">Enter Your Email</h2>
+                <button  type="button" class=" btn btn-close " aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+              </mat-toolbar>
+              </div>
+              <div class="modal-body" style="background-color: rgba(48, 102, 169, 0.171);" >
+            <mat-card fxFlex="100" >
+            
+          
+              <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form" >
+                <div style="border: dotted; " class="text-primary p-2 m-1"> 
+                    Please Enter your registered Email, A Reset link will share with you which will be valid for 24 hours.     
+                </div>
+
+                <mat-form-field appearance="standard"  class="full-width">
+                  <mat-label>Email</mat-label>
+                  <input matInput placeholder="emailid" formControlName="email" #nameInput>
+                  <mat-error>Email is required</mat-error>
+                  
+              </mat-form-field>
+             
+               
+                                 
+          </form>
+        </mat-card>
+          </div>
+        
+        
+          <div class="modal-footer">
+            <button (click)="forgotPassword()"  (click)="modal.close('Save click')"  class=" btn-group btn" style="background-color: #1e293b; color: white;" [disabled]="!form.valid">Send Reset Request</button>
+          </div>
+        </ng-template>
+        
+        </div>
+</div>
+</div>

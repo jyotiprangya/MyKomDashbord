@@ -1,0 +1,286 @@
+<div class="container-fluid ">
+  <div class="page_box" style="color: aliceblue;">
+    <span mat-raised-button class="btn btn-lg mt-1 p-2" style="color: white;" (click)="back()"><mat-icon>fast_rewind</mat-icon> </span>        
+
+    Allocate Charge</div>
+  <div class="page_content shadow p-3 position-relative">
+      <div class="page_content-data position-absolute">
+</div>
+
+<div>
+         
+  <div >
+       <form [formGroup]="form">
+        <mat-form-field appearance="fill"  >
+          <mat-label>Select Charge</mat-label>
+          <mat-select formControlName="chargetListId" >
+         
+            <mat-option *ngFor="let acc of readData" [value]="acc.chargetListId">{{acc.chargeName}}</mat-option>
+
+      </mat-select>
+      </mat-form-field>
+  <!-- Template HTML -->
+<mat-form-field appearance="fill" formArrayName="rentalUnits">
+  <mat-label>Select HousingUnit</mat-label>
+  <mat-select #matSelect placeholder="Select HousingUnit" [formControl]="selectedOptions" multiple>
+    <div style="display: flex; align-items: center; padding: 8px;" (click)="$event.stopPropagation()">
+      <button 
+        class="btn m-2" 
+        style="color: white;background-color:rgba(24, 9, 84, 0.9);" 
+        (click)="selectAlloption(); $event.stopPropagation()" 
+        type="button">
+        Select All
+      </button>
+      <button 
+        class="btn m-2" 
+        style="color: white;background-color:rgba(114, 68, 68, 0.9);" 
+        (click)="UnselectAll(); $event.stopPropagation()" 
+        type="button">
+        Unselect All
+      </button>
+      <input 
+        type="text" 
+        placeholder="Search..." 
+        [(ngModel)]="searchText" 
+        (input)="filterOptions(); $event.stopPropagation()" 
+        (click)="$event.stopPropagation()"
+        style="margin-left: 8px; padding: 4px 8px; border: 1px solid #ccc; border-radius: 12px; flex: 1;">
+    </div>
+    <mat-option 
+      (click)="getSelectedOptions()" 
+      *ngFor="let flat of filteredData" 
+      [value]="flat.flatId">
+      {{ flat.blockName }} - {{ flat.rentalUnitName }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+      <!-- <mat-form-field appearance="fill" class="full-width" >
+        <mat-label>Charge Date</mat-label>
+    <input matInput type="date" formControlName="billDate" placeholder="not set yet">
+      </mat-form-field> -->
+
+      <!-- Charge Date -->
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Charge Date</mat-label>
+  <input matInput [matDatepicker]="picker"
+         placeholder="Charge Date"
+         formControlName="billDate"
+         [matDatepickerFilter]="disablePastDates">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+<!-- Due Date -->
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Due Date</mat-label>
+  <input matInput [matDatepicker]="picker2"
+         placeholder="Due Date"
+         formControlName="dueDate"
+         [matDatepickerFilter]="disableBeforeChargeDate">
+  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+  <mat-datepicker #picker2></mat-datepicker>
+</mat-form-field>
+
+      <!-- <mat-form-field appearance="fill" class="full-width" >
+        <mat-label>Due Date</mat-label>
+
+        <input matInput type="date" formControlName="dueDate" placeholder="not set yet">
+
+      </mat-form-field> -->
+      <!-- <mat-checkbox formControlName="isRoundOff" class="ms-5">Round Off generated charge of each house to nearest amount</mat-checkbox> -->
+
+      <mat-checkbox  formControlName="isfine"  class="ms-5">fine setting</mat-checkbox>
+     <div *ngIf="form.value.isfine === true">
+      <mat-form-field appearance="fill"  class="full-width">
+        <mat-label>Grace Period (in days)</mat-label>
+        <input matInput inputmode="tel"  formControlName="gracePeriod" #nameInput>
+        
+    </mat-form-field> 
+      
+                            
+        <mat-radio-group   aria-label="Select an option" formControlName="isPrecent">
+            <mat-radio-button  [value]=false>Fixed</mat-radio-button>
+            <mat-radio-button class="ms-5"  [value]=true>Percentage</mat-radio-button>
+
+          </mat-radio-group>
+    <mat-form-field *ngIf="form.value.isPrecent === false" appearance="fill" >
+      <mat-label>Fine Amount</mat-label>
+      <input matInput maxlength="15" inputmode="tel" placeholder="Enter Fixed Late Fee Amount" formControlName="fine" #nameInput>
+      <mat-error>Amount is required</mat-error>
+      
+  </mat-form-field> 
+      
+   
+      <mat-form-field *ngIf="form.value.isPrecent === true" appearance="fill"  >
+        <mat-label>Enter fine %</mat-label>
+        <input matInput maxlength="15" inputmode="tel" placeholder="Enter Percentage for Late Fee" formControlName="fine" #nameInput>
+
+      </mat-form-field>
+     </div>
+
+      <!-- <mat-form-field appearance="fill" class="full-width" formControlName="billDate">
+        <mat-label>Charge Date</mat-label>
+
+        <input  matInput [matDatepicker]="picker" placeholder="End Date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width" formControlName="dueDate">
+        <mat-label>Due Date</mat-label>
+
+        <input  matInput [matDatepicker]="picker2" placeholder="End Date">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field> -->
+     
+      <!-- <button mat-button (click)="selectAll()">Select All</button>
+      <button mat-button (click)="UnselectAll()">UnSelect All</button> -->
+
+      <!-- <mat-form-field>
+        <mat-select placeholder="Select Options" [formControl]="selectedOptions" multiple>
+          <mat-option [(ngModel)]="selectAll" (change)="toggleSelectAll()">
+            Select/Unselect All</mat-option>
+          <mat-option *ngFor="let flat of readData2" [value]="flat.id"> {{ flat.blockName }} - {{ flat.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field> -->
+
+      <!-- <mat-form-field appearance="fill">
+        <mat-label>Select Rental Unit</mat-label>
+        <select multiple [(ngModel)]="selectedItems">
+         
+          <option>
+            <li  (change)="toggleSelectAll()" [value]="0">All</li>
+            <li *ngFor="let flat of readData2" [value]="flat.id"> {{ flat.blockName }} - {{ flat.name }}</li>
+          </option>
+          
+        </select>
+      </mat-form-field> -->
+      <!-- <select multiple [(ngModel)]="selectedOptions">
+        <option *ngFor="let option of readData2" [ngValue]="option">{{ option.name }}</option>
+      </select>
+      
+      <button (click)="selectAlloption()">Select All</button> -->
+      <!-- <label>
+        <input type="checkbox" [(ngModel)]="selectAll" (change)="toggleSelectAll()">
+        Select/Unselect All
+      </label>
+      <div *ngFor="let item of readData2">
+        <label>
+          <input type="checkbox" [(ngModel)]="item.selected">
+          {{ item.blockName }}
+        </label>
+      </div> -->
+      <!-- <div style="text-align:center">
+        <h1>
+         
+        </h1>
+      </div>
+      <div class="container">
+        <div class="text-center mt-5">
+          <div class="row">
+            <div class="col-md-6">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input type="checkbox" [(ngModel)]="masterSelected" name="list_name" value="m1"
+                    (change)="checkUncheckAll()" /> <strong>Select/ Unselect All</strong>
+                </li>
+              </ul>
+              <ul class="list-group">
+                <li class="list-group-item" *ngFor="let item of checklist">
+                  <input type="checkbox" [(ngModel)]="item.isSelected" name="list_name" value="{{item.id}}"
+                    (change)="isAllSelected()" />
+                  {{item.value}}
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <code>{{checkedList}}</code>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      
+<!-- <div style="margin: 50px;" formControlName="round">
+  <mat-checkbox >Round Off generated charge of each house to nearest amount</mat-checkbox>
+
+</div>   -->
+</form> 
+
+
+
+</div>
+<div style="display: flex; justify-content: start;">
+  <button  mat-stroked-button class="btn btn-success m-2"  (click)="saveDetails(form)" type="submit" (click)="showScreen = !showScreen" >Calculate Charge</button> &nbsp;
+  <button  mat-stroked-button class="btn btn-warning m-2" (click)="onCancelClick()" type="submit" >Reset</button> &nbsp;
+
+</div>
+    </div>
+
+
+<div *ngIf="showScreen">
+  <mat-toolbar class="input-group">
+      
+    </mat-toolbar>
+    <div class="table-wrapper">
+
+         <table class="table table-bordered ">
+      <thead>
+       <tr>
+          <th scope="col" >Charge Type</th>
+        <th scope="col" >House</th>
+        <th scope="col">Area</th>
+        <th scope="col">Rate</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Late Fee</th>
+        <th scope="col">Amount (after due date)</th>
+        <th scope="col">Previous Arrear</th>
+         <th scope="col" >Total Due Amount</th>
+
+
+         </tr>
+            </thead>
+               <tbody>
+                  
+      <tr *ngFor = "let us of calculateData |
+      paginate: { 
+        itemsPerPage: 8, 
+        currentPage:page,
+        totalItems:totalLength
+      }">
+          <td>{{us.chargeName}}</td>
+         <td>{{us.blockName}} - {{us.floorName}} - {{us.rentalUnitName}}</td>
+         <td>{{us.area}}</td>
+         <td>{{us.amountPerUnit}}</td>
+         <td>{{us.calculatedAmount}}</td>
+         <td *ngIf="us.isPrecent === false">{{us.fine}}</td>
+         <td *ngIf="us.isPrecent === true">{{us.fine}}%</td>
+         <td>{{us.amounAfterDueDate}}</td>
+         <td *ngIf="us.credit === '0'">+{{us.debit}}</td>
+         <td *ngIf="us.debit === '0'">-{{us.credit}}</td>
+         <td>{{us.dueAmount}}</td>
+
+
+          </tr>
+          <!-- <tr >
+              <td>Maintainace Charge</td>
+              <td>Tower A -222</td>
+              <td>550</td>
+              <td>2.5000</td>
+              <td>1375.00</td>
+               </tr> -->
+               </tbody>
+              </table>
+            </div>
+           <div style="display: flex; justify-content: start;">
+              <button [disabled]="loading"   mat-stroked-button class="btn btn-success m-2" type="submit" (click)="billgeneration()">
+                <span  *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Generate</button> &nbsp;
+              <button  mat-stroked-button class="btn btn-danger m-2" (click)="onCancelClick()" type="submit" >Reset</button> &nbsp;
+          
+            </div>
+</div>
+
+</div>
+</div>

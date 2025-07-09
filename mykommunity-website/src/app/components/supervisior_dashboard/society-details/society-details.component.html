@@ -1,0 +1,301 @@
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+        <span mat-stroked-button class="btn btn-lg mt-1 p-2" style="color: white;" (click)="back()"><mat-icon>fast_rewind</mat-icon> </span>        
+
+        Soiety Details</div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+            <div class="row mb-3">
+                <div class="row-md-4"> <!-- Limit the dropdown to 4 columns wide -->
+                    <button *ngIf="role=='SOCIETY_ADMIN'" mat-raised-button class="btn m-3 ps-5 pe-5" (click)="OnEdit()" (click)="open(content)"
+                    style="background-color: #1e293b; color: white;">
+                    <mat-icon>edit</mat-icon> Edit Society Info</button>
+                    <button *ngIf="role=='SOCIETY_ADMIN'" mat-raised-button class="btn m-3 ps-5 pe-5" (click)="open2(content2)"
+                style="background-color: #1e293b; color: white;" >
+                <mat-icon>add</mat-icon> Add Society Admin</button>
+                </div>
+            </div>
+            <div class="society-details-container">
+                <div class="header-divider-container">
+                  <h2 class="society-header">Society Details</h2>
+                  <hr class="divider">
+                </div>
+              
+                <div class="details-container">
+                  <div class="image-container">
+                    <div *ngIf="images && images.length > 0; else alternateImage">
+                      <h3>Images</h3>
+                      <img [src]="images[0].image" alt="Society Image" class="society-image">
+                    </div>
+                    <ng-template #alternateImage>
+                      <ng-container>
+                        <img src="assets/logo.jpg" alt="Default Society Image" class="society-image">
+                      </ng-container>
+                    </ng-template>
+                  </div>
+                
+              
+                  <div class="details">
+                    <div class="detail-item">
+                        <strong>Society Name:</strong> {{ societyName }}
+                      </div>
+                    <div class="detail-item">
+                      <strong>City:</strong> {{ city }}
+                    </div>
+                    <div class="detail-item">
+                      <strong>State:</strong> {{ state }}
+                    </div>
+                   
+                    <div class="detail-item">
+                      <strong>Pin Code:</strong> {{ pinCode }}
+                    </div>
+                   
+                    
+                    <div class="detail-item">
+                        <strong>PAN:</strong> {{ pan }}
+                      </div>
+                      <div class="detail-item">
+                        <strong>GST:</strong> {{ gst }}
+                      </div>
+                      <div class="detail-item">
+                        <strong>Created On:</strong> {{ createdAt | date:'medium'}}
+                      </div>
+                      <div class="detail-item">
+                        <strong>Last Update:</strong> {{ updatedAt | date:'medium'}}
+                      </div>
+                      <div class="detail-item">
+                          <strong>Builder Name:</strong> {{ builderName }}
+                        </div>
+                      <div class="detail-item">
+                        <strong>Address:</strong> {{ address }}
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-5"></div>
+              <div class="header-divider-container">
+                <h2 class="society-header">Admin Details</h2>
+                <hr class="divider">
+              </div>
+            
+              <table class="table table-bordered   ">
+                <thead>
+                <tr>
+                
+                 <th scope="col">Profile</th> 
+                 <th scope="col"> Role</th>
+                  <th scope="col">FirstName</th>
+                  <th scope="col">LastName</th>
+                  <th scope="col">Email_id</th> 
+                  <th scope="col">Mobile Number</th>
+                 
+                  
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor = "let us of readData |
+                 paginate: { 
+                    itemsPerPage: 10, 
+                    currentPage:page,
+                   totalItems:totalLength
+                                  }">
+                             <td scope="row">
+                        <!-- Assuming this code is within your Angular component's template -->
+             <img [src]="us.profileImage"
+             style="border-radius: 20px; height: 40px; width: 40px;  display: flex; align-items: center; justify-content: center;" *ngIf="us.profileImage; else alternateImage">
+             <ng-template #alternateImage>
+             <ng-container *ngIf="us.lastName; else alternateImage3">
+                 <div style="border-radius: 20px; height: 40px; width: 40px;  background-color: #e9d9d9;
+                     display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold;">
+                     {{ us.firstName?.charAt(0).toUpperCase() || '' }}{{ us.lastName?.charAt(0).toUpperCase() || '' }}
+                 </div>
+             </ng-container>
+             </ng-template>
+             <ng-template #alternateImage3>
+             <ng-container *ngIf="us.firstName || us.lastName; else alternateImage2">
+                 <div style="border-radius: 20px; height: 40px; width: 40px; background-color: #e9d9d9;
+                     display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold;">
+                     {{ us.firstName?.charAt(0).toUpperCase() || '' }}{{ us.lastName?.charAt(0).toUpperCase() || '' }}
+                 </div>
+             </ng-container>
+             </ng-template>
+             <ng-template #alternateImage2>
+             <div style="border-radius: 20px; height: 40px; width: 40px; background-color: #e9d9d9;
+                 display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold;">
+                 R
+             </div>
+             </ng-template>
+             
+                       </td>
+                <th>{{map[us.role]}}</th>                    
+                  <td>{{us.firstName}}</td>
+                  <td>{{us.lastName}}</td>
+                  <td>{{us.email}}</td>
+                  <td>{{us.mobileNumber}}</td>
+              
+                 
+                  
+                  <!-- <td>
+                    <mat-icon color="primary" (click)="open(content)" >edit</mat-icon>
+                   </td> -->
+                </tr>
+               
+                </tbody>
+                
+                 </table>
+              <div fxLayoutAlign="center center" fxFlexFill>
+
+                <ng-template class="modal" #content let-modal style="background-color: rgba(196, 200, 167, 0.5);">
+                  
+                  <div class="modal-header" style="padding: 0px;">
+                    <mat-toolbar class="btn" style="background-color: #1e293b; color: white;">
+                      <h2 class="modal-title" id="modal-basic-title">Update Details</h2>
+                    <button  type="button" class=" btn btn-close " aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                  </mat-toolbar>
+                  </div>
+                  <div class="modal-body" style="background-color: rgba(192, 222, 230, 0.5);"  >
+                    <mat-card fxFlex="100" >
+                    
+                  
+                      <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form" >
+                        
+                        <mat-form-field appearance="standard"  class="full-width">
+                          <mat-label>Community Name</mat-label>
+                          <input matInput inputmode="tel" placeholder="community name" formControlName="name" #nameInput>
+                          <mat-error>Name is required</mat-error>
+                      </mat-form-field>
+            
+                    
+                      
+                      
+                     
+                    <mat-form-field appearance="standard"  class="full-width">
+                      <mat-label>PinCode</mat-label>
+                      <input matInput maxlength="6" minlength="6"  placeholder="pincode" formControlName="pinCode" >
+                      <mat-error>pincode required</mat-error>
+                      
+                  </mat-form-field>
+                  <mat-form-field appearance="standard"  class="full-width">
+                    <mat-label>Address</mat-label>
+                    <input matInput placeholder="Type address here" formControlName="address" #nameInput>
+                    <mat-error>Address required</mat-error>
+                    
+                </mat-form-field>
+                <mat-form-field appearance="standard"  class="full-width">
+                  <mat-label>Builder Name</mat-label>
+                  <input matInput minlength="2" inputmode="tel" placeholder="builderName" formControlName="builderName" #nameInput>
+                  <mat-error>Builder Name required</mat-error>
+                  
+              </mat-form-field>
+              <mat-form-field appearance="standard"  class="full-width">
+                <mat-label> Pan Card Number</mat-label>
+                <input matInput minlength="2" inputmode="tel" placeholder="PanCard Number" formControlName="panId" >
+                <!-- <mat-error>Pan id required</mat-error> -->
+                
+            </mat-form-field>
+             <mat-form-field appearance="standard"  class="full-width">
+              <mat-label>GST</mat-label>
+              <input matInput minlength="2" inputmode="tel" placeholder="GST" formControlName="gst">
+              
+            </mat-form-field>
+             
+                        
+                  </form>
+                </mat-card>
+                  </div>
+                
+                  <div class="modal-footer">
+                    <button  (click)="modal.close('Save click')" (click)="societyUpdate()"  class="btn" style="background-color: #1e293b; color: white;" >Update</button>
+                  <!-- <button *ngIf="getparamid" (click)="CommunityUpdate()"  (click)="modal.close('Save click')"  class="btn-group btn btn-primary " >Update</button> -->
+                    <button type="submit" class="btn btn-danger"  (click)="modal.close('Save click')" >Cancel</button>
+                  </div>
+                  
+                </ng-template>
+    </div>   
+    
+    
+    <!-- create supervisor -->
+
+    <div fxLayoutAlign="center center" fxFlexFill>
+   
+        <ng-template class="modal" #content2 #id let-modal style="background-color: rgba(196, 200, 167, 0.5);">
+         
+         <div class="modal-header" style="padding: 0px;">
+           <mat-toolbar class="btn" style="background-color: #1e293b; color: white;">
+             <h2 class="modal-title" id="modal-basic-title">Create Supervisor</h2>
+           <button  type="button" class=" btn btn-close " aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+         </mat-toolbar>
+         </div>
+         <div class="modal-body" style="background-color: rgba(192, 222, 230, 0.5);" >
+           <mat-card fxFlex="100" >
+           
+          
+           <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form2" >
+             
+               
+             <mat-form-field appearance="fill"  class="full-width">
+                 <mat-label>First Name</mat-label>
+                 <input matInput placeholder="Type name" formControlName="firstName" >
+             
+                 <mat-error>First Name is required</mat-error>
+                 
+             </mat-form-field>
+             
+             <mat-form-field appearance="fill"  class="full-width">
+               <mat-label>Last Name</mat-label>
+               <input matInput maxlength="15" placeholder="Type name" formControlName="lastName" #nameInput>
+               
+               <mat-error>Last Name is required</mat-error>
+               
+           </mat-form-field>
+         
+             <mat-form-field appearance="fill"  class="full-width">
+                 <mat-label>Email Address:</mat-label>
+                 <input matInput type="email" formControlName="email" placeholder="Your email">
+                 
+                 <mat-hint>Enter a valid Email</mat-hint>
+                 <mat-error *ngIf="(form2.get('email')).errors?.required">Email is required</mat-error>
+                 <mat-error *ngIf="(form2.get('email')).errors?.pattern">Please enter valid email</mat-error>
+             </mat-form-field>
+       
+             
+           
+       
+             <mat-form-field class="full-width mt-1" appearance="fill">
+               <mat-label>Mobile Number</mat-label>
+               <span matPrefix>+91</span><input matInput maxlength="10" minlength="10" formControlName="mobileNumber">
+              <mat-hint>Enter your number</mat-hint>
+               <mat-error *ngIf="(form2.get('mobileNumber')).errors?.required">Number is required</mat-error>
+               <mat-error *ngIf="(form2.get('mobileNumber')).errors?.minlength">Please enter 10 digit number</mat-error>
+               
+         
+           </mat-form-field>
+           <div appearance="fill" class="full-width">
+             <div style="margin-right:3%; color:#6b6b6b;">
+               <mat-label>User Role</mat-label>
+           </div>
+             <select style="width: 100%; height: 30px;" required formControlName="role" >
+               <option [value]="SOCIETY_ADMIN">Admin privilege</option>
+               <option [value]="SOCIETY_ADMIN_DISPLAY">Display privilege</option>
+               
+             </select>
+           </div>
+       
+         </form>
+       </mat-card>
+         </div>
+       
+         <div class="modal-footer">
+            
+            <button (click)="saveDetails()"  (click)="modal.close('Save click')"  class="btn" style="background-color: #1e293b; color: white;" >Create</button>
+           
+           <button type="submit"  class=" btn-group btn btn-danger"  (click)="modal.close('Save click')">Cancel</button>
+         </div>
+         
+       </ng-template>
+       
+       </div>
+            </div>
+            </div>
+            

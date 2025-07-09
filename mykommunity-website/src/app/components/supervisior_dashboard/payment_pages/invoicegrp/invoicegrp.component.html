@@ -1,0 +1,149 @@
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span>      <button mat-raised-button class="btn btn-lg m-1 p-2" style="color: rgb(250, 242, 242);" (click)="back()"><mat-icon>fast_rewind</mat-icon></button>          
+      </span>
+      Generated Charge Details
+
+    </div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+           
+          <div>
+               
+                <!-- <div style="display: flex; justify-content: end;">
+                  <button mat-raised-button class="btn btn-danger m-1 p-1">Bulk Cancel</button>
+                  <button mat-raised-button class="btn  m-1 p-1" style="background-color: #1e293b; color: white;">Print</button>
+                  <button mat-raised-button class="btn btn-primary m-1 p-1">Download</button>
+                </div> -->
+  
+              <div>
+                <h2>Group Batch ID: {{id}} </h2>
+              </div>
+              <!-- <div style="display: flex; justify-content: end;">
+                <button mat-raised-button class="btn m-1 p-1">Select House <mat-icon>arrow_drop_down</mat-icon></button>
+                <button mat-raised-button class="btn m-1 p-1"> Select Invoice  <mat-icon>arrow_drop_down</mat-icon></button>
+                <button mat-raised-button class="btn  m-1 p-1" style="background-color: #1e293b; color: white;"> Clear</button>
+
+              </div> -->
+
+            <div >
+                <div class="table-wrapper">
+
+         <table class="table table-bordered invoice" style="width:100%; ">
+                   
+                    <tr >
+                      <th>Charge Name</th>
+                      <td>{{readData.type}}</td>
+                      <th>Charge Type</th>
+                      <td>{{readData.chargeName}}</td>
+                    </tr>
+                    <tr >
+                      <th>Charge Date</th>
+                      <td>{{readData.billDate | date:'medium'}}</td>
+                      <th>Due Date</th>
+                      <td>{{readData.dueDate | date:'medium'}}</td>
+                    </tr>
+                    <tr>
+                      <th>Account Number</th>
+                      <td>2345677777(ICIC BANKx)</td>
+                      <th>Fine Setting</th>
+                      <td *ngIf="readData.isPrecent === false">{{readData.fine}}</td>
+                      <td *ngIf="readData.isPrecent === true">{{readData.fine}}%</td>   
+                                     </tr>
+                    <tr>
+                        <th>GST</th>
+                        <td *ngIf="readData.isGst === false">No</td>
+                      <td *ngIf="readData.isGst === true">Yes</td>  
+                        <th>Generated Date</th>
+                        <td>{{readData.createdAt | date:'medium'}}</td>
+                      </tr>
+                       <tr>
+                        <th>Settle from Advance</th>
+                        <td>Yes</td>
+                        <th>Round Off Amount</th>
+                        <td *ngIf="readData.isRoundOff === false">No</td>
+                        <td *ngIf="readData.isRoundOff === true">Yes</td>                       
+                       </tr>
+                     </table>
+            </div>
+            </div>
+            <div class="table-wrapper">
+
+         <table class="table table-bordered " style="margin-top: 50px;" >
+                <thead>
+                 <tr>
+                  <th scope="col">House</th> 
+                  <th scope="col">Area</th> 
+        <th scope="col">Amount Per Unit</th> 
+        <th scope="col"> Calculated Amount</th>
+        <th scope="col"> Grace Period</th>
+
+        <th scope="col">Late Fee</th>
+        <th scope="col">Amount (after due date)</th>
+         <th scope="col" >Total Due Amount</th>
+         <th scope="col" >Paid Amount</th>
+
+                  <!-- <th scope="col">Cancel</th>  
+                  <th scope="col">Print</th>   
+ 
+
+                  <th scope="col">Select All <mat-checkbox> </mat-checkbox></th>    -->
+   
+             
+                    </tr>
+                      </thead>
+                         <tbody>
+                             <tr *ngFor = "let us of readData2 |
+                             paginate: { 
+                               itemsPerPage: 8, 
+                               currentPage:page,
+                               totalItems:totalLength
+                             }">
+                   <td>{{us.blockName}} - {{us.floorName}} - {{us.rentalUnitName}}</td>
+                   <td>{{us.area}}</td>
+        <td>{{us.amountPerUnit}}</td>
+        <td>{{us.calculatedAmount}}</td>
+        <td>{{us.gracePeriod}}</td>
+
+         <td *ngIf="us.isPrecent === false">{{us.fine}}</td>
+         <td *ngIf="us.isPrecent === true">{{us.fine}}%</td>
+
+         <td>{{us.amounAfterDueDate}}</td>
+        
+         <td>{{us.dueAmount}}</td>
+         <td>{{us.paidAmount}}</td>
+
+                  <!-- <td style="color: rgb(255, 42, 0);">Cancel</td>
+                  <td style="color: #1e293b; ">Print</td>
+
+                  <td><mat-checkbox> </mat-checkbox></td> -->
+                 
+                 
+               
+                </tr>
+                <!-- <tr >
+                    <th scope="row" >Mykom12345</th>
+                   <td>Tower-A - 111</td>
+                   <td>11-11-2022</td>
+                   <td>1100.00</td>
+                   <td>0.00</td>
+                   <td>1100.00</td>
+                   <td>None</td>
+                   <td style="color: rgb(255, 42, 0);">Cancel</td>
+                   <td style="color: #1e293b; ">Print</td>        
+                              <td><mat-checkbox> </mat-checkbox></td>
+                  
+                  
+                
+                 </tr> -->
+                         </tbody>
+                        </table>
+            </div>
+              </div>
+
+
+
+              
+            </div>
+            </div>

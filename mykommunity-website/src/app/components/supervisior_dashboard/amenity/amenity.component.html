@@ -1,0 +1,264 @@
+
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span mat-raised-button class="btn btn-lg mt-1 p-2" style="color: white;" (click)="back()"><mat-icon>fast_rewind</mat-icon> </span>        
+
+      Amenity</div>
+      <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+  
+  <div class="top-content">
+    <div class="button-container">
+      <!-- Button: Add Service Provider -->
+      <button *ngIf="role === 'SOCIETY_ADMIN'" 
+              mat-raised-button 
+               
+              (click)="open(content)"
+              class="btn m-1 pe-2 button-responsive" 
+              style="background-color: #1e293b; color: white;">
+        <mat-icon>add_circle_outline</mat-icon> Add Amenity
+      </button>
+  
+      <!-- Button: Export CSV -->
+      <button mat-raised-button 
+              (click)="exportData()" 
+              class="btn m-1 pe-2 button-responsive" 
+              style="background-color: #1e293b; color: white;"
+              >
+        <mat-icon>file_download</mat-icon> Export CSV
+      </button>
+  
+      <!-- Button: Select Columns -->
+      <button mat-raised-button  (click)="toggleModal()" 
+      class="btn m-1 pe-2 button-responsive" 
+      style="background-color: #1e293b; color: white;">
+        <mat-icon>checklist</mat-icon> Visible Fields 
+      </button>
+    </div>
+  
+    <!-- Search bar -->
+    <!-- <div class="search-container">
+      <mat-icon class="search-icon">search</mat-icon>
+      <input type="text" 
+             placeholder="Search..." 
+             [(ngModel)]="searchFlat" 
+             class="search-bar-with-icon">
+    </div> -->
+  </div>
+  
+  
+  
+   
+  
+  <div class="modal" [ngClass]="{'show': isModalOpen}" (click)="toggleModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()"style="width: 60%; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+      <div class="settings-container">
+        <div class="tab-container">
+          <div class="tabs" style="display: flex; justify-content: center; align-items: center; flex-direction: row; width: 100%; padding:10px">
+            <h1 style="margin: 0;">Column Selection</h1>
+          </div>
+          
+          <div class="tab-content">
+            <div class="list-container" style="display: flex; justify-content: space-between;">
+              <div class="list-box" style="width: 45%;">
+                <h3 style="font-weight: bold;">Hidden Columns</h3>
+                <ul id="hidden-columns" class="list">
+                  <li *ngFor="let column of hiddenColumns">
+                    <input type="checkbox" [(ngModel)]="column.selected"> {{ column.name }}
+                  </li>
+                </ul> 
+              </div>
+              <div class="buttons-container" style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-left: 20px; gap: 15px; padding: 15px;">
+                <button class="btn" (click)="addColumn()"  style="width: 100px; height: 40px; background-color: #1e293b; color: white; font-weight: bold; padding: 10px; display: flex; align-items: center; justify-content: space-between;">
+                  Add <span style="font-size: 14px; margin-left: 5px;">▶</span>
+                </button>
+                <button class="btn" (click)="removeColumn()" style="width: 100px; height: 40px; background-color: #1e293b; color: white; font-weight: bold; padding: 10px; display: flex; align-items: center; justify-content: space-between;">
+                  <span style="font-size: 14px; margin-right: 5px;">◀</span> Remove
+                </button>
+              </div>
+              <div class="list-box" style="width: 45%; padding-top: 5px;">
+                <h3 style="font-weight: bold;">Displayed Columns</h3>
+                <ul id="displayed-columns" class="list">
+                  <li *ngFor="let column of displayedColumns">
+                    <input type="checkbox" [(ngModel)]="column.selected"> {{ column.name }}
+                  </li>
+                </ul>
+               
+                <!-- <div class="reorder-buttons" style="text-align: center; margin-top: 15px;">
+                  <button (click)="moveColumnUp()" class="arrow-btn">
+                    <span class="material-icons">▲</span> 
+                  </button>
+                  <button (click)="moveColumnDown()" class="arrow-btn">
+                    <span class="material-icons">▼</span> 
+                  </button>
+                </div> -->
+              </div>
+              
+            </div>
+          </div>  
+        </div>
+        <div class="footer" style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 15px; padding:10px">
+          <!-- <button class="btn btn-primary" (click)="applyColumnSelection()">OK</button> -->
+          <button class="btn" style="background-color: gray; color: white;" (click)="cancelChanges()" >Back</button>
+          <!-- <button class="btn btn-warning" (click)="resetChanges()" >Reset</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="table-wrapper">
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th *ngIf="isColumnVisible('Amenity Name')" scope="col">Amenity Name</th>
+            <th *ngIf="isColumnVisible('Amenity Type')" scope="col">Amenity Type</th>
+            <th *ngIf="isColumnVisible('Price per Slot')" scope="col">Price per Slot</th>
+            <th *ngIf="isColumnVisible('Max Capacity')" scope="col">Max Capacity</th>
+            <th *ngIf="isColumnVisible('Advance Booking Limit')" scope="col">Advance Booking Limit</th>
+            <th *ngIf="role === 'SOCIETY_ADMIN' && isColumnVisible('Edit')" scope="col">Edit</th>
+            <th *ngIf="role === 'SOCIETY_ADMIN' && isColumnVisible('Delete')" scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let us of activeAmenities
+                | paginate: {
+                    itemsPerPage: 8,
+                    currentPage: page,
+                    totalItems: totalLength
+                  }
+            "
+          >
+            <td *ngIf="isColumnVisible('Amenity Name')">{{ us.name }}</td>
+            <td *ngIf="isColumnVisible('Amenity Type')">{{ us.type }}</td>
+            <td *ngIf="isColumnVisible('Price per Slot')">{{ '₹' + us.pricePerSlot }}</td>
+            <td *ngIf="isColumnVisible('Max Capacity')">{{ us.maxCapacity }}</td>
+            <td *ngIf="isColumnVisible('Advance Booking Limit')">{{ us.advanceBookingLimitInDays }}</td>
+            <td *ngIf="isColumnVisible('Edit') && role === 'SOCIETY_ADMIN'">
+              <mat-icon color="primary" (click)="open(content)" (click)="OnEdit(us, form)">edit</mat-icon>
+            </td>
+            <td *ngIf="isColumnVisible('Delete') && role === 'SOCIETY_ADMIN'">
+              <mat-icon color="warn" (click)="AmenityRemove(us.id)">delete</mat-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+        
+            </div>
+    <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+
+    <div    style="display: flex; justify-content: flex-end;">
+      <div 
+        style="text-decoration: underline; color: blue; font-size:medium;"
+        (click)="RemovedAmenityList()"> View Past Members</div>
+       
+    </div>
+                                                                         
+    <div fxLayoutAlign="center center" fxFlexFill>
+
+        <ng-template class="modal" #content let-modal style="background-color: rgba(196, 200, 167, 0.5);">
+          
+          <div class="modal-header" style="padding: 0px;">
+            <mat-toolbar class="btn" style="background-color: #1e293b; color: white;">
+            <h2 class="modal-title" id="modal-basic-title">Add Amenity</h2>
+            <button  type="button" class=" btn btn-close " aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+          </mat-toolbar>
+          </div>
+          <div class="modal-body" >
+            <mat-card fxFlex="100" >
+            
+          
+              <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form" >
+                
+                <mat-form-field appearance="standard"  class="full-width">
+                  <mat-label>Amenity Name</mat-label>
+                  <input matInput maxlength="50" placeholder="Amenity name" formControlName="name" #nameInput>
+                  <mat-error>Amenity Name is required</mat-error>
+                  
+              </mat-form-field>
+              <!-- <mat-form-field appearance="standard"  class="full-width">
+                <mat-label>Type</mat-label>
+                <input matInput maxlength="15" inputmode="tel" placeholder="type" formControlName="type" #nameInput>
+                <mat-error>Type is required</mat-error>
+                
+            </mat-form-field> -->
+            <div appearance="fill" class="full-width">
+              <div style="margin-right:3%; color:#6b6b6b;">
+                <mat-label>Type</mat-label>
+            </div>
+              <select style="width: 100%; height: 30px;" required formControlName="type" >
+                <option value="0" disabled>--select type--</option>
+                <option value="HOURLY">HOURLY</option>
+                <option value="DAILY">DAILY</option>
+
+              </select>
+              <mat-hint>Type is required</mat-hint>
+            </div>
+            <mat-form-field appearance="standard"  class="full-width">
+                <mat-label>Price Per Slot</mat-label>
+                <input matInput type="number" placeholder="Enter Price" formControlName="pricePerSlot" #nameInput>
+                <mat-error>Price Required</mat-error>
+                
+            </mat-form-field>
+            <mat-form-field appearance="standard"  class="full-width">
+              <mat-label>Maximum Capacity</mat-label>
+              <input matInput type="number" placeholder="Enter Capacity" formControlName="maxCapacity" #nameInput>
+              <mat-error>Capacity Required</mat-error>
+              <mat-hint>Minimum Capacity 1</mat-hint>
+
+              
+          </mat-form-field>
+          <mat-form-field appearance="standard"  class="full-width">
+            <mat-label>Advance Booking Limit (in days)</mat-label>
+            <input matInput type="number" placeholder="Enter Days" formControlName="advanceBookingLimitInDays" #nameInput>
+            <mat-error>Advance Booking Required</mat-error>
+            
+        </mat-form-field>
+            <!-- <div appearance="fill" class="full-width">
+                <div style="margin-right:3%; color:#6b6b6b;">
+                  <mat-label>Add Images</mat-label>
+              </div>
+               
+              <input  type="file" (change)="upload($event)" multiple="" accept="*.png.jpg" formControlName="images">
+              <div>
+                <progress [value]="Percentage | async" max="100"></progress>
+                {{ Percentage | async }}
+                </div>
+             <img [src]="SelectedImage" style="height: 200px; width: 200px;"> 
+               <div *ngIf="snapshot | async">
+                {{snapshot.bytesTransferred }} of {{snapshot.totalBytes}}
+</div> 
+               <div>
+                  <h3>Results</h3>
+                    <img [src]="downloadURL"><br>
+                    <a [src]="downloadURL" target="_blank " rel="noopener">Download Me!</a>
+                 </div> 
+                 <button (click)="task.pause()">Pause</button> 
+              </div> 
+                  </div>
+                 -->
+               
+                                 
+          </form>
+        </mat-card>
+          </div>
+        
+        
+          <div class="modal-footer">
+            <button *ngIf="!getparamid" [disabled]="loading"  (click)="saveDetails(form)"  (click)="modal.close('Save click')"  class=" btn-group btn " style="background-color: #1e293b; color: white;" [disabled]="!form.valid">
+              <span  *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>create</button>
+
+            <button *ngIf="getparamid" [disabled]="loading"  (click)="AmenityUpdate()"  (click)="modal.close('Save click')"  class="btn-group btn " style="background-color: #1e293b; color: white;" >
+              <span  *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Update</button>
+
+            <button type="submit" class="btn btn-danger"  (click)="modal.close('Save click')">Cancel</button>
+          </div>
+        </ng-template>
+        
+        </div> 
+   
+   </div>
+</div>  
+

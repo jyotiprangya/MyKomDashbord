@@ -1,0 +1,49 @@
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span>     
+         <button mat-raised-button class="btn btn-lg m-1 p-2" style="color: rgb(250, 242, 242);" (click)="back()"><mat-icon>fast_rewind</mat-icon></button>          
+      </span>
+      Vendor Report
+
+    </div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+           
+            <div class="vendor">
+              <form  [formGroup]="form" >
+
+
+              <mat-form-field appearance="fill"  class="full-width">
+                <mat-label>Vendor</mat-label>
+                <select matNativeControl required formControlName="vendorId"> 
+                  <option value="0" disabled>--Select Vendor--</option>
+                  <option  *ngFor="let vendor of readData2" value={{vendor.vendorId}}>{{vendor.vendorName}}</option>
+                </select>
+              </mat-form-field>
+                  <mat-form-field appearance="fill" class="full-width"  >
+                    <mat-label>From Date</mat-label>
+            
+                    <input  matInput [matDatepicker]="picker" placeholder="From Date"  formControlName="startDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                  <mat-form-field appearance="fill" class="full-width"  >
+                    <mat-label>To Date</mat-label>
+            
+                    <input  matInput [matDatepicker]="picker2" placeholder="To Date"  formControlName="endDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                  </mat-form-field>
+                  </form>
+                                </div>
+              <div class="vendorbutton">
+                <button class="btn btn-success active m-3" (click)="onSubmit()"> View</button>
+             <!-- <button class="btn btn-warning active m-3"> Print</button>
+             <button class="btn btn-primary active m-3"> Download</button> -->
+
+              </div>
+
+
+            </div>
+            </div>

@@ -1,0 +1,59 @@
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span>      <button mat-raised-button class="btn btn-lg m-1 p-2" style="color: rgb(250, 242, 242);" (click)="back()"><mat-icon>fast_rewind</mat-icon></button>          
+      </span>
+      Preview & Generate Invoices
+
+    </div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+           
+          <div >
+           
+            <div>
+                
+
+                <mat-form-field appearance="fill" class="full-width" >
+                    <mat-label>Charge Date</mat-label>
+
+                    <input  matInput [matDatepicker]="picker" >
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                  <mat-form-field appearance="fill" class="full-width" >
+                    <mat-label>Due Date</mat-label>
+
+                    <input  matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                  <mat-form-field appearance="fill" class="full-width" >
+                    <mat-label>Next Fine Processing Date</mat-label>
+
+                    <input  matInput [matDatepicker]="picker" >
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+              </div>
+              </div>
+
+
+
+              <div>
+               
+              </div>
+              <div style="display: flex; justify-content: end;">
+                <button  mat-raised-button class="btn btn-success m-2" type="submit" (click)="showScreen = !showScreen" >Preview</button> &nbsp;
+
+                <button  mat-raised-button class="btn btn-success m-2" type="submit"  >Generate Invoice</button> &nbsp;
+                <button  mat-raised-button class="btn btn-warning m-2" type="submit" >Cancel</button> &nbsp;
+
+              </div>
+              <div *ngIf="showScreen">
+                <ul *ngFor="let flat of readData2">
+                    <li><button (click)="invoice()"  mat-raised-button>{{flat.name}}</button></li>
+                </ul>
+              </div>
+            </div>
+            </div>

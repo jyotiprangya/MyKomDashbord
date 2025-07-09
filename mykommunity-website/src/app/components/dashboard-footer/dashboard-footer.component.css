@@ -1,0 +1,14 @@
+mat-toolbar{
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    background:  #0f172a;
+    color: white;
+    height: fit-content;
+    font-size: medium;
+}
+
+ul,li{
+list-style: none;
+justify-content: center;
+}

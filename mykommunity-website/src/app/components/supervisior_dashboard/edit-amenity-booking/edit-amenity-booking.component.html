@@ -1,0 +1,109 @@
+<div class="container-fluid">
+  <div class="page_box" style="color: aliceblue;">
+    <button mat-raised-button class="btn btn-lg mt-1 p-2" style="color: white;" (click)="back()">
+      <mat-icon>fast_rewind</mat-icon>
+    </button>        
+    Update Booking Details
+  </div>
+
+  <div class="page_content shadow p-3 position-relative">
+    <div class="page_content-data position-absolute"></div>
+
+    <!-- Booking Details Section -->
+    <div class="details" *ngFor="let us of generateData">
+      <div class="detail-item">
+        <strong>Amenity Name:</strong> {{ us.amenityId }}
+      </div>
+      <div class="detail-item">
+        <strong>Slot Type:</strong> {{ us.amenityType.toLowerCase() | capitalizeFirstLetter }}
+      </div>
+      <div class="detail-item">
+        <strong>Booked by:</strong> {{ us.userFirstName }} {{ us.userLastName }}
+      </div>
+      <div class="detail-item">
+        <strong>Contact Info:</strong> {{ us.userMobileNumber }}
+      </div>
+      <div class="detail-item">
+        <strong>Booking from:</strong> {{ us.startTime | date:'medium':'UTC' }}
+      </div>
+      <div class="detail-item">
+        <strong>Booking Till:</strong> {{ us.endTime | date:'medium':'UTC' }}
+      </div>
+    </div>
+
+    <!-- Booking Form -->
+    <form [formGroup]="form">
+      <!-- Start Time -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Start Time</mat-label>
+        <input
+          matInput
+          [matDatepickerFilter]="myDateFilter"
+          [matDatepicker]="startPicker"
+          placeholder="Enter Booking Start Time"
+          formControlName="startTime"
+          (dateChange)="onStartTimeChange($event)"
+        />
+        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+        <mat-error *ngIf="form.get('startTime')?.hasError('required')">
+          Start Time Required
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Display No Slots Available -->
+      <div *ngIf="datesData.length === 0 && noslots" class="booking-info mt-2">
+        <mat-icon>info</mat-icon>
+        <p>No Slots Available For Selected Date</p>
+      </div>
+
+      <!-- Time Slots for HOURLY Type -->
+      <div *ngIf="dataLoaded && amenityType === 'HOURLY'">
+        <div class="checkbox-grid" *ngIf="formattedTimes.length > 0">
+          <div *ngFor="let timeRange of formattedTimes; let i = index;" class="checkbox-item">
+            <mat-checkbox
+              [disabled]="isPastTime(timeRange)"
+              (change)="onCheckboxChange(i)"
+            >
+              {{ timeRange }}
+            </mat-checkbox>
+          </div>
+        </div>
+        <div *ngIf="selectedStartTime && selectedEndTime" class="booking-info mt-2">
+          <mat-icon>info</mat-icon>
+          <p>
+            Booking selected From {{ selectedStartTime }}
+            to {{ selectedEndTime }}
+          </p>
+        </div>
+      </div>
+
+      <!-- End Time for DAILY Type -->
+      <mat-form-field appearance="fill" class="full-width" *ngIf="amenityType === 'DAILY'">
+        <mat-label>End Time</mat-label>
+        <input
+          matInput
+          [matDatepickerFilter]="myDateFilter"
+          [matDatepicker]="endPicker"
+          placeholder="Enter Booking End Time"
+          formControlName="endTime"
+        />
+        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+        <mat-error *ngIf="form.get('endTime')?.hasError('required')">
+          End Time Required
+        </mat-error>
+      </mat-form-field>
+    </form>
+
+    <!-- Update Booking Button -->
+    <button
+      [disabled]="loading"
+      (click)="saveDetails(form)"
+      class="btn btn-group"
+      style="background-color: #1e293b; color: white;"
+    >
+      Update Booking
+    </button>
+  </div>
+</div>

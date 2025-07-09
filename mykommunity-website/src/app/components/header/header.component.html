@@ -1,0 +1,30 @@
+<mat-toolbar>
+    <mat-toolbar-row style="display: flex; justify-content: flex-end;">
+        
+        <ul>
+            <li>
+              <button mat-button [matMenuTriggerFor]="menu" class="user mt-4 d-flex align-items-center">
+                <ng-container *ngIf="societyImage; else alternateImage">
+                    <img [src]="imageUrl" alt="User Image" class="user-image p-2">
+                </ng-container>
+                  
+                  <ng-template #alternateImage>
+                    <img src="assets/logo.jpg" alt="Default Logo" class="user-image mr-1 p-2"/>
+                  </ng-template>
+          
+                Welcome {{firstName}} {{lastName}}
+          
+                <mat-icon class="user-image-icon ml-1">keyboard_arrow_down</mat-icon>
+              </button>
+          
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="home()">
+                  <mat-icon>exit_to_app</mat-icon>
+                  Logout
+                </button>
+              </mat-menu>
+            </li>
+          </ul>
+          
+    </mat-toolbar-row>
+</mat-toolbar>

@@ -1,0 +1,87 @@
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span>     
+         <button mat-stroked-button class="btn btn-lg m-1 p-2" style="color: rgb(250, 242, 242);" (click)="back()"><mat-icon>fast_rewind</mat-icon></button>          
+      </span>
+     Create Budget
+
+    </div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+           
+
+            <div >
+                <mat-toolbar class="input-group">
+              <div>
+                <h2>New Budget</h2>
+              </div>
+            </mat-toolbar>
+           
+              <form [formGroup]="form">
+                 <div >
+                      <div style="border: 1px solid rgb(211, 202, 202); background-color: rgba(211, 202, 202,0.3);" >
+
+                        <mat-form-field appearance="fill">
+                          <mat-label>Name </mat-label>
+          
+                          <input  matInput placeholder="Name" formControlName="budgetName">
+                          <mat-error>This field is mandatory.</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill"  class="full-width">
+                          <mat-label>Chart Of Account</mat-label>
+                          <select matNativeControl required formControlName="chartOfAccountId"> 
+                            <option value="0" disabled>--Select Chart Of Account--</option>
+                            <option  *ngFor="let acc of readData2" value={{acc.chartOfAccountId}}>{{acc.accountName}}</option>
+                          </select>
+                        </mat-form-field> 
+
+                        
+                        
+                       
+                        <mat-form-field  appearance="fill">
+                          <mat-label>Financial Year</mat-label>
+                          <select matNativeControl formControlName="financialYear"> 
+                            <option value="2021-2022">2023-2024</option>
+                            <option value="2024-2025">2024-2025</option>
+                            <option value="2025-2026">2025-2026</option>
+                            <option value="2026-2027">2026-2027</option>
+                            <option value="2027-2028">2027-2028</option>
+                            <option value="2028-2029">2028-2029</option>
+                            <option value="2029-2030">2029-2030</option>
+
+
+                          </select>
+                        </mat-form-field>
+                        <mat-form-field  appearance="fill">
+                          <mat-label>Budget Period</mat-label>
+                          <select matNativeControl formControlName="budgetPeriod"> 
+                            <option value="Annual">Annual</option>
+                            <option value="Semi-annual">Semi-annual</option>
+                            <option value="Quarterly">Quarterly</option>
+                          </select>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                          <mat-label>Amount </mat-label>
+          
+                          <input  matInput placeholder="Enter Budget Amount" formControlName="amount">
+                          <mat-error>This field is mandatory.</mat-error>
+                        </mat-form-field>
+                          </div>
+
+
+                      
+        <div class="button-row p-2 m-1" >
+          <!-- <button mat-raised-button color="primary" type="submit" >Generate Invoice</button> &nbsp;
+          <button mat-raised-button color="primary" type="submit" (click)="invoice()">View Invoice</button> &nbsp; -->
+          <button mat-raised-button style="background-color: #1e293b; color: white;" type="submit"  [disabled]="loading" (click)="saveDetails(form)" (click)="budget()" >
+            <span  *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Create Budget</button> &nbsp;
+          <button mat-raised-button color="warn"  (click)="onCancelClick()" (click)="budget()">Cancel</button>
+        </div>
+  
+              </div>
+              </form>
+              </div>
+   
+            </div>
+            </div>

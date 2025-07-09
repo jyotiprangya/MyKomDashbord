@@ -1,0 +1,108 @@
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span>     
+         <button mat-raised-button class="btn btn-lg m-1 p-2" style="color: rgb(250, 242, 242);" (click)="back()"><mat-icon>fast_rewind</mat-icon></button>          
+      </span>
+      Receipt
+    </div>
+    <div class="page_content shadow position-relative" style="padding-left: 200px; padding-right: 200px; padding-top: 50px;" >
+        <div class="page_content-data position-absolute">
+            </div>
+
+          <header>
+                <h1>Bill Receipt</h1>
+            </header>
+                        <div>
+                            <img src="../../../../../assets/MK.jpg" alt="" style="height: 70px; width: 70px; align-items: center;"/>
+                            
+                        </div>
+            <address contenteditable>
+                <h2>Gatikrishna Green</h2>
+                
+               
+                
+             
+            </address>
+            <article>
+               
+                <div class="table-wrapper">
+
+                    <table class="table table-bordered" class="meta">
+                    <tr>
+                        <th><span contenteditable>Invoice #</span></th>
+                        <td><span contenteditable>1112</span></td>
+                    </tr>
+                    <tr>
+                        <th><span contenteditable>House</span></th>
+                        <td><span contenteditable>Tower-A - 222</span></td>
+                    </tr>
+                    <tr>
+                        <th><span contenteditable>Payment Date</span></th>
+                        <td><span contenteditable>April 3, 2023</span></td>
+                    </tr>
+                    <tr>
+                        <th><span contenteditable>Amount Due</span></th>
+                        <td><span id="prefix" contenteditable> ₹</span><span>2000.00</span></td>
+                    </tr>
+                  
+                   </table>
+            </div>
+            <div class="table-wrapper">
+
+                <table class="table table-bordered" class="inventory">
+                    <thead>
+                        <tr>
+                            <th><span contenteditable>Maintainace Fees</span></th>
+                            <th><span contenteditable>Advance Fees</span></th>
+                            <th><span contenteditable>Fine</span></th>
+                            <th><span contenteditable>total Price</span></th>
+                            <th><span contenteditable>Mode of Payment</span></th>
+                            <th><span contenteditable>Status</span></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            
+                            <td><span data-prefix> ₹</span><span contenteditable>2000.00</span></td>
+                            <td><span contenteditable><span data-prefix> ₹</span>500</span></td>
+                            <td><span data-prefix> ₹</span><span>0.00</span></td>
+                            <td><span>₹ 2000.00</span></td>
+                            <td><span>online</span></td>
+                            <td><button mat-raised-button style="color: white; background-color: rgb(80, 195, 23); border: none; font-size: small;" class="btn "> Paid </button></td>
+
+                        </tr>
+                    </tbody>
+                   </table>
+            </div>
+               
+            <div class="table-wrapper">
+
+                <table class="table table-bordered"  class="balance">
+                    <tr>
+                        <th><span contenteditable>Total</span></th>
+                        <td><span data-prefix> ₹</span><span>2000.00</span></td>
+                    </tr>
+                    <tr>
+                        <th><span contenteditable>Amount Paid</span></th>
+                        <td><span data-prefix> ₹</span><span contenteditable>2000.00</span></td>
+                    </tr>
+                    <tr>
+                        <th><span contenteditable>Balance Due</span></th>
+                        <td><span data-prefix> ₹</span><span>0.00</span></td>
+                    </tr>
+                  
+                   </table>
+            </div>
+            </article>
+            <aside>
+                <h1><span contenteditable>Additional Notes</span></h1>
+                <div contenteditable>
+                    <p>A finance charge of 1.5% will be made on unpaid balances after 30 days.</p>
+                </div>
+            </aside>
+        
+
+
+            </div>
+            </div>

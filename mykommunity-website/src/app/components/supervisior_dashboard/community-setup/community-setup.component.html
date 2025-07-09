@@ -1,0 +1,250 @@
+
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span mat-stroked-button class="btn  mt-1 p-2" style="color: white;" (click)="back()"><mat-icon>fast_rewind</mat-icon> </span>        
+
+      Community Setup</div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+  </div>
+  <div class="display">
+    <ul class="icon-list">
+      <li>
+        <button class="icon-button" (click)="society()">
+          <div class="icon-circle">
+            <mat-icon>domain</mat-icon>
+          </div>
+          <span>Society Details</span>
+        </button>
+      </li>
+      <li>
+        <button class="icon-button" (click)="block()">
+          <div class="icon-circle">
+            <mat-icon>apartment</mat-icon>
+          </div>
+          <span>Block</span>
+        </button>
+      </li>
+      <li>
+        <button class="icon-button" (click)="floor()">
+          <div class="icon-circle">
+            <mat-icon>stairs</mat-icon>
+          </div>
+          <span>Floor</span>
+        </button>
+      </li>
+      <li>
+        <button class="icon-button" (click)="flat()">
+          <div class="icon-circle">
+            <mat-icon>house</mat-icon>
+          </div>
+          <span>HousingUnit</span>
+        </button>
+      </li>
+      <li>
+        <button class="icon-button" (click)="gate()">
+          <div class="icon-circle">
+            <mat-icon>door_sliding</mat-icon>
+          </div>
+          <span>Gate</span>
+        </button>
+      </li>
+      <li>
+        <button class="icon-button" (click)="housetype()">
+          <div class="icon-circle">
+            <mat-icon>home</mat-icon>
+          </div>
+          <span>HouseType</span>
+        </button>
+      </li>
+      <li>
+        <button class="icon-button" (click)="amenityTpe()">
+          <div class="icon-circle">
+            <mat-icon>fitness_center</mat-icon>
+          </div>
+          <span>Amenity Category SetUp</span>
+        </button>
+      </li>
+      <li>
+        <button class="icon-button" (click)="complaintCategory()">
+          <div class="icon-circle">
+            <mat-icon>record_voice_over</mat-icon>
+          </div>
+          <span>Complaint Category SetUp</span>
+        </button>
+      </li>
+      
+      <li>
+        <button class="icon-button" (click)="sosCategory()">
+          <div class="icon-circle">
+            <mat-icon>emergency_share</mat-icon>
+          </div>
+          <span>SOS Category</span>
+        </button>
+      </li>
+      <li>
+        <button class="icon-button" (click)="qrcode()">
+          <div class="icon-circle">
+            <mat-icon>qr_code</mat-icon>
+          </div>
+          <span>QRCode Setup</span>
+        </button>
+      </li>
+      <li>
+        <button class="icon-button" (click)="qrcodeScan()">
+          <div class="icon-circle">
+            <mat-icon>qr_code</mat-icon>
+          </div>
+          <span>QRCode Scan </span>
+        </button>
+      </li>
+      <li>
+        <button class="icon-button" (click)="dailyhelpCategory()">
+          <div class="icon-circle">
+            <mat-icon>engineering</mat-icon>
+          </div>
+          <span>DailyHelp Category SetUp</span>
+        </button>
+      </li>
+     
+      <li>
+        <button class="icon-button" (click)="emergencyCategory()">
+          <div class="icon-circle">
+            <mat-icon>fireplace</mat-icon>
+          </div>
+          <span>Emergency Category SetUp</span>
+        </button>
+      </li>
+      <li>
+        <button class="icon-button" (click)="emergencyDail()">
+          <div class="icon-circle">
+            <mat-icon>call</mat-icon>
+          </div>
+          <span>Emergency Contacts SetUp</span>
+        </button>
+      </li>
+      <li>
+        <button class="icon-button" (click)="shift()">
+          <div class="icon-circle">
+            <mat-icon>sunny_snowing</mat-icon>
+          </div>
+          <span>Shift SetUp</span>
+        </button>
+      </li>
+      <li>
+        <button class="icon-button" (click)="shiftAssignment()">
+          <div class="icon-circle">
+            <mat-icon>assignment_ind</mat-icon>
+          </div>
+          <span>Shift Assignment To Guard</span>
+        </button>
+      </li>
+    </ul>
+  </div>
+  
+  
+  <!-- <div class="display">
+  <ul>
+    <li>
+        <button mat-raised-button class="btn m-3 ps-5 pe-5" (click)="society()"
+        style="background-color: #1e293b; color: white;" >
+        <mat-icon>domain</mat-icon>
+                   Society Details
+          </button>
+        </li>
+  <li>
+    <button mat-raised-button class="btn m-3 ps-5 pe-5" (click)="block()"
+    style="background-color: #1e293b; color: white;" >
+    <mat-icon>apartment</mat-icon>
+               Block SetUp
+      </button>
+    </li>
+
+    <li>
+        <button mat-raised-button class="btn m-3 ps-5 pe-5" (click)="floor()"
+        style="background-color: #1e293b; color: white;" >
+        <mat-icon>stairs</mat-icon>
+                 Floor SetUp
+        </button>
+    </li>
+
+    <li>
+        <button mat-raised-button class="btn m-3 ps-5 pe-5" (click)="flat()"
+        style="background-color: #1e293b; color: white;" >
+        <mat-icon>house</mat-icon>
+                   HousingUnit SetUp
+          </button>
+        </li>
+    
+        <li>
+            <button mat-raised-button class="btn m-3 ps-5 pe-5" (click)="gate()"
+            style="background-color: #1e293b; color: white;" >
+            <mat-icon>door_sliding</mat-icon>
+                     Gate SetUp
+            </button>
+        </li>
+        <li>
+            <button mat-raised-button class="btn m-3 ps-5 pe-5" (click)="housetype()"
+            style="background-color: #1e293b; color: white;" >
+            <mat-icon>home</mat-icon>
+                       HouseType SetUp
+              </button>
+            </li>
+        
+            <li>
+                <button mat-raised-button class="btn m-3 ps-5 pe-5" (click)="amenityTpe()"
+                style="background-color: #1e293b; color: white;" >
+                <mat-icon>fitness_center</mat-icon>
+                         Amenity Category SetUp
+                </button>
+            </li>
+           
+  </ul>
+  <ul>
+    <li>
+        <button mat-raised-button class="btn m-3 ps-5 pe-5" (click)="complaintCategory()"
+        style="background-color: #1e293b; color: white;" >
+        <mat-icon>record_voice_over</mat-icon>
+                 Complaint Category SetUp
+        </button>
+    </li>
+    <li>
+        <button mat-raised-button class="btn m-3 ps-5 pe-5" (click)="emergencyCategory()"
+        style="background-color: #1e293b; color: white;" >
+        <mat-icon>fireplace</mat-icon>
+                 Emergency Category SetUp
+        </button>
+    </li>
+    <li>
+        <button mat-raised-button class="btn m-3 ps-5 pe-5" (click)="emergencyDail()"
+        style="background-color: #1e293b; color: white;" >
+        <mat-icon>call</mat-icon>
+                 Emergency Contacts SetUp
+        </button>
+    </li>
+    <li>
+        <button mat-raised-button class="btn m-3 ps-5 pe-5" (click)="sosCategory()"
+        style="background-color: #1e293b; color: white;" >
+        <mat-icon>emergency_share</mat-icon>
+                 SOS Category SetUp
+        </button>
+    </li>
+    <li>
+        <button mat-raised-button class="btn m-3 ps-5 pe-5" (click)="dailyhelpCategory()"
+        style="background-color: #1e293b; color: white;" >
+        <mat-icon>engineering</mat-icon>
+                 DailyHelp Category SetUp
+        </button>
+    </li>
+    <li>
+        <button mat-raised-button class="btn m-3 ps-5 pe-5" (click)="qrcode()"
+        style="background-color: #1e293b; color: white;" >
+        <mat-icon>qr_code</mat-icon>
+                 QRCode
+        </button>
+    </li>
+  </ul>
+  </div> -->
+    </div>
+   
+    </div>  

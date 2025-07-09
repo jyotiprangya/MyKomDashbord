@@ -1,0 +1,179 @@
+<div class="container-fluid ">
+  <div class="page_box" style="color: aliceblue;">
+    <span class="btn btn-lg mt-1 p-2" style="color: white;" (click)="back()"><mat-icon>fast_rewind</mat-icon> </span>
+
+    Community
+  </div>
+  <div class="page_content shadow p-3 position-relative">
+    <div class="page_content-data position-absolute">
+    </div>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+  <!-- Add Community Button -->
+  <button mat-stroked-button class="btn m-1 p-1" style="background-color: #1e293b; color: white;" (click)="open(content)">
+    <mat-icon>add_circle_outline</mat-icon> Add Community
+  </button>
+  
+  <!-- Search Box -->
+  <div class="search-container">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-icon matPrefix class="search-icon">search</mat-icon>
+      <input matInput 
+             placeholder="Search communities..." 
+             [(ngModel)]="searchTerm"
+             (input)="onSearch($event)"
+             class="search-input">
+    </mat-form-field>
+  </div>
+</div>
+    <div class="table-wrapper">
+
+      <table class="table table-bordered   ">
+        <thead>
+          <tr>
+
+            <th scope="col">Community Name</th>
+            <th scope="col">City</th>
+            <th scope="col">State</th>
+            <th scope="col">Builder Name</th>
+            <th scope="col">Pincode</th>
+            <th scope="col">PanId</th>
+            <th scope="col">GST</th>
+            <th scope="col">Address</th>
+            <th scope="col">Created On</th>
+            <!-- <th scope="col">Edit</th> -->
+            <th scope="col">Delete</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let us of filteredData |
+                 paginate: { 
+                    itemsPerPage: 10, 
+                    currentPage:page,
+                   totalItems:totalLength
+                                  }">
+            <th scope="row">{{us.name}}</th>
+
+            <td>{{us.cityName}}</td>
+            <td>{{us.stateName}}</td>
+            <td>{{us.builderName}}</td>
+            <td>{{us.pinCode}}</td>
+            <td>{{us.panId}}</td>
+            <td>{{us.gst}}</td>
+            <td>{{us.address}}</td>
+            <td>{{us.createdAt | date:"medium"}}</td>
+            <td>
+              <mat-icon color="primary" (click)="open(content)">edit</mat-icon>
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+    </div>
+    <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+
+
+
+
+    <div fxLayoutAlign="center center" fxFlexFill>
+
+      <ng-template class="modal" #content let-modal style="background-color: rgba(196, 200, 167, 0.5);">
+
+        <div class="modal-header" style="padding: 0px;">
+          <mat-toolbar class="btn" style="background-color: #1e293b; color: white;">
+            <h2 class="modal-title" id="modal-basic-title">Add Community</h2>
+            <button type="button" class=" btn btn-close " aria-label="Close"
+              (click)="modal.dismiss('Cross click')"></button>
+          </mat-toolbar>
+        </div>
+        <div class="modal-body" style="background-color: rgba(192, 222, 230, 0.5);">
+          <mat-card fxFlex="100">
+
+
+            <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form">
+
+              <mat-form-field appearance="standard" class="full-width">
+                <mat-label>Community Name</mat-label>
+                <input matInput inputmode="tel" placeholder="community name" formControlName="name" #nameInput>
+                <mat-error>Community is required</mat-error>
+              </mat-form-field>
+
+              <div appearance="fill" class="full-width">
+                <div style="margin-right:3%; color:#6b6b6b;">
+                  <mat-label>City</mat-label>
+                </div>
+                <select style="width: 100%; height: 30px;" required formControlName="cityId">
+                  <option [value]="0" disabled>--select city--</option>
+                  <option *ngFor="let ct of readData2" value={{ct.id}}>{{ct.city}}</option>
+                </select>
+                <mat-hint>City required</mat-hint>
+              </div>
+
+
+
+              <mat-form-field appearance="standard" class="full-width">
+                <mat-label>PinCode</mat-label>
+                <input matInput maxlength="6" minlength="6" placeholder="pincode" formControlName="pinCode">
+                <mat-error>pincode required</mat-error>
+
+              </mat-form-field>
+              <mat-form-field appearance="standard" class="full-width">
+                <mat-label>Address</mat-label>
+                <input matInput placeholder="Type address here" formControlName="address" #nameInput>
+                <mat-error>Address required</mat-error>
+
+              </mat-form-field>
+              <mat-form-field appearance="standard" class="full-width">
+                <mat-label>Builder Name</mat-label>
+                <input matInput minlength="2" inputmode="tel" placeholder="builderName" formControlName="builderName"
+                  #nameInput>
+                <mat-error>Builder Name required</mat-error>
+
+              </mat-form-field>
+              <mat-form-field appearance="standard" class="full-width">
+                <mat-label> Pan Card Number</mat-label>
+                <input matInput minlength="2" inputmode="tel" placeholder="PanCard Number" formControlName="pan"
+                  #nameInput>
+                <mat-error>Pan id required</mat-error>
+
+              </mat-form-field>
+              <mat-form-field appearance="standard" class="full-width">
+                <mat-label>GST</mat-label>
+                <input matInput minlength="2" inputmode="tel" placeholder="GST" formControlName="gst" #nameInput>
+
+              </mat-form-field>
+              <div appearance="fill" class="full-width">
+                <div style="margin-right:3%; color:#6b6b6b;">
+                  <mat-label>Add Society Image</mat-label>
+                </div>
+
+                <input type="file" (change)="upload($event)" multiple="" accept="*.png.jpg" formControlName="images">
+
+
+              </div>
+
+
+            </form>
+          </mat-card>
+        </div>
+
+        <div class="modal-footer">
+          <button (click)="saveDetails()" (click)="modal.close('Save click')" class="btn"
+            style="background-color: #1e293b; color: white;">create</button>
+          <!-- <button *ngIf="getparamid" (click)="CommunityUpdate()"  (click)="modal.close('Save click')"  class="btn-group btn btn-primary " >Update</button> -->
+          <button type="submit" class="btn btn-danger" (click)="modal.close('Save click')">Cancel</button>
+        </div>
+
+      </ng-template>
+
+    </div>
+    <!-- <div>
+    <input  type="file" (change)="upload($event)" accept="*.png.jpg">
+    <button (click)="uploadImage()">Upload</button>
+
+    </div> -->
+
+
+  </div>
+</div>

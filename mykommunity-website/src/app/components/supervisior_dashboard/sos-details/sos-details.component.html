@@ -1,0 +1,186 @@
+<div class="container-fluid ">
+  <div class="page_box" style="color: aliceblue;">
+    <span mat-stroked-button class="btn mt-1 p-2" style="color: white;"
+      (click)="back()"><mat-icon>fast_rewind</mat-icon> </span>
+
+    SOS Details
+  </div>
+  <div class="page_content shadow p-3 position-relative">
+    <div class="page_content-data position-absolute">
+    </div>
+
+<!-- 
+    <div class="filter">
+
+    <div class="input-group p-3" >
+      <input type="text" placeholder="Search..." class="form-control" style="width: 10vw;" [(ngModel)]="searchText" (ngModelChange)="applyFilters()" >
+      <button class="btn"
+        style="background-color: #1e293b; color: white;"><span><mat-icon>search</mat-icon></span></button>
+    </div>
+    <div class="input-group p-3" >
+      <input type="date" [(ngModel)]="filterDate" (ngModelChange)="applyFilters()" class="form-control" style="width: 5vw;" placeholder="Select Date">
+      <button class="btn"  style="background-color: #1e293b; color: white;"><span><mat-icon>today</mat-icon></span></button>
+    </div>
+    </div> -->
+    
+    <div class="top-content">
+      <div class="button-container">
+       
+        <!-- Button: Export CSV -->
+        <button mat-raised-button 
+                (click)="exportData()" 
+                class="btn m-1 pe-2 button-responsive" 
+                style="background-color: #1e293b; color: white;"
+                >
+          <mat-icon>file_download</mat-icon> Export CSV
+        </button>
+    
+        <!-- Button: Select Columns -->
+        <button mat-raised-button  (click)="toggleModal()" 
+        class="btn m-1 pe-2 button-responsive" 
+        style="background-color: #1e293b; color: white;">
+          <mat-icon>checklist</mat-icon> Visible Fields 
+        </button>
+       
+        <div class="date-container">
+          <input type="date" [(ngModel)]="filterDate" (ngModelChange)="applyFilters()" class="form-control" placeholder="Select Date">
+        </div>
+        
+        
+      </div>
+    
+      <!-- Search bar -->
+      <div class="search-container">
+        <mat-icon class="search-icon">search</mat-icon>
+        <input type="text" 
+               placeholder="Search..." 
+               [(ngModel)]="searchText" 
+               (ngModelChange)="applyFilters()"
+               class="search-bar-with-icon">
+      </div>
+    </div>
+    
+    
+    
+     
+   
+    <div class="modal" [ngClass]="{'show': isModalOpen}" (click)="toggleModal()">
+      <div class="modal-content" (click)="$event.stopPropagation()"style="width: 60%; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+        <div class="settings-container">
+          <div class="tab-container">
+            <div class="tabs" style="display: flex; justify-content: center; align-items: center; flex-direction: row; width: 100%; padding:10px">
+              <h1 style="margin: 0;">Column Selection</h1>
+            </div>
+            
+            <div class="tab-content">
+              <div class="list-container" style="display: flex; justify-content: space-between;">
+                <div class="list-box" style="width: 45%;">
+                  <h3 style="font-weight: bold;">Hidden Columns</h3>
+                  <ul id="hidden-columns" class="list">
+                    <li *ngFor="let column of hiddenColumns">
+                      <input type="checkbox" [(ngModel)]="column.selected"> {{ column.name }}
+                    </li>
+                  </ul> 
+                </div>
+                <div class="buttons-container" style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-left: 20px; gap: 15px; padding: 15px;">
+                  <button class="btn" (click)="addColumn()"  style="width: 100px; height: 40px; background-color: #1e293b; color: white; font-weight: bold; padding: 10px; display: flex; align-items: center; justify-content: space-between;">
+                    Add <span style="font-size: 14px; margin-left: 5px;">▶</span>
+                  </button>
+                  <button class="btn" (click)="removeColumn()" style="width: 100px; height: 40px; background-color: #1e293b; color: white; font-weight: bold; padding: 10px; display: flex; align-items: center; justify-content: space-between;">
+                    <span style="font-size: 14px; margin-right: 5px;">◀</span> Remove
+                  </button>
+                </div>
+                <div class="list-box" style="width: 45%; padding-top: 5px;">
+                  <h3 style="font-weight: bold;">Displayed Columns</h3>
+                  <ul id="displayed-columns" class="list">
+                    <li *ngFor="let column of displayedColumns">
+                      <input type="checkbox" [(ngModel)]="column.selected"> {{ column.name }}
+                    </li>
+                  </ul>
+                 
+                  <!-- <div class="reorder-buttons" style="text-align: center; margin-top: 15px;">
+                    <button (click)="moveColumnUp()" class="arrow-btn">
+                      <span class="material-icons">▲</span> 
+                    </button>
+                    <button (click)="moveColumnDown()" class="arrow-btn">
+                      <span class="material-icons">▼</span> 
+                    </button>
+                  </div> -->
+                </div>
+                
+              </div>
+            </div>  
+          </div>
+          <div class="footer" style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 15px; padding:10px">
+            <!-- <button class="btn btn-primary" (click)="applyColumnSelection()">OK</button> -->
+            <button class="btn" style="background-color: gray; color: white;" (click)="cancelChanges()" >Back</button>
+            <!-- <button class="btn btn-warning" (click)="resetChanges()" >Reset</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-wrapper">
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th *ngIf="isColumnVisible('SOS Image')" scope="col">SOS Image</th>
+            <th *ngIf="isColumnVisible('SOS')" scope="col">SOS</th>
+            <th *ngIf="isColumnVisible('Housing Unit')" scope="col">Housing Unit</th>
+            <th *ngIf="isColumnVisible('Raised By')" scope="col">Raised By</th>
+            <th *ngIf="isColumnVisible('Resident Mobile')" scope="col">Resident Mobile</th>
+            <th *ngIf="isColumnVisible('Raised Time')" (click)="sortData('createdAt')" scope="col">Raised Time
+              <span [class]="sortDirection['createdAt'] ? 'asc' : 'desc'"></span>
+            </th>
+            <th *ngIf="isColumnVisible('Acknowledged At')" (click)="sortData('acknowledgedAt')" scope="col">Acknowledged At
+              <span [class]="sortDirection['acknowledgedAt'] ? 'asc' : 'desc'"></span>
+            </th>
+            <th *ngIf="isColumnVisible('Resolved At')" (click)="sortData('resolvedAt')" scope="col">Resolved At
+              <span [class]="sortDirection['resolvedAt'] ? 'asc' : 'desc'"></span>
+            </th>
+            <th *ngIf="isColumnVisible('Status')" scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="filteredData.length === 0">
+            <td [attr.colspan]="columns.length" class="text-center" style="color: grey;">No Record Found!!!</td>
+          </tr>
+          <tr *ngFor="let us of filteredData | paginate: { itemsPerPage: 10, currentPage: page, totalItems: totalLength }">
+            <td *ngIf="isColumnVisible('SOS Image')">
+              <ng-container *ngIf="us.sosImage; else alternateImage">
+                <a [href]="us.sosImage" target="_blank">
+                  <img [src]="us.sosImage" style="border-radius: 20px; height: 40px; width: 40px;display: flex; align-items: center; justify-content: center;"/>
+                </a>
+              </ng-container>
+              <ng-template #alternateImage>
+                <div style="border-radius: 20px; height: 40px; width: 40px; background-color: #d9b9b9; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold;">
+                  {{ us.sosName?.charAt(0).toUpperCase() || '' }}
+                </div>
+              </ng-template>
+            </td>
+            <td *ngIf="isColumnVisible('SOS')">{{ us.sosName.toLowerCase() | capitalizeFirstLetter }}</td>
+            <td *ngIf="isColumnVisible('Housing Unit')">{{ us.userFlatInfo.rentalUnitName }}</td>
+            <td *ngIf="isColumnVisible('Raised By')">{{ us.firstName }} {{ us.lastName }}</td>
+            <td *ngIf="isColumnVisible('Resident Mobile')">{{ us.mobileNumber }}</td>
+            <td *ngIf="isColumnVisible('Raised Time')">{{ us.createdAt | date:'medium' }}</td>
+            <td *ngIf="isColumnVisible('Acknowledged At')">{{ us.acknowledgedAt | date:'medium' }}</td>
+            <td *ngIf="isColumnVisible('Resolved At')">{{ us.resolvedAt | date:'medium' }}</td>
+            <td *ngIf="isColumnVisible('Status')">
+              <button mat-stroked-button style="border: none; font-size: small; font-weight: bold;" [style.color]="getStatusColor(us.status)"> 
+                <mat-icon>{{ getStatusIcon(us.status) }}</mat-icon>
+                {{ us.status }}
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </div>
+    <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+
+
+  
+
+  </div>
+</div>

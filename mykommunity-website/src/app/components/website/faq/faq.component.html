@@ -1,0 +1,81 @@
+
+<div class="container-fluid">
+  
+ <div>
+  <app-root></app-root>
+ </div>
+
+    <div class="header">
+      
+        <div id="heading">
+                <h1><b>Frequently Asked Questions</b></h1>
+            <p>
+                The MyKommunity app has an extensive feature set, simplifying the way you manage visitors, deliveries, daily staff, society payments and much more.
+                 We're often asked about our thinking behind the features, how they work and how they can be used.
+                  We've compiled our responses to them below.
+            </p>
+            
+        </div>
+        <div class="faq">
+            <img src="../../../../assets/qna.png">
+        </div>
+    </div>
+
+    <div class="card">
+      <div>
+        <div id="box1" data-aos="slide-down" data-aos-duration="1000"><img src="../../../../assets/faq8.png"></div>
+        <h2>General Enquiries</h2>
+        <button style="display: grid;" class="btn btn-primary" routerLink="general_iniquries"><mat-icon>double_arrow</mat-icon></button>
+      </div>
+      <div>
+        <div id="box2" data-aos="slide-down" data-aos-duration="2000"><img src="../../../../assets/faq3.png"></div>
+        <h2>Technology</h2>
+        <button style="display: grid;" class="btn btn-primary" routerLink="technology"><mat-icon>double_arrow</mat-icon></button>  
+       </div>
+      <div>
+        <div id="box3" data-aos="slide-down" data-aos-duration="2500"><img src="../../../../assets/faq5.png"></div>
+        <h2>Features</h2>
+        <button style="display: grid;" class="btn btn-primary" routerLink="feature" ><mat-icon>double_arrow</mat-icon></button>
+
+        </div>
+      
+      <div>
+        <div id="box4" data-aos="slide-down" data-aos-duration="3000"><img src="../../../../assets/faq6.png"></div>
+        <h2>Payments</h2>
+        <button style="display: grid;" class="btn btn-primary" routerLink="Payments"><mat-icon>double_arrow</mat-icon></button>
+      </div>
+
+    </div>
+   
+   <div class="faqList">
+    <div>
+      <ul>
+        <li><a routerLink="general_iniquries" routerLinkActive="active">General Enquiries</a></li>
+        <li><a routerLink="technology" routerLinkActive="active">Technology</a></li>
+        <li><a routerLink="feature" routerLinkActive="active">Features</a></li>
+        <li><a routerLink="e-Intercom" routerLinkActive="active">e-Intercom</a></li> 
+        <li><a routerLink="visitorManagement" routerLinkActive="active">Visitor Management</a></li>
+        <li><a routerLink="attendance&StaffManagement" routerLinkActive="active">Attendance & Staff Management</a></li>
+        <li><a routerLink="deliveryManagement" routerLinkActive="active">Delivery Management</a></li>
+        <!-- <li><a routerLink="ClubhouseManagement" routerLinkActive="active">Clubhouse Management</a></li> -->
+        <!-- <li><a routerLink="Multi_PropertyManagement" routerLinkActive="active">Multi-Property Management</a></li> -->
+        <li><a routerLink="Payments" routerLinkActive="active">Payments</a></li>
+        <li><a routerLink="helpdesk" routerLinkActive="active">Helpdesk</a></li>
+        <li><a routerLink="communication" routerLinkActive="active">Communication</a></li>
+        <li><a routerLink="amenities" routerLinkActive="active">Amenities</a></li>
+
+      </ul>
+    </div>
+    <div class="router">
+      <router-outlet></router-outlet>
+    </div>
+   </div>
+
+      <div>
+        <app-footer></app-footer>
+      </div>
+          
+        </div>
+
+      
+        

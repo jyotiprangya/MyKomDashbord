@@ -1,0 +1,355 @@
+<!-- <div id="canvas"  style="display:flex; flex-wrap:nowrap;">
+  <canvas id="chartCanvas"></canvas>
+  <canvas id="chartCanvaspie"></canvas>
+  <canvas id="chartCanvasradar"></canvas>
+
+
+
+ 
+</div>
+<div id="canvas">
+  <canvas id="chartCanvaspie"></canvas>
+  <canvas id="chartCanvasradar"></canvas>
+
+</div> -->
+<!-- <div>
+  <div class="carousel carousel-dark slide" data-bs-ride="carousel" id="topBanner">
+    <div class="carousel-inner" style="height: 300px;">
+        <div class="carousel-item active" data-bs-interval="1000">
+            <img src="../../../../assets/about.jpg" class="d-block w-100">
+        </div>
+        <div class="carousel-item " data-bs-interval="3000">
+            <img src="../../../../assets/logo.jpg" class="d-block w-100">
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+            <img src="../../../../assets/logo.jpg" class="d-block w-100">
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+            <img src="../../../../assets/logo.jpg" class="d-block w-100">
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+            <img src="../../../../assets/logo.jpg" class="d-block w-100">
+        </div>
+      
+    </div>
+</div> -->
+
+
+<!-- <div fxLayout="row wrap"  (click)="complain()">
+  <div fxFlex="100" fxFlex.gt-sm="25" fxFlex.sm="50" style="padding: 10px;">
+    <mat-card>
+      <mat-card-title fxLayoutAlign="start center">
+        <small class="text-muted">Total Users</small>
+        <span fxFlex></span>
+        <mat-chip class="icon-chip" style="color:darkcyan" selected="true"> <mat-icon>groups_2</mat-icon></mat-chip>
+      </mat-card-title>
+      <mat-card-content>
+        <div class="m-2 p-2">
+          <tr>
+            <td style="color: green; font-weight:500;">Approved</td>
+            <td>{{readData3.length}}</td>
+          </tr>
+          <tr>
+            <td style="color: rgb(211, 169, 32); font-weight:500;">Pending Approval</td>
+            <td>{{readData4.length}}</td>
+          </tr>
+          <tr>
+            <td style="color: rgba(255, 0, 0, 0.477); font-weight:500;">Rejected</td>
+            <td>{{readData5.length}}</td>
+          </tr>
+         
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div fxFlex="100" fxFlex.gt-sm="25" fxFlex.sm="50" style="padding: 10px;" (click)="user()">
+    <mat-card>
+      <mat-card-title>
+        <small class="text-muted">Total Users</small>
+        <span fxFlex></span>
+        <mat-chip class="icon-chip" color="accent" selected="true"> <mat-icon>people</mat-icon></mat-chip>
+      </mat-card-title>
+      <mat-card-content>
+        <h3 class="m-0 font-normal">{{readData.length}}</h3>
+
+        <small class="text-muted"></small>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+
+  <div fxFlex="100" fxFlex.gt-sm="25" fxFlex.sm="50" style="padding: 10px;" (click)="services()">
+    <mat-card>
+      <mat-card-title>
+        <small class="text-muted">Services</small>
+        <span fxFlex></span>
+        <mat-chip class="icon-chip" color="accent" selected="true"><mat-icon>home_repair_service</mat-icon></mat-chip>
+      </mat-card-title>
+      <mat-card-content>
+        <h3 class="m-0 font-normal">{{readData3.length}}</h3>
+
+        <small class="text-muted"></small>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex="100" fxFlex.gt-sm="25" fxFlex.sm="50" style="padding: 10px;" (click)="flat()">
+    <mat-card>
+      <mat-card-title>
+        <small class="text-muted">Flats</small>
+        <span fxFlex></span>
+        <mat-chip class="icon-chip" color="warn" selected="true"><mat-icon>apartment</mat-icon></mat-chip>
+      </mat-card-title>
+      <mat-card-content>
+        <h3 class="m-0 font-normal">{{readData4.length}}</h3>
+
+        <small class="text-muted"></small>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div> -->
+<div class="top-stats">
+  <div class="stat-card">
+    <div class="icon-container">
+      <mat-icon color="primary">apartment</mat-icon>
+    </div>
+    <!-- Divider -->
+    <div class="vertical-divider"></div>
+    <div class="stat-info">
+      <h4>Flat</h4>
+      <p>{{readData8.length}}</p>
+    </div>
+  </div>
+
+  <div class="stat-card">
+    <div class="icon-container">
+      <mat-icon color="accent">group</mat-icon>
+    </div>
+    <!-- Divider -->
+    <div class="vertical-divider"></div>
+    <div class="stat-info">
+      <h4>Users</h4>
+      <p>{{readDataActive.length}}</p>
+    </div>
+  </div>
+
+  <div class="stat-card">
+    <div class="icon-container">
+      <mat-icon color="warn">directions_car</mat-icon>
+    </div>
+    <!-- Divider -->
+    <div class="vertical-divider"></div>
+    <div class="stat-info">
+      <h4>Vehicles</h4>
+      <p>{{readDataVehicle.length}}</p>
+    </div>
+  </div>
+
+  <div class="stat-card">
+    <div class="icon-container">
+      <mat-icon color="primary">record_voice_over</mat-icon>
+    </div>
+    <!-- Divider -->
+    <div class="vertical-divider"></div>
+    <div class="stat-info">
+      <h4>Complains New</h4>
+      <p>{{complainNEW.length}}</p>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="icon-container">
+      <mat-icon color="primary">supervised_user_circle</mat-icon>
+    </div>
+    <!-- Divider -->
+    <div class="vertical-divider"></div>
+    <div class="stat-info">
+      <h4>Visitor Inside</h4>
+      <p>{{Visitor_inside_building.length}}</p>
+    </div>
+  </div>
+</div>
+<mat-card class="pt-3 ">
+  <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="space-around center">
+    <div fxFlex.xs="100" fxFlex.sm="45" fxFlex.md="30" fxFlex.lg="18" (click)="unRegflat()">
+      <div class="chart-card">
+        <canvas class="chart" id="flatChart"></canvas>
+      </div>
+    </div>
+
+    <div fxFlex.xs="100" fxFlex.sm="45" fxFlex.md="30" fxFlex.lg="18" (click)="user()">
+      <div class="chart-card">
+        <canvas class="chart" id="userChart"></canvas>
+      </div>
+    </div>
+
+    <div fxFlex.xs="100" fxFlex.sm="45" fxFlex.md="30" fxFlex.lg="18" (click)="Amenities()">
+      <div class="chart-card">
+        <canvas class="chart" id="amenityChart"></canvas>
+      </div>
+    </div>
+
+    <div fxFlex.xs="100" fxFlex.sm="45" fxFlex.md="30" fxFlex.lg="18" (click)="complain()">
+      <div class="chart-card">
+        <canvas class="chart" id="complainChart"></canvas>
+      </div>
+    </div>
+
+    <div fxFlex.xs="100" fxFlex.sm="45" fxFlex.md="30" fxFlex.lg="18" (click)="Activity()">
+      <div class="chart-card">
+        <canvas class="chart" id="chart"></canvas>
+      </div>
+    </div>
+  </div>
+</mat-card>
+
+<div fxLayout="row wrap" height="100" >
+  <div fxFlex="100" fxFlex.gt-sm="45" fxFlex.sm="50" style="padding: 10px;" >
+    <mat-card>
+<!-- <div fxLayout="row wrap"  >
+<mat-card fxFlex="25"  class=" custom-card m-4"> -->
+
+
+  <!-- <div style="display: flex; justify-content: space-between;">
+    <div style="color: darkcyan;"><mat-icon >apartment</mat-icon> </div>
+
+    <h2 style="color: darkcyan;">Flats</h2>
+  </div> -->
+  <div>
+    <div style=" display: flex;justify-content: space-between;">
+      <div>
+    <h2>DailyHelp Provider Inside Society</h2>
+    <h4 style="color: blue;" *ngIf="readDatalocalservice.length > 0">{{readDatalocalservice.length}} No.of DailyHelp Provider are Inside Society</h4>
+  </div>
+  <div>
+    <button mat-stroked-button class="btn" style="color: darkcyan; " (click)="services()">View Details</button>
+
+  </div>
+</div>
+  <div *ngIf="readDatalocalservice.length > 0" >
+    <div class="table-wrapper">
+
+         <table class="table table-bordered ">
+      <thead>
+          <tr>
+  <th scope="col">Name</th>
+  <th scope="col">PassCode</th>
+  <th scope="col">Mobile Number</th>
+  <th scope="col">Time</th>
+  <th scope="col">Status</th>
+
+  
+          </tr>
+      </thead>
+      <tbody>
+  
+  <tr *ngFor = "let us of readDatalocalservice | paginate: { itemsPerPage: 4, currentPage: page, totalItems: readDatalocalservice.length }">
+  
+  <td>{{us.name}}</td>
+  <td>{{us.localServiceProviderCode}}</td>
+  <td>{{us.mobileNumber}}</td>
+  <td >{{us.updatedAt | date:'shortTime'}}</td>
+  <td>
+    <button mat-stroked-button style="color: white;  border: none; font-size: small; "
+    
+    [style.background-color]="us.isInside == true ? 'green' : 'grey'">
+
+      <mat-icon style="font-size: x-large ;">{{ us.isInside == false ? 'logout' : 'login'}}</mat-icon>
+      {{map[us.isInside]}}
+
+  </button>
+  </td>
+
+  
+  </tr>
+  
+      </tbody>
+  
+     </table>
+     <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+
+            </div>
+  </div>
+  <h3 style="color: green;" *ngIf="readDatalocalservice.length == 0">No DailyHelp Provider Inside Society</h3>
+  
+  </div>
+<!-- 
+  <div class="m-2 p-2">
+    <tr>
+      <td style="color: green; font-weight:500; ">Total Flat</td>
+      <td>{{readData8.length}} </td>
+    </tr>
+    <tr>
+      <td style="color: rgb(211, 169, 32); font-weight:500;"> Registered Flat </td>
+      <td>{{readData8.length - readunRegRU.length}}</td>
+    </tr>
+    <tr>
+      <td style="color: rgba(255, 0, 0, 0.477); font-weight:500;">UnRegistered Flat</td>
+      <td>{{readunRegRU.length}} </td>
+      <button mat-stroked-button class="btn ms-2" style="color: darkcyan; " (click)="unRegflat()">View Details</button> 
+      
+    </tr>
+   
+  </div> -->
+ <!-- <div style=" display: flex;justify-content: end;">
+  <button mat-stroked-button class="btn" style="color: darkcyan; " (click)="user()">View Details</button>
+
+ </div> -->
+</mat-card>
+</div>
+<div class="custom-card" fxFlex="100" fxFlex.gt-sm="50" fxFlex.sm="50" style="padding: 50px;" >
+  <div class="bar-card">
+    <canvas  id="chartCanvasbar"></canvas>
+    <!-- <canvas class="chart" id="performanceChart"></canvas> -->
+  
+  </div>
+</div>
+ 
+</div>
+
+
+<div *ngIf="Visitor_inside_building.length > 0"  style="margin-top: 30px; justify-content: space-around;" class="tabledetails" >
+  
+
+
+<div>
+  <h2>Visitors Inside Building</h2>
+
+  <div class="table-wrapper">
+
+         <table class="table table-bordered   ">
+    <thead>
+    <tr>
+      <th scope="col">Visitor Name</th>
+      <th scope="col">Approved By</th>
+      <th scope="col">House</th>
+      <th scope="col">Entry Time</th>
+      <th scope="col">Visitor Type</th>
+
+     
+</tr>
+    </thead>
+    <tbody>
+    <tr *ngFor = "let us of Visitor_inside_building |
+    paginate: { 
+       itemsPerPage: 5, 
+       currentPage:page,
+      totalItems:totalLengthofvisitorinside
+                     }">
+ 
+      <td>{{us.visitorName}}</td>
+      <td>{{us.approvedByFirstName}} {{us.approvedByLastName}}</td>
+      <td>{{us.blockName}} - {{us.floorName}} - {{us.rentalUnitName}}</td>
+      <td>{{us.updatedAt | date:'medium'}}</td>
+      <td >
+        <button class="btn"> {{us.visitorType}} </button></td>
+     
+</tr>
+    
+    </tbody>
+    
+     </table>
+            </div>
+  <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+
+  </div>
+  </div>

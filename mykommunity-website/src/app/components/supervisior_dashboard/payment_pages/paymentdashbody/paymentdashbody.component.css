@@ -1,0 +1,161 @@
+.dashboard-container {
+  display: grid;
+  background-color: #fff;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 20px;
+  padding: 20px;
+}
+
+.top-stats {
+  grid-column: span 2;
+  display: flex;
+  justify-content: space-between;
+}
+
+.stat-card {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.icon-container {
+  width: 50px;
+  height: 50px;
+  background-color: #f0f4f8;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.stat-info h4 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.stat-info p {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.charts-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  width: 100%;
+}
+
+.chart-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pending-approval-calendar {
+  grid-column: span 2;
+  display: flex;
+  justify-content: space-between;
+  grid-gap: 20px;
+}
+
+.pending-approval, .calendar-section {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 48%;
+}
+.vertical-divider {
+  width: 1px;
+  height: 50px;
+  background-color: #ddd;
+  margin: 0 15px;
+}
+@media screen and (max-width: 992px) {
+  .dashboard-container {
+    grid-template-columns: 1fr;
+  }
+
+  .top-stats,
+  .charts-section,
+  .pending-approval-calendar {
+    grid-column: span 1;
+    display: block;
+  }
+
+  .stat-card {
+    width: 100%;
+  }
+
+  .charts-section {
+    grid-template-columns: 1fr;
+  }
+
+  .pending-approval,
+  .calendar-section {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .stat-info p {
+    font-size: 18px;
+  }
+
+  .stat-card {
+    padding: 15px;
+  }
+
+  .icon-container {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .top-stats {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .stat-card {
+    margin-bottom: 10px;
+  }
+
+  .pending-approval-calendar {
+    flex-direction: column;
+  }
+}
+/* .chart-card{
+  height: 200px;
+  width: 200px;
+} */
+
+
+/* .container-fluid{
+    margin-top: 20px;
+}
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    border-spacing: 10px;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  .chart-card{
+    height: 200px;
+    width: 200px;
+  } */
+  
+  

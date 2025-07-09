@@ -1,0 +1,25 @@
+
+<!-- <mat-drawer-container>
+    <mat-drawer mode="side" [opened]="sideBarOpen" >
+       <app-paymentnavbar></app-paymentnavbar>
+    </mat-drawer>
+    <mat-drawer-content>
+        <app-paymentheader (toggleSidebarForMe)="sideBarToggler()" ></app-paymentheader>
+        <app-paymentdashbody></app-paymentdashbody>
+   <app-dashboard-footer></app-dashboard-footer>
+
+    </mat-drawer-content>
+</mat-drawer-container>
+ -->
+
+
+
+ <div class="con">
+    <app-paymentnavbar (onToggleSideNav)="onToggleSideNav($event)"></app-paymentnavbar>
+    <app-paymentdashboard-body
+    [collapsed]="isSideNavCollapsed"
+    [screenWidth]="screenWidth"
+    
+    ></app-paymentdashboard-body>
+    <app-dashboard-footer></app-dashboard-footer>
+   </div>

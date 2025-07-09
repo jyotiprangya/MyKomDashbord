@@ -1,0 +1,45 @@
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+        <span mat-stroked-button class="btn btn-lg mt-1 p-2" style="color: white;" (click)="back()"><mat-icon>fast_rewind</mat-icon> </span>        
+
+        Supervisor Activity</div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+            </div>
+            <div class="table-wrapper">
+                <div class="row mb-3">
+                    <div class="col-md-4"> <!-- Limit the dropdown to 4 columns wide -->
+                        <label for="categoryFilter" class="form-label">Filter by Category:</label>
+                        <select id="categoryFilter" [(ngModel)]="selectedCategory" (ngModelChange)="filterByCategory()" class="form-select">
+                            <option value="">All Categories</option>
+                            <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+                        </select>
+                    </div>
+                </div>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Type</th>
+                      <th scope="col">Activity Message</th>
+                      <th scope="col">Time</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let us of filteredData | paginate: { itemsPerPage: 10, currentPage: page, totalItems: totalLength }">
+                      <th scope="row">{{ us.category }}</th>
+                      <td scope="row">{{ us.message }}</td>
+                      <td scope="row">{{ us.updatedAt | date:'medium' }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              
+                <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+              </div>
+              
+            <!-- <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls> -->
+
+            
+        
+            </div>
+            </div>
+            

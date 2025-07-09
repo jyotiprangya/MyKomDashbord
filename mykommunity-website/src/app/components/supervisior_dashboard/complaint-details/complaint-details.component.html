@@ -1,0 +1,155 @@
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span mat-stroked-button class="btn btn-lg mt-1 p-2" style="color: white;" (click)="back()"><mat-icon>fast_rewind</mat-icon> </span>        
+  
+      Complaint Details</div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data">
+            </div>
+           
+            
+            <div class="table-wrapper">
+
+         <table class="table table-bordered ">
+                <thead>
+                    <tr>
+        <th scope="col">Ticket</th>
+
+         <th scope="col">Status</th>
+         <th scope="col">Complaint Category</th>
+         <th scope="col">Complaint Type</th> 
+         <th scope="col">Description</th>
+         <th scope="col">Created On</th>
+         <th scope="col">Last Update</th>
+         <th scope="col">Image</th>
+         <th scope="col">Comments</th>
+
+  
+         <!-- (click)="open(content)" -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr >
+          <!-- <th >
+            <button mat-stroked-button style="color: white;  border: none; font-size: small;" 
+            [style.background-color]="readData.status === 'RESOLVED' ? 'green' : 'rgb(195, 135, 23)'" > 
+            <mat-icon   >{{ readData.status === 'RESOLVED' ?  'check_circle' : 'error'}}</mat-icon> 
+               {{readData.status}} </button>
+         
+            <mat-icon [style.color]="us.status === 'RESOLVED' ? 'green' : 'rgb(195, 135, 23)'"  >{{ us.status === 'RESOLVED' ?  'check_circle' : 'error'}} 
+              <input type="button" style="color: white; border: none;" [style.background-color]="us.status === 'RESOLVED' ? 'green' : 'rgb(195, 135, 23)'"  value="{{us.status}}"></mat-icon> 
+          </th> -->
+          <th>#{{readData.complaintId?.slice(-4)}}</th>
+
+          <th >
+            <button mat-raised-button style="color: white; border: none; font-size: small;" [disabled]="role=='SOCIETY_ADMIN_DISPLAY'"
+            [style.background-color]="getStatusColor(readData.status)" (click)="open(content)" (click)="UpdateButton()"> 
+            <mat-icon>{{ getStatusIcon(readData.status) }}</mat-icon>
+            {{ readData.status }}
+          </button>
+         
+            <!-- <mat-icon [style.color]="us.status === 'RESOLVED' ? 'green' : 'rgb(195, 135, 23)'"  >{{ us.status === 'RESOLVED' ?  'check_circle' : 'error'}} 
+              <input type="button" style="color: white; border: none;" [style.background-color]="us.status === 'RESOLVED' ? 'green' : 'rgb(195, 135, 23)'"  value="{{us.status}}"></mat-icon> -->
+          </th>
+         <td>{{readData.category}}</td>
+         <td>{{readData.type}}</td>
+         <td>{{readData.message}}</td>
+         <td>{{readData.complaintCreatedAt | date:'medium'}}</td>
+         <td>{{readData.complaintupdatedAt | date:'medium'}}</td>
+        <td>
+
+          <ng-container *ngIf="readData.image">
+            <img [src]="readData.image" height="250px" width="250px" alt="No Image" (click)="showFullImage()"/>
+          </ng-container>
+            <!-- <img [src]="readData.image" height="250px" width="250px" alt="No Image" (click)="showFullImage()"/> -->
+            <div *ngIf="showImage" class="full-image">
+              <img  [src]="readData.image" >
+              <button class="btn btn-danger" (click)="closeFullImage()" style="display: flex; justify-content: end;">
+                <mat-icon>cancel</mat-icon></button>
+
+            </div>
+          </td>
+  
+            <td>         
+              <form >  
+                
+                <div *ngFor = "let cmt of readData.comments">
+                <h3 ><strong>{{cmt.firstName}} {{cmt.lastName}}</strong> 
+                  <div style="margin-right: 10px;  font-size: small; color: gray;" > {{cmt.createdAt | date:'medium'}} </div>  
+              </h3>  
+                <p style="font-size: medium;" >{{cmt.comment}}  
+              </p>  
+              <ng-container *ngIf="cmt.photoUrl">
+                <img [src]="cmt.photoUrl" height="100px" width="100px"  (click)="showFullcmtImage()"/>
+              </ng-container>
+                <!-- <img [src]="readData.image" height="250px" width="250px" alt="No Image" (click)="showFullImage()"/> -->
+                <div *ngIf="showcmtImage" class="full-image">
+                  <img  [src]="cmt.photoUrl" >
+                  <button class="btn btn-danger" (click)="closeFullcmtImage()" style="display: flex; justify-content: end;">
+                    <mat-icon>cancel</mat-icon></button>
+    
+                </div>
+                
+              </div>
+                  
+                <textarea class="form-control" rows="5" placeholder="Your Comment Please....."  (input)="handleInput($event)" ></textarea>  
+         
+               <div style="display: flex; justify-content: end;">
+                <button class="btn btn-success m-1"  (click)="submit()"  >Send</button> 
+               </div>
+       
+                
+            </form>           
+           </td>
+  
+            
+      
+       </tr>
+                </tbody>
+               </table>
+            </div>
+
+            <div fxLayoutAlign="center center" fxFlexFill>
+   
+              <ng-template class="modal" #content #id let-modal style="background-color: rgba(196, 200, 167, 0.5);">
+               
+               <div class="modal-header" style="padding: 0px;">
+                 <mat-toolbar class="btn btn-primary">
+                 <h2 class="modal-title" id="modal-basic-title">Update Complaint Status</h2>
+                 <button  type="button" class=" btn btn-close " aria-label="Close" (click)="onCancelClick()" (click)="modal.dismiss('Cross click')"></button>
+               </mat-toolbar>
+               </div>
+               <div class="modal-body" style="background-color: rgba(47, 141, 165, 0.5);" >
+                 <mat-card fxFlex="100" >
+                 
+                
+                 <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form" >
+                   
+  <mat-form-field appearance="standard"  class="full-width">
+    <mat-label>Complaint Status</mat-label>
+    <select matNativeControl required formControlName="status"> 
+      <option value="RESOLVED">RESOLVED</option>
+      <option value="IN_PROGRESS">IN PROGRESS</option>
+      <option value="ON_HOLD">ON HOLD</option>
+      <option value="RE_OPENED">RE OPENED</option> 
+     
+  
+    </select>
+  </mat-form-field>
+                 
+                 
+               </form>
+             </mat-card>
+               </div>
+             
+               <div class="modal-footer">
+                  
+                  <button  [disabled]="loading" (click)="saveDetails(form)"  (click)="modal.close('Save click')"  class=" btn-group btn btn-primary" >Update Status</button>
+                 
+               </div>
+               
+             </ng-template>
+             
+             </div>
+     </div>
+     </div>

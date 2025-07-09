@@ -1,0 +1,138 @@
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span mat-raised-button class="btn mt-1 p-1" style="color: white;" (click)="back()"><mat-icon>fast_rewind</mat-icon> </span>        
+  
+      Removed User List</div>
+    <div class="page_content shadow p-3 position-relative">
+      <div class="page_content-data position-absolute">
+      </div>
+      
+      <div class="top-content">
+        <div class="button-container">
+          <!-- Button: New Resident -->
+         
+          <!-- Button: Export CSV -->
+          <button mat-raised-button 
+                  (click)="exportData()" 
+                  class="btn m-1 pe-2 button-responsive" 
+                  style="background-color: #1e293b; color: white;"
+                  >
+            <mat-icon>file_download</mat-icon> Export CSV
+          </button>
+      
+          <!-- Button: Select Columns -->
+          <!-- <button mat-raised-button  (click)="toggleModal()" 
+          class="btn m-1 pe-2 button-responsive" 
+          style="background-color: #1e293b; color: white;">
+            <mat-icon>checklist</mat-icon> Visible Fields 
+          </button> -->
+        </div>
+      
+        <!-- Search bar -->
+        <div class="search-container">
+          <mat-icon class="search-icon">search</mat-icon>
+          <input type="text" 
+                 placeholder="Search..." 
+                 [(ngModel)]="searchTerm" 
+                 (ngModelChange)="updateFilteredData()" 
+                 class="search-bar-with-icon">
+        </div>
+      </div>
+      
+      
+      <div class="grp">
+      
+ 
+  
+  
+      
+  
+      <div class="table-wrapper">
+        <table class="table table-bordered mt-2">
+          <thead>
+            <tr>
+              <th  *ngIf="isColumnVisible('Profile Image')">Profile</th>
+             
+              <th (click)="sortData('firstName')" *ngIf="isColumnVisible('Name')">
+                Name 
+                <span [class]="sortDirection['firstName'] ? 'asc' : 'desc'"></span>
+              </th>
+              
+              <th  *ngIf="isColumnVisible('Email')">Email</th>
+              <th  *ngIf="isColumnVisible('Mobile')">Mobile</th>
+              <th  *ngIf="isColumnVisible('Occupancy')">Occupancy</th>
+              <th  *ngIf="isColumnVisible('Flat No')">Flat No</th>
+              <th  *ngIf="isColumnVisible('Type')">Type</th>
+              <th (click)="sortData('updatedAt')" *ngIf="isColumnVisible('Deleted On')">Deleted On<span [class]="sortDirection['updatedAt'] ? 'asc' : 'desc'"></span></th>
+                </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="filteredData.length === 0">
+              <td [attr.colspan]="columns.length" class="text-center" style="color: grey;">No Record Found!!!</td>
+            </tr>
+            <tr *ngFor="let us of filteredData | paginate: { itemsPerPage: 10, currentPage: page, totalItems: filteredLength } " >
+             
+             
+              <td scope="row" *ngIf="isColumnVisible('Profile Image')">
+                <!-- Assuming this code is within your Angular component's template -->
+                <a *ngIf="us.profileImage; else alternateImage" [href]="us.profileImage">
+     <img [src]="us.profileImage" (error)="onImageError($event)"
+     style="border-radius: 20px; height: 40px; width: 40px;  display: flex; align-items: center; justify-content: center;" *ngIf="us.profileImage; else alternateImage">
+     </a>
+     <ng-template #alternateImage>
+     <ng-container *ngIf="us.lastName; else alternateImage3">
+         <div style="border-radius: 20px; height: 40px; width: 40px;  background-color: #e9d9d9;
+             display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold;">
+             {{ us.firstName?.charAt(0).toUpperCase() || '' }}{{ us.lastName?.charAt(0).toUpperCase() || '' }}
+         </div>
+     </ng-container>
+     </ng-template>
+     <ng-template #alternateImage3>
+     <ng-container *ngIf="us.firstName || us.lastName; else alternateImage2">
+         <div style="border-radius: 20px; height: 40px; width: 40px; background-color: #e9d9d9;
+             display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold;">
+             {{ us.firstName?.charAt(0).toUpperCase() || '' }}{{ us.lastName?.charAt(0).toUpperCase() || '' }}
+         </div>
+     </ng-container>
+     </ng-template>
+     <ng-template #alternateImage2>
+     <div style="border-radius: 20px; height: 40px; width: 40px; background-color: #e9d9d9;
+         display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold;">
+         R
+     </div>
+     </ng-template>
+     
+               </td>
+              <td *ngIf="isColumnVisible('Name')">{{ us.firstName || 'Resident' }} {{ us.lastName ? (us.lastName | capitalizeFirstLetter) : '' }}</td>
+              <td *ngIf="isColumnVisible('Email')">{{us.email}}</td>
+              <td *ngIf="isColumnVisible('Mobile')">{{us.mobileNumber}}</td>
+              <td *ngIf="isColumnVisible('Occupancy')">{{ (us.role.toLowerCase() | capitalizeFirstLetter) }}</td>
+              <td  *ngIf="isColumnVisible('Flat No')">{{us.rentalUnitName}}</td>
+              <td *ngIf="isColumnVisible('Type')">{{map2[us.isOwner]}}</td>
+              <td *ngIf="isColumnVisible('Deleted On')">{{us.updatedAt | date:'medium'}}</td>
+              
+             
+            </tr>
+          </tbody>
+        </table>
+  
+      </div>
+  
+      <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+  
+  
+  
+  
+  
+    
+      
+  
+  
+  
+  
+  
+  
+  
+  
+    </div>
+  </div>

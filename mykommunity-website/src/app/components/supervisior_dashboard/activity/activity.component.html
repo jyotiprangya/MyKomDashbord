@@ -1,0 +1,195 @@
+
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span mat-stroked-button class="btn mt-1 p-2" style="color: white;" (click)="back()"><mat-icon>fast_rewind</mat-icon> </span>        
+
+      Activity</div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+  </div>
+  
+    <div class="top-content">
+      <div class="button-container">
+       
+        <!-- Button: Export CSV -->
+        <button mat-raised-button 
+                (click)="exportData()" 
+                class="btn m-1 pe-2 button-responsive" 
+                style="background-color: #1e293b; color: white;"
+                >
+          <mat-icon>file_download</mat-icon> Export CSV
+        </button>
+    
+        <!-- Button: Select Columns -->
+        <button mat-raised-button  (click)="toggleModal()" 
+        class="btn m-1 pe-2 button-responsive" 
+        style="background-color: #1e293b; color: white;">
+          <mat-icon>checklist</mat-icon> Visible Fields 
+        </button>
+      </div>
+    
+      <!-- Search bar -->
+      <div class="search-container">
+        <mat-icon class="search-icon">search</mat-icon>
+        <input type="text" 
+               placeholder="Search..." 
+               [(ngModel)]="searchActivity" 
+               class="search-bar-with-icon">
+      </div>
+    </div>
+    
+    
+    
+     
+   
+    <div class="modal" [ngClass]="{'show': isModalOpen}" (click)="toggleModal()">
+      <div class="modal-content" (click)="$event.stopPropagation()"style="width: 60%; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+        <div class="settings-container">
+          <div class="tab-container">
+            <div class="tabs" style="display: flex; justify-content: center; align-items: center; flex-direction: row; width: 100%; padding:10px">
+              <h1 style="margin: 0;">Column Selection</h1>
+            </div>
+            
+            <div class="tab-content">
+              <div class="list-container" style="display: flex; justify-content: space-between;">
+                <div class="list-box" style="width: 45%;">
+                  <h3 style="font-weight: bold;">Hidden Columns</h3>
+                  <ul id="hidden-columns" class="list">
+                    <li *ngFor="let column of hiddenColumns">
+                      <input type="checkbox" [(ngModel)]="column.selected"> {{ column.name }}
+                    </li>
+                  </ul> 
+                </div>
+                <div class="buttons-container" style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-left: 20px; gap: 15px; padding: 15px;">
+                  <button class="btn" (click)="addColumn()"  style="width: 100px; height: 40px; background-color: #1e293b; color: white; font-weight: bold; padding: 10px; display: flex; align-items: center; justify-content: space-between;">
+                    Add <span style="font-size: 14px; margin-left: 5px;">▶</span>
+                  </button>
+                  <button class="btn" (click)="removeColumn()" style="width: 100px; height: 40px; background-color: #1e293b; color: white; font-weight: bold; padding: 10px; display: flex; align-items: center; justify-content: space-between;">
+                    <span style="font-size: 14px; margin-right: 5px;">◀</span> Remove
+                  </button>
+                </div>
+                <div class="list-box" style="width: 45%; padding-top: 5px;">
+                  <h3 style="font-weight: bold;">Displayed Columns</h3>
+                  <ul id="displayed-columns" class="list">
+                    <li *ngFor="let column of displayedColumns">
+                      <input type="checkbox" [(ngModel)]="column.selected"> {{ column.name }}
+                    </li>
+                  </ul>
+                 
+                  <!-- <div class="reorder-buttons" style="text-align: center; margin-top: 15px;">
+                    <button (click)="moveColumnUp()" class="arrow-btn">
+                      <span class="material-icons">▲</span> 
+                    </button>
+                    <button (click)="moveColumnDown()" class="arrow-btn">
+                      <span class="material-icons">▼</span> 
+                    </button>
+                  </div> -->
+                </div>
+                
+              </div>
+            </div>  
+          </div>
+          <div class="footer" style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 15px; padding:10px">
+            <!-- <button class="btn btn-primary" (click)="applyColumnSelection()">OK</button> -->
+            <button class="btn" style="background-color: gray; color: white;" (click)="cancelChanges()" >Back</button>
+            <!-- <button class="btn btn-warning" (click)="resetChanges()" >Reset</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-wrapper">
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" *ngIf="isColumnVisible('Type')">Type</th>
+            <th scope="col" *ngIf="isColumnVisible('Rental Unit')">Rental Unit</th>
+            <th scope="col" *ngIf="isColumnVisible('Vendor Name')">Vendor Name</th>
+            <th (click)="sortData('name')" *ngIf="isColumnVisible('Visitor Name')">
+              Visitor Name  <span [ngClass]="sortDirection['name'] ? 'asc' : 'desc'"></span></th>
+            <th scope="col" *ngIf="isColumnVisible('Visitor Image')">Visitor Image</th>
+             <th scope="col" *ngIf="isColumnVisible('PassCode')">Passcode</th>
+            <th scope="col" (click)="sortData('createdAt')" *ngIf="isColumnVisible('Created At')">Created At
+              <span [ngClass]="sortDirection['createdAt'] ? 'asc' : 'desc'"></span>
+            </th>
+            <th scope="col" (click)="sortData('approvedFrom')" *ngIf="isColumnVisible('Approved From')">Approved From
+              <span [ngClass]="sortDirection['approvedFrom'] ? 'asc' : 'desc'"></span>
+            </th>
+            <th scope="col" (click)="sortData('approvedTill')" *ngIf="isColumnVisible('Approved Till')">Approved Till
+              <span [ngClass]="sortDirection['approvedTill'] ? 'asc' : 'desc'"></span>
+            </th>
+            <th scope="col" *ngIf="isColumnVisible('Visitor Mobile No.')">Visitor Mobile No.</th>
+            <th scope="col" *ngIf="isColumnVisible('Temperature')">Temperature</th>
+            <th scope="col" *ngIf="isColumnVisible('Wearing Mask')">Wearing Mask</th>
+            <th scope="col" *ngIf="isColumnVisible('Leave Parcel At Gate')">Leave Parcel At Gate</th>
+            <th scope="col" *ngIf="isColumnVisible('Parcel Image')">Parcel Image</th>
+            <th scope="col" (click)="sortData('updatedAt')" *ngIf="isColumnVisible('Last Updated')">Last Updated
+              <span [ngClass]="sortDirection['updatedAt'] ? 'asc' : 'desc'"></span>
+            </th>
+            <th scope="col" *ngIf="isColumnVisible('Status')">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="readData.length === 0">
+            <td [attr.colspan]="columns.length" class="text-center" style="color: grey;">No Record Found!!!</td>
+          </tr>
+          <tr *ngFor="let us of readData | activity: searchActivity | paginate: { itemsPerPage: 10, currentPage: page, totalItems: totalLength }">
+            <td *ngIf="isColumnVisible('Type')">{{ us.type }}</td>
+            <td *ngIf="isColumnVisible('Rental Unit')">{{ us.blockName }} - {{ us.floorName }} - {{ us.rentalUnitName }}</td>
+            <td *ngIf="isColumnVisible('Vendor Name')">
+              <ng-container *ngIf="us.vendorName">
+                <img [src]="getCompanyImage(us.vendorName)" height="50px" width="50px" />
+                {{ us.vendorName }}
+              </ng-container>
+              <ng-container *ngIf="!us.vendorName">
+                <img src="https://www.safetyquip.com.au/wp-content/uploads/SSD838414/images/SSD838414.jpg" height="50px" width="50px" />
+                Visitor
+              </ng-container>
+            </td>
+            <td *ngIf="isColumnVisible('Visitor Name')">{{ us.name }}</td>
+            <td *ngIf="isColumnVisible('Visitor Image')">
+              <ng-container *ngIf="us.image">
+                <a [href]="us.image" target="_blank"><img [src]="us.image" height="100px" width="100px" /></a>
+              </ng-container>
+            </td>
+            <td *ngIf="isColumnVisible('PassCode')">{{ us.passcode }}</td>
+            <td *ngIf="isColumnVisible('Created At')">{{ us.createdAt | date: 'medium' }}</td>
+            <td *ngIf="isColumnVisible('Approved From')">{{ us.approvedFrom | date: 'medium' }}</td>
+            <td *ngIf="isColumnVisible('Approved Till')">{{ us.approvedTill | date: 'medium' }}</td>
+            <td *ngIf="isColumnVisible('Visitor Mobile No.')">{{ us.mobileNumber }}</td>
+            <td *ngIf="isColumnVisible('Temperature')">
+              <ng-container *ngIf="us.temperature != null; else crossIcon">
+                {{ us.temperature }}
+              </ng-container>
+              <ng-template #crossIcon>
+                <mat-icon style="color: palevioletred;">cancel</mat-icon>
+              </ng-template>
+            </td>
+            <td *ngIf="isColumnVisible('Wearing Mask')">
+              <mat-icon [style.color]="us.isWearingMask ? 'green' : 'palevioletred'">{{ us.isWearingMask ? 'check_circle' : 'cancel' }}</mat-icon>
+            </td>
+            <td *ngIf="isColumnVisible('Leave Parcel At Gate')">
+              <mat-icon [style.color]="us.leaveParcelAtGate ? 'green' : 'palevioletred'">{{ us.leaveParcelAtGate ? 'check_circle' : 'cancel' }}</mat-icon>
+            </td>
+            <td *ngIf="isColumnVisible('Parcel Image')">
+              <ng-container *ngIf="us.imageUrl">
+                <a [href]="us.imageUrl" target="_blank"><img [src]="us.imageUrl" height="100px" width="100px" /></a>
+              </ng-container>
+            </td>
+            <td *ngIf="isColumnVisible('Last Updated')">{{ us.updatedAt | date: 'medium' }}</td>
+            <td *ngIf="isColumnVisible('Status')">
+              <button matTooltip="{{ us.collectorFirstName }} {{ us.collectorLastName }}" mat-raised-button style="color: white; font-size: small;" [style.background-color]="getStatusColor(us.status)">
+                <mat-icon>{{ getStatusIcon(us.status) }}</mat-icon>
+                {{ us.status }}
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+            </div>
+    <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+                                                                       
+   
+    </div>
+    </div>  

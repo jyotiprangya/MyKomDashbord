@@ -1,0 +1,195 @@
+.container-fluid {
+    height: 300px;
+  }
+  
+  .page {
+    color: white;
+    padding: 0 1rem;
+    background: #f1f5f9;
+    width: 1050px;
+  
+  }
+  
+  .page_box {
+    min-height: fit-content;
+    background: #0f172a;
+    margin: 0 -1rem;
+    font-size: 20px;
+    position: relative;
+  }
+
+  .page_box_content {
+    min-height: calc(100vh - 170px);
+    border-radius: 10px;
+    margin-top: -2rem;
+    background: white;
+    color: black;
+    font-size: 1.5rem;
+  }
+  
+  .page_box_content_data {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+mat-form-field {
+    width: 600px;
+    margin: 20px;
+}
+
+/* Responsive Grid Layout for Checkboxes */
+/* Grid layout for checkboxes */
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Flexible grid layout */
+    gap: 16px; /* Space between checkboxes */
+    padding: 16px; /* Padding around the grid */
+  }
+  
+  /* Styling for each checkbox item (slot-like appearance) */
+  .checkbox-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ccc; /* Border around the checkbox item */
+    padding: 20px;
+    border-radius: 8px; /* Rounded corners for the box */
+    background-color: #f9f9f9; /* Light background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow to create depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+  }
+  
+  /* Hover effect to emphasize selection */
+  .checkbox-item:hover {
+    transform: scale(1.05); /* Slightly increase the size when hovered */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Increase the shadow on hover */
+  }
+  
+  /* Style the checkbox text */
+  .checkbox-item mat-checkbox {
+    font-size: 14px; /* Make the text a bit smaller */
+    color: #333; /* Darker text color for better readability */
+  }
+  .details {
+    flex: 2; /* Allow details to take more space */
+    font-size: 14px; /* Font size for details */
+    display: grid; /* Use grid layout */
+    grid-template-columns: repeat(3, minmax(200px, 1fr)); /* Responsive grid */
+    gap: 10px; /* Space between grid items */
+  }
+  
+  .detail-item {
+    padding: 10px; /* Padding for each detail item */
+    border-radius: 5px; /* Optional: Rounded corners for detail items */
+  }
+  
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 768px) {
+    .checkbox-grid {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust grid for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .checkbox-grid {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Further adjust grid for very small screens */
+    }
+  }
+  
+.booking-info {
+    display: flex; /* Align items horizontally */
+    align-items: flex-start; /* Vertically center the icon and text */
+  }
+  
+  .booking-info mat-icon {
+    margin-right: 8px; /* Add some space between the icon and the text */
+  }
+  
+
+/* Media Query for Portrait Orientation */
+@media screen and (orientation: portrait) {
+    .container-fluid {
+        width: 100%;
+    }
+  
+    .page {
+        width: 100%;
+    }
+  
+    .page_box {
+        margin: 0;
+        font-size: 20px;
+        width: 100%;
+    }
+  
+    .page_box_content {
+        min-height: calc(100vh - 170px);
+        margin-top: 0;
+        font-size: 1.2rem;
+    }
+   
+      
+    .page_box_content_data {
+        transform: translate(-50%, -50%);
+    }
+
+    mat-form-field {
+        width: 100%; /* Make form fields full-width for portrait */
+    }
+
+    .table-wrapper {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    
+}
+
+/* Media Query for Landscape Orientation */
+@media screen and (orientation: landscape) {
+    .container-fluid {
+        width: 100%;
+    }
+
+    mat-form-field {
+        width: 45%; /* Reduce the width of form fields on wider screens */
+    }
+
+  
+}
+
+/* Media Query for Mobile Devices */
+@media screen and (max-width: 768px) {
+
+
+    mat-form-field {
+        width: 100%; /* Ensure form fields are full width */
+        margin-bottom: 10px;
+    }
+
+    .checkbox-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Reduce minimum column size for mobile */
+    }
+}
+
+/* Media Query for Very Small Devices (e.g., mobile phones) */
+@media screen and (max-width: 480px) {
+    mat-form-field {
+        width: max-content; /* Full-width form fields */
+        font-size: 14px; /* Smaller font size */
+    }
+
+   
+
+    .checkbox-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Even smaller columns on very small screens */
+    }
+
+    .checkbox-item {
+        font-size: 14px; /* Slightly smaller text for very small screens */
+    }
+}
+
+

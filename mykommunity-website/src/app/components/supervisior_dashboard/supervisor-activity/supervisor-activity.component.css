@@ -1,0 +1,41 @@
+.container-fluid{
+    height: 500px;
+}
+.page {
+    color: white;
+    padding: 0 1rem;
+    background: #f1f5f9;
+    width: 1050px;
+}
+.page_box {
+    min-height: fit-content;
+    background: #0f172a;
+    margin: 0 -1rem;
+    font-size: 20px;
+    position: relative;
+}
+.page_box_content {
+    min-height: calc(100vh - 170px);
+    border-radius: 10px;
+    margin-top: -2rem;
+    background: white;
+    color: black;
+    font-size: 1.5rem;
+}
+.page_box_content_data{
+    top: 100%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+}
+
+ @media screen and (orientation: portrait){
+    .container-fluid{
+        width:max-content;
+
+    }
+    .table-wrapper {
+        max-height: 400px;
+        overflow-y: auto;
+      }
+   
+  }

@@ -1,0 +1,10 @@
+
+<div class="con">
+<app-navbar (onToggleSideNav)="onToggleSideNav($event)"></app-navbar>
+ <app-superadmin-body
+ [collapsed]="isSideNavCollapsed"
+ [screenWidth]="screenWidth"
+ 
+ ></app-superadmin-body>
+ <app-dashboard-footer></app-dashboard-footer>
+</div>

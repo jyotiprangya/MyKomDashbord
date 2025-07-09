@@ -1,0 +1,70 @@
+<app-header [selectedLabel]="selectedLabel"></app-header>
+
+
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : ''">
+  <div class="logo-container">
+      <button class="logo"
+       @fadeInOut 
+       (click)="toggleCollapse()"
+        matTooltip= "Click here to expand" 
+        [matTooltipClass]="'custom-tooltip'"       
+      [matTooltipPosition]="'right'">
+        <img src="../../../../assets/onboardlogo.png" alt="Company logo" height="40" width="40" >
+
+      </button> 
+          <div class="logo-text" *ngIf="collapsed">MyKommunity</div>
+          
+              <button class="btn-close" @rotate *ngIf="collapsed" (click)="closeSidenav()">
+                  <mat-icon>cancel</mat-icon>
+              </button>       
+  </div>
+  <mat-divider ></mat-divider>
+
+ 
+  <ul class="sidenav-nav">
+      <li class="sidenav-nav-item" *ngFor="let data of navData" >
+          <a class="sidenav-nav-link"  *ngIf="data.items && data.items.length > 0" (click)="handelClick(data)"
+             [routerLink]="[data.routeLink]"
+            routerLinkActive="active">
+              <mat-icon class="sidenav-link-icon" 
+              matTooltip= "{{data.label}}"       
+                [matTooltipPosition]="'right'"
+                [matTooltipClass]="'custom-tooltip'"
+              >{{ data.icon }}</mat-icon>
+              <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{data.label}}</span>
+              <mat-icon *ngIf="data.items && collapsed" class="menu-collapsed-icon" 
+              > {{ data.expanded ? ' arrow_drop_down ' : 'arrow_right'   }}</mat-icon>
+          </a>
+          
+          <a class="sidenav-nav-link" 
+          *ngIf="!data.items || (data.items && data.items.length === 0)"
+          [routerLink]="[data.routeLink]"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}"
+          (click)="handleLabelClick(data.label)"
+          
+          >
+              <mat-icon class="sidenav-link-icon" 
+                matTooltip= "{{data.label}}"       
+                [matTooltipPosition]="'right'"
+                [matTooltipClass]="'custom-tooltip'"       
+
+              >{{ data.icon }}</mat-icon>
+              <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{data.label}}</span>
+          </a>
+          <div *ngIf="collapsed && data.items && data.items.length > 0">
+        <app-sublevel-menu 
+        [data]="data"
+          [expanded]="data.expanded"
+          [multiple]="multiple"
+          [collapsed]="collapsed"
+          ></app-sublevel-menu>
+          </div>
+      </li>
+     
+  </ul>
+  
+
+</div>
+
+

@@ -1,0 +1,61 @@
+<div class="container-fluid ">
+    <div  >
+        <div class="box text-white">
+           <div    data-aos="fade-right" data-aos-duration="1000">
+            <h1 class="text-white mt-5" >Get In Touch</h1>
+            <h1  >Ready to make life easier?</h1>
+
+            <h1  class="mt-5">Have questions?</h1>
+            <h2>Have questions about payments or price plans? We have answers!</h2>
+                </div>
+        </div>
+    </div>
+        <div class="p-3"   data-aos="fade-left" data-aos-duration="1000" >  
+      
+        <!-- <app-form></app-form> -->
+        <form [formGroup]="frmRegister" (submit)="RegisterClick()">
+            <dl>
+                <dt class="text-white">Your Name</dt>
+                <dd><input type="text" formControlName="Name" class="form-control"></dd>
+                <!-- <dd >
+                    <span class="text-white" class="alert alert-danger" *ngIf="frmRegister.controls['Name'].hasError('required')"> Name Required</span>
+                    <span  class="text-white" class="alert alert-danger" *ngIf="frmRegister.controls['Name'].hasError('minlength')"> Name too short....</span>
+                   
+                </dd> -->
+                <div *ngIf="frmRegister.controls['Name'].touched && frmRegister.controls['Name'].errors?.['required']">
+                    <small class="p-1 m-2 alert alert-danger">Name is required</small>
+
+                  </div>
+                <dt class="text-white">Your Email</dt>
+                <dd><input type="email" formControlName="Email" class="form-control"></dd>
+                <!-- <dd>
+                    <span class="text-white" class="alert alert-danger" *ngIf="frmRegister.controls['Email'].hasError('required')" >Email Required</span>
+                </dd> -->
+                <div *ngIf="frmRegister.controls['Email'].touched && frmRegister.controls['Email'].errors?.['required']">
+                    <small class="p-1 m-2 alert alert-danger">Email is required</small>
+
+                  </div>
+                <dt class="text-white">Your Contact Number</dt>
+                <dd><input type="text"  formControlName="Number" class="form-control"></dd>
+                <!-- <dd >
+                    <span class="text-white" class="alert alert-danger" *ngIf="frmRegister.controls['Number'].hasError('required')">Contact Number is Required</span>
+                </dd> -->
+                <div *ngIf="frmRegister.controls['Number'].touched && frmRegister.controls['Number'].errors?.['required']">
+                    <small class="p-1 m-2 alert alert-danger">Number is required</small>
+
+                  </div>
+                <dt class="text-white">Any Message</dt>
+                <dd><textarea rows="5" cols="50" type="text" class="form-control"  formControlName="message"></textarea></dd>
+                <div *ngIf="frmRegister.controls['message'].touched && frmRegister.controls['message'].errors?.['required']">
+                    <small class="p-1 m-2 alert alert-danger">Write any message...</small>
+
+                  </div>
+               
+            </dl>
+            <button class="btn btn-success" style="margin-bottom: 10px;">Submit</button>
+        </form>
+          </div>
+     
+    
+</div>
+

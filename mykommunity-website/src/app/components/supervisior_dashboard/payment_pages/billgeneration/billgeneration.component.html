@@ -1,0 +1,138 @@
+
+<div class="container-fluid ">
+    <div class="page_box" style="color: aliceblue;">
+      <span mat-raised-button class="btn btn-lg mt-1 p-2" style="color: white;" (click)="back()"><mat-icon>fast_rewind</mat-icon> </span>        
+  
+      Generated Bill List</div>
+    <div class="page_content shadow p-3 position-relative">
+        <div class="page_content-data position-absolute">
+  </div>
+  <!-- <button mat-stroked-button class="btn m-1 p-2" style="background-color: #1e293b; color: white;" (click)="open(content)"><mat-icon>add_circle_outline</mat-icon>Generate Bill</button> -->
+   <div class="table-wrapper">
+
+         <table class="table table-bordered   ">
+      <thead>
+      <tr>
+        <!-- <th scope="col">Door Name</th> -->
+        <th scope="col">Charge Name</th> 
+        <!-- <th scope="col">Taxable Amount</th> 
+        <th scope="col">Previous Arrear</th> 
+        <th scope="col">Principle Arrear</th> 
+        <th scope="col">Late Fee</th> 
+        <th scope="col">Total Amount</th> 
+        <th scope="col"> Last Updated</th> -->
+        <!-- <th scope="col">Charge Type</th> 
+        <th scope="col">Area</th> 
+        <th scope="col">Amount Per Unit</th>  -->
+        <th scope="col">Amount</th>
+        <th scope="col">Late Fee</th>
+        <th scope="col">Amount (after due date)</th>
+        <!-- <th scope="col">Previous Arrear</th> -->
+         <th scope="col" >Total Due Amount</th>
+        <th scope="col">Charge Date</th> 
+        <th scope="col">Due Date</th> 
+        <th scope="col"> View Invoice</th>  
+
+        <!-- <th scope="col">Edit</th>    -->
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor = "let us of generateData |
+      paginate: { 
+        itemsPerPage: 8, 
+        currentPage:page,
+        totalItems:totalLength
+      }">
+        <!-- <td>{{us.blockName}} - {{us.floorName}} - {{us.rentalUnitName}}</td> -->
+        <td>{{us.chargeName}}</td>
+        <!-- <td>{{us.type}}</td>
+        <td>{{us.area}}</td>
+        <td>{{us.amountPerUnit}}</td> -->
+        <td>{{us.calculatedAmount}}</td>
+         <td *ngIf="us.isPrecent === false">{{us.fine}}</td>
+         <td *ngIf="us.isPrecent === true">{{us.fine}}%</td>
+
+         <td>{{us.amounAfterDueDate}}</td>
+         <!-- <td *ngIf="us.credit === '0'">+{{us.debit}}</td>
+         <td *ngIf="us.debit === '0'">-{{us.credit}}</td> -->
+         <td>{{us.dueAmount}}</td>
+        <td>{{us.billDate  | date:'medium'}}</td>
+        <td>{{us.dueDate | date:'medium'}}</td>
+     <td>
+        <ng-container *ngIf="us.invoice_url">
+          <a [href]="us.invoice_url" target="_blank"><mat-icon>receipt</mat-icon></a>
+        </ng-container>
+
+        </td>
+        <!-- <td>
+            <mat-icon color="primary"  >edit</mat-icon>
+           
+            </td> -->
+      </tr>
+      <!-- <tr >
+        <td>Tower A</td>
+        <td>112</td>
+        <td>1200</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1200</td>
+        <td>20-05-2023</td>
+        <td>
+            <mat-icon color="primary" matTooltip="View Invoice">receipt</mat-icon>
+          </td>
+        <td>
+            <mat-icon color="primary" >edit</mat-icon>
+           
+            </td>
+      </tr> -->
+      
+      </tbody>
+      
+       </table>
+            </div>
+    <pagination-controls class="text-center" (pageChange)="page = $event"></pagination-controls>
+  
+    <!-- <div fxLayoutAlign="center center" fxFlexFill>
+  
+        <ng-template class="modal" #content let-modal style="background-color: rgba(196, 200, 167, 0.5);">
+          
+          <div class="modal-header" style="padding: 0px;">
+            <mat-toolbar class="btn" style="background-color: #1e293b; color: white;">
+            <h2 class="modal-title" id="modal-basic-title">Generate Bill</h2>
+            <button  type="button" class=" btn btn-close " aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+          </mat-toolbar>
+          </div>
+          <div class="modal-body"  >
+            <mat-card fxFlex="100" >
+            
+          
+              <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form" >
+                
+                 <mat-form-field appearance="fill" class="full-width" >
+                            <mat-label>Charge Date</mat-label>
+                        <input matInput type="date" formControlName="endDate" placeholder="not set yet">
+                          </mat-form-field>
+                          <mat-form-field appearance="fill" class="full-width" >
+                            <mat-label>Due Date</mat-label>
+        
+                            <input matInput type="date" formControlName="endDate" placeholder="not set yet">
+
+                          </mat-form-field>
+                                  
+          </form>
+        </mat-card>
+          </div>
+        
+          <div class="modal-footer">
+            <button *ngIf="!getparamid" (click)="saveDetails(form)"  (click)="modal.close('Save click')"  class=" btn-group btn" style="background-color: #1e293b; color: white;" [disabled]="!form.valid">create</button>
+            <button *ngIf="getparamid" (click)="FlatUpdate()"  (click)="modal.close('Save click')"  class="btn-group btn" style="background-color: #1e293b; color: white;" >Update</button>
+            <button type="submit" class="btn btn-danger"  (click)="modal.close('Save click')">Cancel</button>
+          </div>
+          
+        </ng-template>
+        
+        </div>  -->
+    </div>
+    </div>  
